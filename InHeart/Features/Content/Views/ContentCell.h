@@ -1,15 +1,13 @@
 //
-//  ViewController.h
+//  ContentCell.h
 //  InHeart
 //
-//  Created by 项小盆友 on 16/9/9.
+//  Created by 项小盆友 on 16/9/11.
 //  Copyright © 2016年 项小盆友. All rights reserved.
 //
 
 #import <UIKit/UIKit.h>
 
-@interface ViewController : UIViewController
-
+@interface ContentCell : UITableViewCell
 
 @end
-
