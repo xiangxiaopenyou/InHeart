@@ -7,10 +7,10 @@
 //
 
 #import "ContentCell.h"
-#import "CollectionContentCell.h"
 
-@interface ContentCell ()<UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout>
-@property (weak, nonatomic) IBOutlet UICollectionView *collectionView;
+#import <UIImageView+AFNetworking.h>
+
+@interface ContentCell ()
 
 @end
 
@@ -19,8 +19,7 @@
 - (void)awakeFromNib {
     [super awakeFromNib];
     // Initialization code
-    self.collectionView.delegate = self;
-    self.collectionView.dataSource = self;
+    [self.contentImageView setImageWithURL:[NSURL URLWithString:@"http://img1.3lian.com/img013/v4/57/d/2.jpg"] placeholderImage:nil];
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
@@ -29,25 +28,5 @@
     // Configure the view for the selected state
 }
 
-#pragma mark - UICollectionViewDelegate DataSource
-- (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
-    return 9;
-}
-- (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
-    static NSString *identifier = @"CollectionContent";
-    CollectionContentCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:identifier forIndexPath:indexPath];
-    return cell;
-}
-
-#pragma mark - UICollectionViewDelegateFlowLayout
-- (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath {
-    return CGSizeMake(kCollectionCellItemWidth , kCollectionCellItemHeight);
-}
-- (UIEdgeInsets)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout insetForSectionAtIndex:(NSInteger)section {
-    return UIEdgeInsetsMake(0, 10, 10, 10);
-}
-//- (CGFloat)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout minimumInteritemSpacingForSectionAtIndex:(NSInteger)section {
-//    return 10;
-//}
 
 @end

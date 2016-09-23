@@ -10,5 +10,7 @@ pod 'OpenShare'
 pod 'SDCycleScrollView'
 pod 'GJCFUitils'
 pod 'UIImage-Helpers'
+pod 'YUChineseSorting'
+pod 'IQKeyboardManager'
 end 
 

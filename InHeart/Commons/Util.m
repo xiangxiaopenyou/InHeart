@@ -55,12 +55,12 @@
     }
 }
 
-//+ (NSURL *)urlWithString:(NSString *)urlString {
-//    NSString *imageUrlString = [NSString stringWithFormat:@"%@%@", @"", urlString];
-//    imageUrlString = [imageUrlString stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
-//    NSURL *url = [NSURL URLWithString:imageUrlString];
-//    return url;
-//}
++ (NSURL *)urlWithString:(NSString *)urlString {
+    //NSString *imageUrlString = [NSString stringWithFormat:@"%@%@", @"", urlString];
+    //imageUrlString = [imageUrlString stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+    NSURL *url = [NSURL URLWithString:urlString];
+    return url;
+}
 + (NSString *)numberString:(CGFloat)floatNumber {
     NSNumberFormatter *numberFormatter = [[NSNumberFormatter alloc] init];
     [numberFormatter  setNumberStyle:NSNumberFormatterNoStyle];

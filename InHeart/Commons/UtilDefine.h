@@ -19,11 +19,11 @@
 /**
  *  常用颜色
  */
-#define NAVIGATIONBAR_COLOR [UIColor colorWithRed:255/255.0 green:97/255.0 blue:56/255.0 alpha:1.0]
-#define TABBAR_TITLE_COLOR [UIColor colorWithRed:164/255.0 green:173/255.0 blue:188/255.0 alpha:1.0]
+#define NAVIGATIONBAR_COLOR [UIColor colorWithRed:82/255.0 green:184/255.0 blue:255/255.0 alpha:1.0]
+#define TABBAR_TITLE_COLOR [UIColor colorWithRed:170/255.0 green:170/255.0 blue:170/255.0 alpha:1.0]
 #define MAIN_BACKGROUND_COLOR [UIColor colorWithRed:242/255.0 green:242/255.0 blue:242/255.0 alpha:1.0]
-#define BREAK_LINE_COLOR [UIColor colorWithRed:230/255.0 green:230/255.0 blue:230/255.0 alpha:1.0]
-#define MAIN_TEXT_COLOR [UIColor colorWithRed:73/255.0 green:78/255.0 blue:82/255.0 alpha:1.0]
+#define BREAK_LINE_COLOR [UIColor colorWithRed:208/255.0 green:208/255.0 blue:208/255.0 alpha:1.0]
+#define MAIN_TEXT_COLOR [UIColor colorWithRed:50/255.0 green:50/255.0 blue:50/255.0 alpha:1.0]
 
 /**
  *  RGB颜色

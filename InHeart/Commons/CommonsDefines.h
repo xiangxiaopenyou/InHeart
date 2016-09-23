@@ -19,7 +19,20 @@ extern CGFloat const NAVIGATIONBARHEIGHT;
 //内容
 extern NSString * const kSearchPlaceholder;
 
+//个人中心
+extern NSString * const kMyInterrogation;
+extern NSString * const kMyDoctors;
+extern NSString * const kMyCollections;
+extern NSString * const kMyAccount;
+extern NSString * const kHelpAndFeedback;
+extern NSString * const kPersonalSetting;
 
+//登录注册
+extern NSString * const kInputPhoneNumber;
+extern NSString * const kInputPassword;
+extern NSString * const kInputVerificationCode;
+extern NSString * const kInputPasswordAgain;
+extern NSString * const kUserAgreement;
 
 
 /**

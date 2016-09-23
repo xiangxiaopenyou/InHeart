@@ -9,6 +9,9 @@
 #import "MainTabBarController.h"
 #import "ContentViewController.h"
 #import "ContentNavigationController.h"
+#import "InterrogationViewController.h"
+#import "PersonalCenterTableViewController.h"
+#import "MessageTableViewController.h"
 
 static CGFloat const kTipLabelHeight = 2.0;
 #define kTipLabelWidth SCREEN_WIDTH / 4.0
@@ -25,27 +28,47 @@ static CGFloat const kTipLabelHeight = 2.0;
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     [self addViewToTabBar];
-    //内容
-    ContentViewController *contentViewController = [[UIStoryboard storyboardWithName:@"Content" bundle:nil] instantiateViewControllerWithIdentifier:@"ContentView"];
-    [self setupChildControllerWith:contentViewController normalImage:nil selectedImage:nil title:@"内容" index:0];
+    UIImage *askUnSelectedImage = [UIImage imageNamed:@"ask_unselected"];
+    askUnSelectedImage = [askUnSelectedImage imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
+    UIImage *askSelectedImage = [UIImage imageNamed:@"ask_selected"];
+    askSelectedImage = [askSelectedImage imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
+    
+    UIImage *messageUnSelectedImage = [UIImage imageNamed:@"message_unselected"];
+    messageUnSelectedImage = [messageUnSelectedImage imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
+    UIImage *messageSelectedImage = [UIImage imageNamed:@"message_selected"];
+    messageSelectedImage = [messageSelectedImage imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
+    
+    UIImage *contentUnSelectedImage = [UIImage imageNamed:@"content_unselected"];
+    contentUnSelectedImage = [contentUnSelectedImage imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
+    UIImage *contentSelectedImage = [UIImage imageNamed:@"content_selected"];
+    contentSelectedImage = [contentSelectedImage imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
+    
+    UIImage *personalUnSelectedImage = [UIImage imageNamed:@"personal_unselected"];
+    personalUnSelectedImage = [personalUnSelectedImage imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
+    UIImage *personalSelectedImage = [UIImage imageNamed:@"personal_selected"];
+    personalSelectedImage = [personalSelectedImage imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
     
     //问诊
-    UIViewController *viewController2 = [[UIViewController alloc] init];
-    [self setupChildControllerWith:viewController2 normalImage:nil selectedImage:nil title:@"问诊" index:1];
+    InterrogationViewController *interrogationViewController = [[UIStoryboard storyboardWithName:@"Interrogation" bundle:nil] instantiateViewControllerWithIdentifier:@"InterrogationView"];
+    [self setupChildControllerWith:interrogationViewController normalImage:askUnSelectedImage selectedImage:askSelectedImage title:@"问诊" index:0];
     
     //消息
-    UIViewController *viewController3 = [[UIViewController alloc] init];
-    [self setupChildControllerWith:viewController3 normalImage:nil selectedImage:nil title:@"消息" index:2];
+    MessageTableViewController *messageController = [[UIStoryboard storyboardWithName:@"Message" bundle:nil] instantiateViewControllerWithIdentifier:@"Message"];
+    [self setupChildControllerWith:messageController normalImage:messageUnSelectedImage selectedImage:messageSelectedImage title:@"消息" index:1];
+    
+    //内容
+    ContentViewController *contentViewController = [[UIStoryboard storyboardWithName:@"Content" bundle:nil] instantiateViewControllerWithIdentifier:@"ContentView"];
+    [self setupChildControllerWith:contentViewController normalImage:contentUnSelectedImage selectedImage:contentSelectedImage title:@"内容" index:2];
     
     //个人中心
-    UIViewController *viewController4 = [[UIViewController alloc] init];
-    [self setupChildControllerWith:viewController4 normalImage:nil selectedImage:nil title:@"个人中心" index:3];
+    PersonalCenterTableViewController *personalViewController = [[UIStoryboard storyboardWithName:@"Personal" bundle:nil] instantiateViewControllerWithIdentifier:@"PersonalCenter"];
+    [self setupChildControllerWith:personalViewController normalImage:personalUnSelectedImage selectedImage:personalSelectedImage title:@"个人中心" index:3];
 
 }
 - (UILabel *)bottomTipLabel {
     if (!_bottomTipLabel) {
         _bottomTipLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, kTipLabelWidth, kTipLabelHeight)];
-        _bottomTipLabel.backgroundColor = [UIColor redColor];
+        _bottomTipLabel.backgroundColor = NAVIGATIONBAR_COLOR;
     }
     return _bottomTipLabel;
 }
@@ -59,7 +82,43 @@ static CGFloat const kTipLabelHeight = 2.0;
 }
 
 - (void)setupChildControllerWith:(UIViewController *)childViewController normalImage:(UIImage *)normalImage selectedImage:(UIImage *)selectedImage title:(NSString *)title index:(NSInteger)index {
-    if (index == 0) {
+//    switch (index) {
+//        case 0:{
+//            UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:childViewController];
+//            childViewController.title = title;
+//            childViewController.tabBarItem.image = normalImage;
+//            childViewController.tabBarItem.selectedImage = selectedImage;
+//            [self addChildViewController:navigationController];
+//        }
+//            break;
+//        case 1:{
+//            UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:childViewController];
+//            childViewController.title = title;
+//            childViewController.tabBarItem.image = normalImage;
+//            childViewController.tabBarItem.selectedImage = selectedImage;
+//            [self addChildViewController:navigationController];
+//        }
+//            break;
+//        case 2:{
+//            ContentNavigationController *navigationController = [[ContentNavigationController alloc] initWithRootViewController:childViewController];
+//            childViewController.title = title;
+//            childViewController.tabBarItem.image = normalImage;
+//            childViewController.tabBarItem.selectedImage = selectedImage;
+//            [self addChildViewController:navigationController];
+//        }
+//            break;
+//        case 3:{
+//            UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:childViewController];
+//            childViewController.title = title;
+//            childViewController.tabBarItem.image = normalImage;
+//            childViewController.tabBarItem.selectedImage = selectedImage;
+//            [self addChildViewController:navigationController];
+//        }
+//            
+//        default:
+//            break;
+//    }
+    if (index == 2) {
         ContentNavigationController *navigationController = [[ContentNavigationController alloc] initWithRootViewController:childViewController];
         childViewController.title = title;
         childViewController.tabBarItem.image = normalImage;

@@ -21,6 +21,7 @@ PODS:
     - AFNetworking/NSURLConnection
     - AFNetworking/NSURLSession
   - GJCFUitils (1.0)
+  - IQKeyboardManager (3.3.7)
   - JSONModel (1.4.0)
   - Masonry (1.0.1)
   - MJRefresh (3.1.12)
@@ -32,10 +33,12 @@ PODS:
   - SDWebImage/Core (3.8.2)
   - SVProgressHUD (2.0.3)
   - UIImage-Helpers (0.0.3)
+  - YUChineseSorting (1.0.2)
 
 DEPENDENCIES:
   - AFNetworking (~> 2.0)
   - GJCFUitils
+  - IQKeyboardManager
   - JSONModel
   - Masonry
   - MJRefresh
@@ -43,10 +46,12 @@ DEPENDENCIES:
   - SDCycleScrollView
   - SVProgressHUD
   - UIImage-Helpers
+  - YUChineseSorting
 
 SPEC CHECKSUMS:
   AFNetworking: cb8d14a848e831097108418f5d49217339d4eb60
   GJCFUitils: ad4f8373eb10edb94299594d348d1ee6f21dbe5e
+  IQKeyboardManager: 249c3946acf61345c18b038eb50863fe2793e3a8
   JSONModel: 58fe3f8c29ff95ed94e7ee7dde87e807f5da5371
   Masonry: a1a931a0d08870ed8ae415a2ea5ea68ebcac77df
   MJRefresh: b96cdb21c4aa75a7b07654311ab2f315c497e806
@@ -55,5 +60,6 @@ SPEC CHECKSUMS:
   SDWebImage: 098e97e6176540799c27e804c96653ee0833d13c
   SVProgressHUD: b0830714205bea1317ea1a2ebc71e5633af334d4
   UIImage-Helpers: 06b04a42bdd222844035602e87e936765c80f620
+  YUChineseSorting: 46bbd4fa0344e21b169a537bb17aafec0980c560
 
 COCOAPODS: 0.39.0

@@ -29,11 +29,9 @@
 - (void)navigationController:(UINavigationController *)navigationController willShowViewController:(UIViewController *)viewController animated:(BOOL)animated {
     if ([viewController isKindOfClass:[ContentViewController class]]) {
         viewController.navigationItem.title = nil;
-        [self.navigationBar setBackgroundImage:[UIImage new] forBarMetrics:UIBarMetricsDefault];
-        self.navigationBar.shadowImage = [UIImage new];
         self.navigationBar.translucent = YES;
     } else {
-        
+        self.navigationBar.translucent = NO;
     }
 }
 /*
