@@ -62,18 +62,6 @@
     }
     return _searchTextField;
 }
-//- (UIButton *)searchCancelButton {
-//    if (!_searchCancelButton) {
-//        _searchCancelButton = [UIButton buttonWithType:UIButtonTypeCustom];
-//        _searchCancelButton.frame = CGRectMake(SCREEN_WIDTH - 80, 0, 40, 30);
-//        [_searchCancelButton setTitle:@"取消" forState:UIControlStateNormal];
-//        [_searchCancelButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-//        _searchCancelButton.titleLabel.font = kSystemFont(14);
-//        _searchCancelButton.hidden = YES;
-//        [_searchCancelButton addTarget:self action:@selector(cancelSearchClick) forControlEvents:UIControlEventTouchUpInside];
-//    }
-//    return _searchCancelButton;
-//}
 - (void)addNavigationTitleView {
     self.navigationItem.titleView = self.searchView;
 }
