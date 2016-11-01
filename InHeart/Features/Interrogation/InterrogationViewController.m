@@ -57,7 +57,7 @@
     self.areasIndexArray = [ChineseString IndexArray:self.provincesArray];
     self.areasArray = @[tempArray2, tempArray1];
     
-    NSArray *tempDiseasesArray = @[@"神经病", @"弱智", @"阳痿", @"痔疮", @"包皮", @"艾滋", @"梅毒", @"前列腺炎", @"智障", @"sb", @"mdzz"];
+    NSArray *tempDiseasesArray = @[@"神经病", @"弱智", @"阳痿", @"痔疮", @"包皮", @"艾滋", @"梅毒", @"前列腺炎", @"智障", @"sb", @"mdzz", @"你妈嗨", @"sdkfja"];
     self.diseaseIndexArray = [[ChineseString IndexArray:tempDiseasesArray] copy];
     self.diseaseArray = [[ChineseString LetterSortArray:tempDiseasesArray] copy];
     

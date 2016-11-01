@@ -7,8 +7,6 @@
 //
 
 #import <AFNetworking/AFNetworking.h>
-extern NSString * const BASEAPIURL;
-extern NSString * const BASEIMAGEURL;
 
 @interface RequestManager : AFHTTPSessionManager
 + (instancetype)sharedInstance;

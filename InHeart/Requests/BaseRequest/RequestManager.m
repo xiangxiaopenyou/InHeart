@@ -7,8 +7,6 @@
 //
 
 #import "RequestManager.h"
-NSString * const BASEAPIURL = @"http://115.28.54.184/Home/";
-NSString * const BASEIMAGEURL = @"http://7xwgun.com1.z0.glb.clouddn.com";
 
 @implementation RequestManager
 + (instancetype)sharedInstance {
@@ -16,10 +14,15 @@ NSString * const BASEIMAGEURL = @"http://7xwgun.com1.z0.glb.clouddn.com";
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
         instance = [[RequestManager alloc] initWithBaseURL:[NSURL URLWithString:BASEAPIURL]];
+        AFJSONRequestSerializer *requestSerializer = [AFJSONRequestSerializer serializer];
+        [requestSerializer setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
+        [requestSerializer setValue:@"application/json" forHTTPHeaderField:@"Accept"];
+        [requestSerializer setHTTPShouldHandleCookies:YES];
         AFJSONResponseSerializer *serializer = [AFJSONResponseSerializer serializer];
         NSMutableSet *types = [[serializer acceptableContentTypes] mutableCopy];
         [types addObjectsFromArray:@[@"text/plain", @"text/html"]];
         serializer.acceptableContentTypes = types;
+        instance.requestSerializer = requestSerializer;
         instance.responseSerializer = serializer;
         [NSURLSessionConfiguration defaultSessionConfiguration].HTTPMaximumConnectionsPerHost = 1;
     });

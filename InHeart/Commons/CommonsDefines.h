@@ -6,10 +6,16 @@
 //  Copyright © 2016年 项小盆友. All rights reserved.
 //
 #import <UIKit/UIKit.h>
+
+//key & secret
+extern NSString * const EMChatKey;
 /**
  *  用户相关
  */
 extern NSString * const USERID;
+extern NSString * const USERTOKEN;
+extern NSString * const USERNAME;
+extern NSString * const KEYCHAINSERVICE;
 /**
  *  常用数值
  */
@@ -34,10 +40,22 @@ extern NSString * const kInputVerificationCode;
 extern NSString * const kInputPasswordAgain;
 extern NSString * const kUserAgreement;
 
+//NotificationName
+extern NSString * const kLoginSuccess;
+
 
 /**
  *  接口
  */
+//1.BaseURL
+extern NSString * const BASEAPIURL;
+
+//2.用户相关
+extern NSString * const USER_LOGIN;
+extern NSString * const USER_REGISTER;
+extern NSString * const FETCH_VERIFICATION_CODE;
+extern NSString * const FIND_PASSWORD;
+
 extern NSString * const GOODS_LIST;
 
 
