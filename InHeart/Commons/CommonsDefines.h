@@ -15,6 +15,7 @@ extern NSString * const EMChatKey;
 extern NSString * const USERID;
 extern NSString * const USERTOKEN;
 extern NSString * const USERNAME;
+extern NSString * const USERREALNAME;
 extern NSString * const KEYCHAINSERVICE;
 /**
  *  常用数值
@@ -24,6 +25,7 @@ extern CGFloat const NAVIGATIONBARHEIGHT;
 
 //内容
 extern NSString * const kSearchPlaceholder;
+extern NSString * const kNetworkError;
 
 //个人中心
 extern NSString * const kMyInterrogation;
@@ -39,6 +41,19 @@ extern NSString * const kInputPassword;
 extern NSString * const kInputVerificationCode;
 extern NSString * const kInputPasswordAgain;
 extern NSString * const kUserAgreement;
+extern NSString * const kFetchVerificationCode;
+extern NSString * const kInputCorrectPhoneNumberTip;
+extern NSString * const kInputPasswordTip;
+extern NSString * const kPasswordFormatTip;
+extern NSString * const kDifferentPasswordTip;
+extern NSString * const kInputVerificationCodeTip;
+extern NSString * const kCameraNotAvailable;
+extern NSString * const kAppCameraAccessNotAuthorized;
+extern NSString * const kAppPhotoLibraryAccessNotAuthorized;
+extern NSString * const kPleaseUploadAuthenticationPicture;
+extern NSString * const kPleaseInputCorrectIDCardNumber;
+extern NSString * const kFindPassword;
+extern NSString * const kChangePassword;
 
 //NotificationName
 extern NSString * const kLoginSuccess;
@@ -55,6 +70,7 @@ extern NSString * const USER_LOGIN;
 extern NSString * const USER_REGISTER;
 extern NSString * const FETCH_VERIFICATION_CODE;
 extern NSString * const FIND_PASSWORD;
+extern NSString * const USER_LOGOUT;
 
 extern NSString * const GOODS_LIST;
 

@@ -10,9 +10,6 @@
 #import "LoginRequest.h"
 #import "FetchVerificationCodeRequest.h"
 #import "RegisterRequest.h"
-#import "ExpertAuthenticationRequest.h"
-#import "UploadAuthenticationPictureRequest.h"
-#import "UploadTitlesPictureRequest.h"
 #import "FindPasswordRequest.h"
 #import "LogoutRequest.h"
 

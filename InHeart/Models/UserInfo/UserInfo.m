@@ -38,6 +38,9 @@
     if (userModel.username) {
         [[NSUserDefaults standardUserDefaults] setObject:userModel.username forKey:USERNAME];
     }
+    if (userModel.realname) {
+        [[NSUserDefaults standardUserDefaults] setObject:userModel.realname forKey:USERREALNAME];
+    }
     [[NSUserDefaults standardUserDefaults] synchronize];
     return YES;
 }
@@ -49,19 +52,25 @@
     if ([[NSUserDefaults standardUserDefaults] objectForKey:USERNAME]) {
         model.username = [[NSUserDefaults standardUserDefaults] objectForKey:USERNAME];
     }
+    if ([[NSUserDefaults standardUserDefaults] objectForKey:USERREALNAME]) {
+        model.realname = [[NSUserDefaults standardUserDefaults] objectForKey:USERREALNAME];
+    }
     return model;
 }
 - (void)removeUserInfo {
     [[NSUserDefaults standardUserDefaults] removeObjectForKey:USERTOKEN];
     [[NSUserDefaults standardUserDefaults] removeObjectForKey:USERNAME];
+    [[NSUserDefaults standardUserDefaults] removeObjectForKey:USERREALNAME];
     [[NSUserDefaults standardUserDefaults] synchronize];
 }
 - (BOOL)savePersonalInfo:(PersonalInfo *)personalInfo {
     if (!personalInfo) {
         return NO;
     }
-    [SAMKeychain setPassword:personalInfo.password forService:KEYCHAINSERVICE account:personalInfo.username error:nil];
-    return YES;
+    if([SAMKeychain setPassword:personalInfo.password forService:KEYCHAINSERVICE account:personalInfo.username error:nil]) {
+        return YES;
+    }
+    return NO;
 }
 - (PersonalInfo *)personalInfo {
     PersonalInfo *info = [PersonalInfo new];

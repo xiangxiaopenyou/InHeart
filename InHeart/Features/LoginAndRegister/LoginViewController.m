@@ -11,7 +11,11 @@
 
 #import "LoginContentCell.h"
 
+#import "UserModel.h"
+#import "UserInfo.h"
+#import "PersonalInfo.h"
 #import <Masonry.h>
+#import <GJCFUitils.h>
 
 @interface LoginViewController ()<UITableViewDelegate, UITableViewDataSource, UITextFieldDelegate>
 @property (strong, nonatomic) UITextField *phoneTextField;
@@ -36,6 +40,8 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
+
+#pragma mark - Getters
 - (UITextField *)phoneTextField {
     if (!_phoneTextField) {
         _phoneTextField = [[UITextField alloc] init];
@@ -123,6 +129,37 @@
 - (IBAction)forgetPasswordClick:(id)sender {
 }
 - (IBAction)loginClick:(id)sender {
+    if (!GJCFStringIsMobilePhone(self.phoneTextField.text)) {
+        [SVProgressHUD showErrorWithStatus:kInputCorrectPhoneNumberTip];
+        return;
+    }
+    if (XLIsNullObject(self.passwordTextField.text)) {
+        [SVProgressHUD showErrorWithStatus:kInputPasswordTip];
+        return;
+    }
+    [self resignTextField];
+    [SVProgressHUD show];
+    [UserModel userLogin:self.phoneTextField.text password:self.passwordTextField.text handler:^(id object, NSString *msg) {
+        if (object) {
+            UserModel *userModel = [object copy];
+            if ([[UserInfo sharedUserInfo] saveUserInfo:userModel]) {
+                PersonalInfo *tempInfo = [PersonalInfo new];
+                tempInfo.username = userModel.username;
+                tempInfo.password = self.passwordTextField.text;
+                if ([[UserInfo sharedUserInfo] savePersonalInfo:tempInfo]) {
+                    [SVProgressHUD dismiss];
+                    [self dismissViewControllerAnimated:YES completion:nil];
+                    [[EMClient sharedClient] loginWithUsername:userModel.username password:self.passwordTextField.text];
+                } else {
+                    [SVProgressHUD showErrorWithStatus:@"登录出现问题，请重试"];
+                }
+            } else {
+                [SVProgressHUD showErrorWithStatus:@"登录出现问题，请重试"];
+            }
+        } else {
+            [SVProgressHUD showErrorWithStatus:msg];
+        }
+    }];
 }
 - (void)dismiss {
     [self dismissViewControllerAnimated:YES completion:nil];

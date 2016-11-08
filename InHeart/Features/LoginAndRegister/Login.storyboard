@@ -199,7 +199,7 @@
                                     </constraints>
                                 </view>
                                 <view key="tableFooterView" contentMode="scaleToFill" id="iRN-oI-fM1">
-                                    <rect key="frame" x="0.0" y="202" width="375" height="182"/>
+                                    <rect key="frame" x="0.0" y="256" width="375" height="182"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     <subviews>
                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4zK-mW-6wa">
@@ -237,8 +237,61 @@
                                     </constraints>
                                 </view>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="ContenCell" rowHeight="54" id="gNs-fH-7g8" customClass="LoginContentCell">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="PhoneCell" rowHeight="54" id="c45-FZ-Oax" customClass="RegisterPhoneCell">
                                         <rect key="frame" x="0.0" y="148" width="375" height="54"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="c45-FZ-Oax" id="sIa-y5-qAa">
+                                            <frame key="frameInset" width="375" height="54"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="f4t-aL-R29">
+                                                    <color key="backgroundColor" red="0.32156862749999998" green="0.72156862749999995" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="0.5" id="HDB-zd-WFF"/>
+                                                    </constraints>
+                                                </imageView>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Csa-0b-Wel">
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="24" id="Afv-rc-Q1C"/>
+                                                        <constraint firstAttribute="height" constant="24" id="m0G-AA-oFL"/>
+                                                    </constraints>
+                                                </imageView>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="K13-NF-Ga8">
+                                                    <color key="backgroundColor" red="0.32156862749999998" green="0.72156862749999995" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="0.5" id="EPW-20-Aou"/>
+                                                    </constraints>
+                                                </imageView>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JFf-3V-Ef2">
+                                                    <color key="backgroundColor" red="0.32156862749999998" green="0.72156862749999995" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="0.5" id="FFO-Dt-5t6"/>
+                                                        <constraint firstAttribute="height" constant="22" id="WRN-A7-wLm"/>
+                                                    </constraints>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="f4t-aL-R29" firstAttribute="top" secondItem="sIa-y5-qAa" secondAttribute="top" id="GFv-Xp-QOL"/>
+                                                <constraint firstItem="K13-NF-Ga8" firstAttribute="leading" secondItem="sIa-y5-qAa" secondAttribute="leading" constant="22" id="Jbv-BG-9vb"/>
+                                                <constraint firstItem="f4t-aL-R29" firstAttribute="leading" secondItem="sIa-y5-qAa" secondAttribute="leading" constant="22" id="LW4-QK-ZBU"/>
+                                                <constraint firstAttribute="trailing" secondItem="JFf-3V-Ef2" secondAttribute="trailing" constant="107" id="TKo-7E-WO9"/>
+                                                <constraint firstItem="Csa-0b-Wel" firstAttribute="top" secondItem="f4t-aL-R29" secondAttribute="bottom" constant="10" id="ecR-E5-hxn"/>
+                                                <constraint firstItem="Csa-0b-Wel" firstAttribute="leading" secondItem="sIa-y5-qAa" secondAttribute="leading" constant="37" id="fZt-8s-ezC"/>
+                                                <constraint firstAttribute="trailing" secondItem="f4t-aL-R29" secondAttribute="trailing" constant="22" id="k99-J7-NCa"/>
+                                                <constraint firstItem="K13-NF-Ga8" firstAttribute="top" secondItem="Csa-0b-Wel" secondAttribute="bottom" constant="10" id="lh0-ae-POj"/>
+                                                <constraint firstItem="JFf-3V-Ef2" firstAttribute="top" secondItem="f4t-aL-R29" secondAttribute="bottom" constant="11" id="p6B-dj-QLf"/>
+                                                <constraint firstAttribute="trailing" secondItem="K13-NF-Ga8" secondAttribute="trailing" constant="22" id="tMg-Rj-qsh"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="iconImageView" destination="Csa-0b-Wel" id="Jfy-yt-ZA9"/>
+                                        </connections>
+                                    </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="ContenCell" rowHeight="54" id="gNs-fH-7g8" customClass="LoginContentCell">
+                                        <rect key="frame" x="0.0" y="202" width="375" height="54"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="gNs-fH-7g8" id="RXJ-k4-3Mf">
                                             <frame key="frameInset" width="375" height="54"/>

@@ -7,49 +7,23 @@
     </dependencies>
     <scenes>
         <!--消息-->
-        <scene sceneID="udg-WN-9y0">
+        <scene sceneID="Bve-Hr-mY4">
             <objects>
-                <tableViewController storyboardIdentifier="Message" id="Gcz-dA-vB0" customClass="MessageTableViewController" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="gHZ-HQ-DLM">
+                <viewController storyboardIdentifier="Message" id="JIX-GN-YRc" customClass="MessagesViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="vKy-LT-oQx"/>
+                        <viewControllerLayoutGuide type="bottom" id="CIw-7o-uRT"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="uov-qv-TQA">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" red="0.94117647058823528" green="0.94117647058823528" blue="0.94117647058823528" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                        <view key="tableHeaderView" contentMode="scaleToFill" id="KJP-J0-nda">
-                            <rect key="frame" x="0.0" y="64" width="375" height="83"/>
-                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            <subviews>
-                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="亲，我们还在开发噢~" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Fia-zJ-MnK">
-                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                    <color key="textColor" red="0.32156862749999998" green="0.72156862749999995" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                    <nil key="highlightedColor"/>
-                                </label>
-                            </subviews>
-                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                            <constraints>
-                                <constraint firstItem="Fia-zJ-MnK" firstAttribute="centerX" secondItem="KJP-J0-nda" secondAttribute="centerX" id="AJy-Iu-hbU"/>
-                                <constraint firstItem="Fia-zJ-MnK" firstAttribute="centerY" secondItem="KJP-J0-nda" secondAttribute="centerY" id="pg9-8M-Mfw"/>
-                            </constraints>
-                        </view>
-                        <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="MessageCell" id="TAY-UP-xmT">
-                                <rect key="frame" x="0.0" y="175" width="375" height="44"/>
-                                <autoresizingMask key="autoresizingMask"/>
-                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="TAY-UP-xmT" id="dWk-tm-UNd">
-                                    <frame key="frameInset" width="375" height="43"/>
-                                    <autoresizingMask key="autoresizingMask"/>
-                                </tableViewCellContentView>
-                            </tableViewCell>
-                        </prototypes>
-                        <connections>
-                            <outlet property="dataSource" destination="Gcz-dA-vB0" id="E0w-GI-ftH"/>
-                            <outlet property="delegate" destination="Gcz-dA-vB0" id="D5a-UE-FaK"/>
-                        </connections>
-                    </tableView>
-                    <navigationItem key="navigationItem" title="消息" id="VY0-bk-3Em"/>
-                </tableViewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="56S-Bb-Imb" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                        <color key="backgroundColor" red="0.94117647058823528" green="0.94117647058823528" blue="0.94117647058823528" alpha="1" colorSpace="calibratedRGB"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="消息" id="Lnd-Aw-FgB"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="WUa-Ae-qin" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="813.60000000000002" y="335.98200899550227"/>
+            <point key="canvasLocation" x="1182" y="371"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="cZ0-gS-ZmQ">
@@ -60,7 +34,7 @@
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <connections>
-                        <segue destination="Gcz-dA-vB0" kind="relationship" relationship="rootViewController" id="TDx-4g-WFz"/>
+                        <segue destination="JIX-GN-YRc" kind="relationship" relationship="rootViewController" id="1uV-uA-6rN"/>
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="gbq-oN-zQY" userLabel="First Responder" sceneMemberID="firstResponder"/>

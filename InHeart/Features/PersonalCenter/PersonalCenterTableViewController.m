@@ -7,10 +7,16 @@
 //
 
 #import "PersonalCenterTableViewController.h"
+#import "LoginViewController.h"
 #import "PersonalInformationCell.h"
 #import "CommonFunctionCell.h"
 
+#import "UserInfo.h"
+#import "UserModel.h"
+#import "PersonalInfo.h"
+
 @interface PersonalCenterTableViewController ()
+@property (strong, nonatomic) UserModel *userModel;
 
 @end
 
@@ -25,7 +31,11 @@
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
 }
-
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    self.userModel = [[UserInfo sharedUserInfo] userInfo];
+    [self.tableView reloadData];
+}
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
@@ -60,8 +70,24 @@
         case 0:{
             PersonalInformationCell *cell = [tableView dequeueReusableCellWithIdentifier:@"InformationCell" forIndexPath:indexPath];
             cell.imageView.image = [UIImage imageNamed:@"personal_avatar"];
-            cell.textLabel.text = @"项小盆友";
-            cell.detailTextLabel.text = @"13732254511";
+            if (![[UserInfo sharedUserInfo] isLogined]) {
+                cell.textLabel.text = @"尚未登录";
+                cell.detailTextLabel.text = @"点击登录";
+            } else {
+                if ([self.userModel.username isEqualToString:self.userModel.realname]) {
+                    cell.textLabel.text = [NSString stringWithFormat:@"%@", self.userModel.username];
+                    cell.detailTextLabel.text = nil;
+                } else {
+                    if (XLIsNullObject(self.userModel.realname)) {
+                        cell.textLabel.text = [NSString stringWithFormat:@"%@", self.userModel.username];
+                        cell.detailTextLabel.text = nil;
+                    } else {
+                        cell.textLabel.text = [NSString stringWithFormat:@"%@", self.userModel.realname];
+                        cell.detailTextLabel.text = [NSString stringWithFormat:@"%@", self.userModel.username];
+                    }
+                }
+            }
+            
             return cell;
         }
             break;
@@ -111,6 +137,11 @@
 }
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    if (indexPath.section == 0) {
+        LoginViewController *loginViewController = [[UIStoryboard storyboardWithName:@"Login" bundle:nil] instantiateViewControllerWithIdentifier:@"Login"];
+        UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:loginViewController];
+        [self presentViewController:navigationController animated:YES completion:nil];
+    }
 }
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     if (indexPath.section == 0) {

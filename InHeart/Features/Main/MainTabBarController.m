@@ -11,7 +11,7 @@
 #import "ContentNavigationController.h"
 #import "InterrogationViewController.h"
 #import "PersonalCenterTableViewController.h"
-#import "MessageTableViewController.h"
+#import "MessagesViewController.h"
 
 static CGFloat const kTipLabelHeight = 2.0;
 #define kTipLabelWidth SCREEN_WIDTH / 4.0
@@ -53,7 +53,7 @@ static CGFloat const kTipLabelHeight = 2.0;
     [self setupChildControllerWith:interrogationViewController normalImage:askUnSelectedImage selectedImage:askSelectedImage title:@"问诊" index:0];
     
     //消息
-    MessageTableViewController *messageController = [[UIStoryboard storyboardWithName:@"Message" bundle:nil] instantiateViewControllerWithIdentifier:@"Message"];
+    MessagesViewController *messageController = [[UIStoryboard storyboardWithName:@"Message" bundle:nil] instantiateViewControllerWithIdentifier:@"Message"];
     [self setupChildControllerWith:messageController normalImage:messageUnSelectedImage selectedImage:messageSelectedImage title:@"消息" index:1];
     
     //内容

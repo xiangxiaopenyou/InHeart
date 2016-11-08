@@ -7,6 +7,10 @@
 //
 
 #import "AppDelegate.h"
+#import "MainTabBarController.h"
+#import "LoginViewController.h"
+
+#import "UserInfo.h"
 
 #import <UIImage-Helpers.h>
 #import <IQKeyboardManager.h>
@@ -21,14 +25,16 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
+    //self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     [self initAppearance];
     IQKeyboardManager *keyboardManager = [IQKeyboardManager sharedManager];
     keyboardManager.enable = YES;
     keyboardManager.enableAutoToolbar = NO;
     keyboardManager.shouldResignOnTouchOutside = YES;
     
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(checkUserState:) name:kLoginSuccess object:nil];
+    //[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(checkUserState:) name:kLoginSuccess object:nil];
     [[EaseSDKHelper shareHelper] hyphenateApplication:application didFinishLaunchingWithOptions:launchOptions appkey:EMChatKey apnsCertName:nil otherConfig:@{kSDKConfigEnableConsoleLogger:[NSNumber numberWithBool:YES]}];
+    //[self checkUserState:nil];
     
     return YES;
 }
@@ -64,7 +70,16 @@
     [[UINavigationBar appearance] setBackgroundImage:[UIImage imageWithColor:NAVIGATIONBAR_COLOR] forBarMetrics:UIBarMetricsDefault];
     [[UINavigationBar appearance] setShadowImage:[UIImage new]];
 }
-- (void)checkUserState:(NSNotification *)notification {
-}
+//- (void)checkUserState:(NSNotification *)notification {
+//    if ([[UserInfo sharedUserInfo] isLogined]) {
+//        MainTabBarController *tabBarController = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"MainTabBar"];
+//        self.window.rootViewController = tabBarController;
+//    } else {
+//        LoginViewController *loginViewController = [[UIStoryboard storyboardWithName:@"Login" bundle:nil] instantiateViewControllerWithIdentifier:@"Login"];
+//        UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:loginViewController];
+//        self.window.rootViewController = navigationController;
+//    }
+//    [self.window makeKeyAndVisible];
+//}
 
 @end

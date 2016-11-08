@@ -43,6 +43,10 @@
 
 
 #pragma mark - System
+#define XLAppVersion [Util appVersion]
+#define XLMobileModel [Util mobileModel]
+#define XLSystemVersion [Util systemVersion]
+#define XLIDFVString [Util idfvString]
 /**
  *  照相机是否可用
  */
@@ -72,7 +76,7 @@
 /**
  *  判空
  */
-#define XLIsNullObject [Util isNullObject:object]
+#define XLIsNullObject(object) [Util isNullObject:object]
 
 
 
@@ -90,4 +94,14 @@
  *  计算文字大小
  */
 #define XLSizeOfText(aText, aWidth, aFont) [Util sizeOfText:aText width:aWidth font:aFont]
+
+/**
+ *验证密码格式
+ */
+#define XLCheckPassword(aString) [Util checkPassword:aString]
+
+/**
+ *时间详细
+ */
+#define XLDetailTimeAgoString(aData) [Util detailTimeAgoString:aData]
 
