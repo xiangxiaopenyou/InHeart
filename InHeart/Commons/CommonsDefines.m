@@ -13,6 +13,7 @@ NSString * const USERID = @"UserId";
 NSString * const USERTOKEN = @"UserToken";
 NSString * const USERNAME = @"Username";
 NSString * const USERREALNAME = @"UserRealname";
+NSString * const USERENCRYPTEDPASSWORD = @"EncryptedPassword";
 NSString * const KEYCHAINSERVICE = @"com.midvision.vruser";
 
 CGFloat const TABBARHEIGHT = 49.0;
@@ -21,12 +22,23 @@ CGFloat const NAVIGATIONBARHEIGHT = 64.0;
 NSString * const kSearchPlaceholder = @"请输入你要搜索的内容";
 NSString * const kNetworkError = @"网络错误";
 
+NSString * const kClickToLogin = @"点击登录";
+NSString * const kCommonTip = @"提示";
+NSString * const kCommonCancel = @"取消";
+NSString * const kCommonEnsure = @"确定";
+NSString * const kIsMakePhoneCall = @"打电话给医生？";
+
 NSString * const kMyInterrogation = @"我的问诊";
 NSString * const kMyDoctors = @"我的医生";
 NSString * const kMyCollections = @"我的收藏";
-NSString * const kMyAccount = @"我的账户";
+NSString * const kMyAccount = @"我的账单";
+NSString * const kMyPrescriptions = @"我的处方";
+NSString * const kMyAttention = @"我的关注";
+NSString * const kMyBills = @"我的账单";
 NSString * const kHelpAndFeedback = @"帮助与反馈";
 NSString * const kPersonalSetting = @"设置";
+NSString * const kClearCache = @"清除缓存";
+NSString * const kAboutUs = @"关于";
 
 NSString * const kInputPhoneNumber = @"请输入您的手机号";
 NSString * const kInputPassword = @"请输入您的密码";
@@ -48,11 +60,24 @@ NSString * const kFindPassword = @"找回密码";
 NSString * const kChangePassword = @"修改密码";
 
 NSString * const kLoginSuccess = @"LoginSuccess";
+NSString * const kSetupUnreadMessagesCount = @"SetupUnreadMessagesCount";
+NSString * const kConversationsDidChange = @"ConversationsDidChange";
 
-NSString * const BASEAPIURL = @"http://xj.dosnsoft.com:8000/api/v1/";
+NSString * const BASEAPIURL = @"http://xj.dosnsoft.com:8000/api/v1/patient/";
 
-NSString * const USER_LOGIN = @"patient/login";
-NSString * const USER_REGISTER = @"patient/register";
-NSString * const FETCH_VERIFICATION_CODE = @"patient/sendCode";
-NSString * const FIND_PASSWORD = @"patient/modifyPassword";
-NSString * const USER_LOGOUT = @"";
+NSString * const USER_LOGIN = @"login";
+NSString * const USER_REGISTER = @"register";
+NSString * const FETCH_VERIFICATION_CODE = @"sendCode";
+NSString * const FIND_PASSWORD = @"modifyPassword";
+NSString * const USER_LOGOUT = @"logout";
+
+NSString * const FETCH_DOCTORS_LIST = @"doctor/search";
+NSString * const FETCH_DISEASES = @"content/disease";
+NSString * const FETCH_AREAS = @"getRegion";
+NSString * const DOCTOR_DETAIL = @"doctor/info";
+NSString * const ADD_ATTENTION = @"doctor/collect";
+NSString * const CANCEL_ATTENTION = @"doctor/cancelCollect";
+
+NSString * const FETCH_USERS_NAME = @"getUserIDAndName";
+NSString * const FETCH_CONTENT_DETAIL = @"content/info";
+NSString * const FETCH_PRESCRIPTION_CONTENTS = @"prescription/info";

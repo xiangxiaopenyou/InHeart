@@ -8,21 +8,25 @@
 //
 
 #import "ExpertDetailViewController.h"
+#import "ChatViewController.h"
 
 #import "ExpertNameCell.h"
 #import "ExpertIntroductionCell.h"
 
 #import "DoctorModel.h"
+#import "UserInfo.h"
+#import "ConversationModel.h"
 
 #import <UIImageView+AFNetworking.h>
+#import <GJCFUitils.h>
 
 @interface ExpertDetailViewController ()<UITableViewDelegate, UITableViewDataSource>
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (weak, nonatomic) IBOutlet UIImageView *photoView;
 @property (weak, nonatomic) IBOutlet UIButton *consultationNumberButton;
 @property (weak, nonatomic) IBOutlet UIButton *favoriteNumberButton;
-
-@property (strong, nonatomic) DoctorModel *model;
+@property (weak, nonatomic) IBOutlet UILabel *consultationPriceLabel;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *bottomViewHeightConstraint;
 
 @end
 
@@ -31,7 +35,11 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    [self.photoView setImageWithURL:XLURLFromString(self.model.photo) placeholderImage:nil];
+    if (self.isChatting) {
+        self.bottomViewHeightConstraint.constant = 0;
+    }
+    [self resetContentsViews];
+    [self fetchDetail];
     
 }
 
@@ -39,19 +47,34 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
-- (DoctorModel *)model {
-    if (!_model) {
-        _model = [DoctorModel new];
-        _model.name = @"徐坷楠";
-        _model.photo = @"http://i5.qhimg.com/t0173180eace578b33f.jpg";
-        _model.level = @"妇科专家";
-        _model.motto = @"妇科一把好手";
-        _model.consultNumber = @(100);
-        _model.city = @"杭州市";
-        _model.introduction = @"杀得了就发到啥地方骄傲的说了句付款啊是打了上看看看胸口看看那你就那就你，吗 来了  你，美女，美女";
-        _model.favoriteNumber = @(1000);
+#pragma mark - Request
+- (void)fetchDetail {
+    [SVProgressHUD show];
+    [DoctorModel fetchDoctorDetail:self.doctorModel.id handler:^(id object, NSString *msg) {
+        if (object) {
+            [SVProgressHUD dismiss];
+            self.doctorModel = [object copy];
+            GJCFAsyncMainQueue(^{
+                [self resetContentsViews];
+                [self.tableView reloadData];
+            });
+        } else {
+            XLShowThenDismissHUD(NO, msg);
+        }
+    }];
+}
+
+#pragma mark - Private Methods
+- (void)resetContentsViews {
+    [self.photoView setImageWithURL:XLURLFromString(self.doctorModel.photo) placeholderImage:[UIImage imageNamed:@"default_image"]];
+    if (!XLIsNullObject(self.doctorModel.consultationTimes)) {
+        [self.consultationNumberButton setTitle:[NSString stringWithFormat:@"%@人咨询过", self.doctorModel.consultationTimes] forState:UIControlStateNormal];
     }
-    return _model;
+    if (self.doctorModel.minPrice) {
+        self.consultationPriceLabel.text = [NSString stringWithFormat:@"咨询费：￥%@", self.doctorModel.minPrice];
+    } else {
+        self.consultationPriceLabel.text = [NSString stringWithFormat:@"咨询费：￥0"];
+    }
 }
 
 #pragma mark - UITableView Delegate DataSource
@@ -63,7 +86,11 @@
     if (indexPath.row == 0) {
         height = 44.0;
     } else {
-        CGSize introductionSize = XLSizeOfText(self.model.introduction, SCREEN_WIDTH - 30.0, kSystemFont(13));
+        NSString *introductionString = self.doctorModel.introduction;
+        if (XLIsNullObject(introductionString)) {
+            introductionString = @"暂无介绍";
+        }
+        CGSize introductionSize = XLSizeOfText(introductionString, SCREEN_WIDTH - 30.0, kSystemFont(13));
         height = 112 + introductionSize.height;
     }
     return height;
@@ -71,12 +98,26 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     if (indexPath.row == 0) {
         ExpertNameCell * cell = [tableView dequeueReusableCellWithIdentifier:@"ExpertName" forIndexPath:indexPath];
-        cell.nameLabel.text = [NSString stringWithFormat:@"%@", self.model.name];
-        cell.levelLabel.text = [NSString stringWithFormat:@"%@", self.model.level];
+        cell.nameLabel.text = XLIsNullObject(self.doctorModel.realname) ? @"未知姓名" : [NSString stringWithFormat:@"%@", self.doctorModel.realname];
+        cell.levelLabel.text = XLIsNullObject(self.doctorModel.title) ? nil : [NSString stringWithFormat:@"%@", self.doctorModel.title];
         return cell;
     } else {
         ExpertIntroductionCell *cell = [tableView dequeueReusableCellWithIdentifier:@"ExpertIntroduction" forIndexPath:indexPath];
-        cell.introductionContentLabel.text = [NSString stringWithFormat:@"%@", self.model.introduction];
+        cell.introductionContentLabel.text = XLIsNullObject(self.doctorModel.introduction) ? @"暂无介绍" : [NSString stringWithFormat:@"%@", self.doctorModel.introduction];
+        cell.clickAttentionButton.selected = [self.doctorModel.isCollect integerValue] == 0 ? NO : YES;
+        GJCFWeakObject(ExpertIntroductionCell *) weakCell = cell;
+        cell.attentionBlock = ^(){
+            GJCFStrongObject(ExpertIntroductionCell *)strongCell = weakCell;
+            if ([self.doctorModel.isCollect integerValue] == 0) {
+                self.doctorModel.isCollect = @1;
+                strongCell.clickAttentionButton.selected = YES;
+                [DoctorModel addAttention:self.doctorModel.id handler:nil];
+            } else {
+                self.doctorModel.isCollect = @0;
+                strongCell.clickAttentionButton.selected = NO;
+                [DoctorModel cancelAttention:self.doctorModel.id handler:nil];
+            }
+        };
         return cell;
     }
 }
@@ -90,5 +131,18 @@
     // Pass the selected object to the new view controller.
 }
 */
+- (IBAction)consultAction:(id)sender {
+    if (![[UserInfo sharedUserInfo] shouldLogin:self]) {
+        ConversationModel *tempModel = [ConversationModel new];
+        tempModel.userId = self.doctorModel.id;
+        tempModel.realname = self.doctorModel.realname;
+        //tempModel.conversation.conversationId = self.doctorModel.mobile;
+        ChatViewController *chatViewController = [[ChatViewController alloc] initWithConversationChatter:self.doctorModel.mobile conversationType:EMConversationTypeChat];
+        chatViewController.hidesBottomBarWhenPushed = YES;
+        //chatViewController.title = model.conversation.conversationId;
+        chatViewController.conversationModel = tempModel;
+        [self.navigationController pushViewController:chatViewController animated:YES];
+    }
+}
 
 @end

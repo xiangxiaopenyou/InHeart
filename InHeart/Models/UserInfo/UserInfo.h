@@ -17,6 +17,7 @@
 - (BOOL)saveUserInfo:(UserModel *)userModel;
 - (UserModel *)userInfo;
 - (void)removeUserInfo;
+- (BOOL)shouldLogin:(UIViewController *)viewController;
 
 - (BOOL)savePersonalInfo:(PersonalInfo *)personalInfo;
 - (PersonalInfo *)personalInfo;

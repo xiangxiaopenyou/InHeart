@@ -8,6 +8,7 @@
 
 #import "PersonalCenterTableViewController.h"
 #import "LoginViewController.h"
+#import "SystemSettingTableViewController.h"
 #import "PersonalInformationCell.h"
 #import "CommonFunctionCell.h"
 
@@ -54,7 +55,7 @@
             number = 1;
             break;
         case 1:
-            number = 4;
+            number = 3;
             break;
         case 2:
             number = 2;
@@ -93,17 +94,12 @@
             break;
         case 1:{
             CommonFunctionCell *cell = [tableView dequeueReusableCellWithIdentifier:@"CommonFunction" forIndexPath:indexPath];
-            NSArray *tempIconArray = @[@"my_interrogation", @"my_doctors", @"my_collections", @"my_account"];
-            NSArray *tempTitleArray = @[kMyInterrogation, kMyDoctors, kMyCollections, kMyAccount];
+            NSArray *tempIconArray = @[@"my_prescriptions", @"my_collections", @"my_account"];
+            NSArray *tempTitleArray = @[kMyPrescriptions, kMyAttention, kMyAccount];
             cell.imageView.image = [UIImage imageNamed:tempIconArray[indexPath.row]];
             cell.textLabel.font = kSystemFont(15);
             cell.textLabel.textColor = MAIN_TEXT_COLOR;
             cell.textLabel.text = tempTitleArray[indexPath.row];
-            if (indexPath.row == tempIconArray.count - 1) {
-                UIImageView *line = [[UIImageView alloc] initWithFrame:CGRectMake(0, 44.5, SCREEN_WIDTH, 0.5)];
-                line.backgroundColor = BREAK_LINE_COLOR;
-                [cell addSubview:line];
-            }
             
             return cell;
         }
@@ -120,12 +116,9 @@
                 titleString = kPersonalSetting;
             }
             cell.imageView.image = [UIImage imageNamed:iconString];
+            cell.textLabel.font = kSystemFont(15);
+            cell.textLabel.textColor = MAIN_TEXT_COLOR;
             cell.textLabel.text = titleString;
-            if (indexPath.row == 1) {
-                UIImageView *line = [[UIImageView alloc] initWithFrame:CGRectMake(0, 44.5, SCREEN_WIDTH, 0.5)];
-                line.backgroundColor = BREAK_LINE_COLOR;
-                [cell addSubview:line];
-            }
             return cell;
         }
             break;
@@ -138,9 +131,26 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     if (indexPath.section == 0) {
-        LoginViewController *loginViewController = [[UIStoryboard storyboardWithName:@"Login" bundle:nil] instantiateViewControllerWithIdentifier:@"Login"];
-        UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:loginViewController];
-        [self presentViewController:navigationController animated:YES completion:nil];
+//        if (![[UserInfo sharedUserInfo] isLogined]) {
+//            LoginViewController *loginViewController = [[UIStoryboard storyboardWithName:@"Login" bundle:nil] instantiateViewControllerWithIdentifier:@"Login"];
+//            UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:loginViewController];
+//            [self presentViewController:navigationController animated:YES completion:nil];
+//        } else {
+//            
+//        }
+        if (![[UserInfo sharedUserInfo] shouldLogin:self]) {
+            
+        }
+        
+    } else if (indexPath.section == 1) {
+        
+    } else {
+        if ( indexPath.row == 0) {
+            
+        } else {
+            SystemSettingTableViewController *settingViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"SystemSetting"];
+            [self.navigationController pushViewController:settingViewController animated:YES];
+        }
     }
 }
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -153,10 +163,13 @@
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
     return 10.0;
 }
-- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
-    UILabel *headerLabel = [UILabel new];
-    return headerLabel;
+- (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section {
+    return 0.1;
 }
+//- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
+//    UILabel *headerLabel = [UILabel new];
+//    return headerLabel;
+//}
 
 
 /*

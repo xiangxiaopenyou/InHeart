@@ -7,7 +7,9 @@
 //
 
 #import "EaseMessageViewController.h"
+@class ConversationModel;
 
 @interface ChatViewController : EaseMessageViewController
+@property (strong, nonatomic) ConversationModel *conversationModel;
 
 @end

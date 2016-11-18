@@ -152,5 +152,14 @@
     
     return string;
 }
-
++ (void)showThenDismissHud:(BOOL)success message:(NSString *)message {
+    if (success) {
+        [SVProgressHUD showSuccessWithStatus:message];
+    } else {
+        [SVProgressHUD showErrorWithStatus:message];
+    }
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1.2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        [SVProgressHUD dismiss];
+    });
+}
 @end

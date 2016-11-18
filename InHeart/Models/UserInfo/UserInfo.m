@@ -11,6 +11,7 @@
 
 #import "PersonalInfo.h"
 #import <SAMKeychain.h>
+#import "LoginViewController.h"
 
 @implementation UserInfo
 + (UserInfo *)sharedUserInfo {
@@ -41,6 +42,9 @@
     if (userModel.realname) {
         [[NSUserDefaults standardUserDefaults] setObject:userModel.realname forKey:USERREALNAME];
     }
+    if (userModel.encryptPw) {
+        [[NSUserDefaults standardUserDefaults] setObject:userModel.encryptPw forKey:USERENCRYPTEDPASSWORD];
+    }
     [[NSUserDefaults standardUserDefaults] synchronize];
     return YES;
 }
@@ -55,14 +59,28 @@
     if ([[NSUserDefaults standardUserDefaults] objectForKey:USERREALNAME]) {
         model.realname = [[NSUserDefaults standardUserDefaults] objectForKey:USERREALNAME];
     }
+    if ([[NSUserDefaults standardUserDefaults] objectForKey:USERENCRYPTEDPASSWORD]) {
+        model.encryptPw = [[NSUserDefaults standardUserDefaults] objectForKey:USERENCRYPTEDPASSWORD];
+    }
     return model;
 }
 - (void)removeUserInfo {
     [[NSUserDefaults standardUserDefaults] removeObjectForKey:USERTOKEN];
     [[NSUserDefaults standardUserDefaults] removeObjectForKey:USERNAME];
     [[NSUserDefaults standardUserDefaults] removeObjectForKey:USERREALNAME];
+    [[NSUserDefaults standardUserDefaults] removeObjectForKey:USERENCRYPTEDPASSWORD];
     [[NSUserDefaults standardUserDefaults] synchronize];
 }
+- (BOOL)shouldLogin:(UIViewController *)viewController {
+    if (![self isLogined]) {
+        LoginViewController *loginViewController = [[UIStoryboard storyboardWithName:@"Login" bundle:nil] instantiateViewControllerWithIdentifier:@"Login"];
+        UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:loginViewController];
+        [viewController presentViewController:navigationController animated:YES completion:nil];
+        return YES;
+    }
+    return NO;
+}
+
 - (BOOL)savePersonalInfo:(PersonalInfo *)personalInfo {
     if (!personalInfo) {
         return NO;
@@ -70,7 +88,7 @@
     if([SAMKeychain setPassword:personalInfo.password forService:KEYCHAINSERVICE account:personalInfo.username error:nil]) {
         return YES;
     }
-    return NO;
+    return YES;
 }
 - (PersonalInfo *)personalInfo {
     PersonalInfo *info = [PersonalInfo new];

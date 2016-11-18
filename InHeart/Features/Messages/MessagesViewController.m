@@ -8,15 +8,17 @@
 
 #import "MessagesViewController.h"
 #import "ChatViewController.h"
+#import "LoginViewController.h"
 #import "ConversationListView.h"
 
-#import "PersonalInfo.h"
+#import "UserModel.h"
 #import "UserInfo.h"
+#import "ConversationModel.h"
 
 #import <Masonry.h>
 #import <GJCFUitils.h>
 
-@interface MessagesViewController ()
+@interface MessagesViewController ()<ConversationListViewDelegate>
 @property (strong, nonatomic) ConversationListView *conversationsView;
 
 @end
@@ -31,34 +33,33 @@
         make.leading.trailing.top.bottom.equalTo(self.view);
     }];
     GJCFWeakSelf weakSelf = self;
-    self.conversationsView.block = ^(EaseConversationModel *model){
+    self.conversationsView.block = ^(ConversationModel *model){
         GJCFStrongSelf strongSelf = weakSelf;
         if (model) {
             ChatViewController *chatViewController = [[ChatViewController alloc] initWithConversationChatter:model.conversation.conversationId conversationType:EMConversationTypeChat];
             chatViewController.hidesBottomBarWhenPushed = YES;
-            chatViewController.title = model.conversation.conversationId;
+            //chatViewController.title = model.conversation.conversationId;
+            chatViewController.conversationModel = model;
             [strongSelf.navigationController pushViewController:chatViewController animated:YES];
         }
     };
-    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"聊天" style:UIBarButtonItemStylePlain target:self action:@selector(chatAction)];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(conversationsDidChange) name:kConversationsDidChange object:nil];
 }
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     if ([[UserInfo sharedUserInfo] isLogined]) {
         if (![[EMClient sharedClient] isLoggedIn]) {
-            PersonalInfo *person = [[UserInfo sharedUserInfo] personalInfo];
-            [[EMClient sharedClient] loginWithUsername:person.username password:person.password completion:^(NSString *aUsername, EMError *aError) {
+            UserModel *person = [[UserInfo sharedUserInfo] userInfo];
+            [[EMClient sharedClient] loginWithUsername:person.username password:person.encryptPw completion:^(NSString *aUsername, EMError *aError) {
                 if (!aError) {
                     [self.conversationsView fetchConversations];
                 } else {
-                    [SVProgressHUD showErrorWithStatus:kNetworkError];
+                    XLShowThenDismissHUD(NO, kNetworkError);
                 }
             }];
         } else {
             [self.conversationsView fetchConversations];
         }
-    } else {
-        
     }
     
 }
@@ -72,8 +73,16 @@
 - (ConversationListView *)conversationsView {
     if (!_conversationsView) {
         _conversationsView = [[ConversationListView alloc] init];
+        _conversationsView.delegate = self;
     }
     return _conversationsView;
+}
+
+#pragma mark - ConversationListViewDelegate
+- (void)didClickLogin {
+    LoginViewController *loginViewController = [[UIStoryboard storyboardWithName:@"Login" bundle:nil] instantiateViewControllerWithIdentifier:@"Login"];
+    UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:loginViewController];
+    [self presentViewController:navigationController animated:YES completion:nil];
 }
 
 /*
@@ -85,11 +94,9 @@
     // Pass the selected object to the new view controller.
 }
 */
-- (void)chatAction {
-    ChatViewController *chatViewController = [[ChatViewController alloc] initWithConversationChatter:@"13732254511" conversationType:EMConversationTypeChat];
-    chatViewController.hidesBottomBarWhenPushed = YES;
-    chatViewController.title = @"13732254511";
-    [self.navigationController pushViewController:chatViewController animated:YES];
+
+- (void)conversationsDidChange {
+    [self.conversationsView fetchConversations];
 }
 
 @end

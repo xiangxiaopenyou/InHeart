@@ -7,7 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
+@class DoctorModel;
 
 @interface ExpertDetailViewController : UIViewController
+@property (strong, nonatomic) DoctorModel *doctorModel;
+@property (assign, nonatomic) BOOL isChatting;
 
 @end

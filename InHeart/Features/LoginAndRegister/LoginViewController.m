@@ -130,11 +130,11 @@
 }
 - (IBAction)loginClick:(id)sender {
     if (!GJCFStringIsMobilePhone(self.phoneTextField.text)) {
-        [SVProgressHUD showErrorWithStatus:kInputCorrectPhoneNumberTip];
+        XLShowThenDismissHUD(NO, kInputCorrectPhoneNumberTip);
         return;
     }
     if (XLIsNullObject(self.passwordTextField.text)) {
-        [SVProgressHUD showErrorWithStatus:kInputPasswordTip];
+        XLShowThenDismissHUD(NO, kInputPasswordTip);
         return;
     }
     [self resignTextField];
@@ -149,15 +149,15 @@
                 if ([[UserInfo sharedUserInfo] savePersonalInfo:tempInfo]) {
                     [SVProgressHUD dismiss];
                     [self dismissViewControllerAnimated:YES completion:nil];
-                    [[EMClient sharedClient] loginWithUsername:userModel.username password:self.passwordTextField.text];
+                    [[EMClient sharedClient] loginWithUsername:userModel.username password:userModel.encryptPw];
                 } else {
-                    [SVProgressHUD showErrorWithStatus:@"登录出现问题，请重试"];
+                    XLShowThenDismissHUD(NO, @"登录出现问题，请重试");
                 }
             } else {
-                [SVProgressHUD showErrorWithStatus:@"登录出现问题，请重试"];
+                XLShowThenDismissHUD(NO, @"登录出现问题，请重试");
             }
         } else {
-            [SVProgressHUD showErrorWithStatus:msg];
+            XLShowThenDismissHUD(NO, msg);
         }
     }];
 }

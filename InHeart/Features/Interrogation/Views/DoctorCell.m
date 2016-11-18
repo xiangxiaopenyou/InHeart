@@ -14,12 +14,12 @@
 @implementation DoctorCell
 
 - (void)setupContentWith:(DoctorModel *)model {
-    [self.photoView setImageWithURL:[NSURL URLWithString:model.photo] placeholderImage:nil];
-    self.nameLabel.text = [NSString stringWithFormat:@"%@", model.name];
-    self.levelLabel.text = model.level ? [NSString stringWithFormat:@"%@", model.level] : nil;
-    self.mottoLabel.text = model.motto ? [NSString stringWithFormat:@"%@", model.motto] : nil;
-    self.consultNumber.text = [NSString stringWithFormat:@"%@人咨询过", model.consultNumber];
-    self.cityLabel.text = [NSString stringWithFormat:@"%@", model.city];
+    [self.photoView setImageWithURL:[NSURL URLWithString:model.photo] placeholderImage:[UIImage imageNamed:@"default_image"]];
+    self.nameLabel.text = XLIsNullObject(model.realname) ? @"未知姓名" : [NSString stringWithFormat:@"%@", model.realname];
+    self.levelLabel.text = XLIsNullObject(model.title) ? nil : [NSString stringWithFormat:@"%@", model.title];
+    self.mottoLabel.text = XLIsNullObject(model.signature) ? nil : [NSString stringWithFormat:@"%@", model.signature];
+    self.consultNumber.text =  [NSString stringWithFormat:@"%@人咨询过", model.consultationTimes];
+    self.cityLabel.text = XLIsNullObject(model.region) ? @"未知地区" : [NSString stringWithFormat:@"%@", model.region];
 }
 
 - (void)awakeFromNib {

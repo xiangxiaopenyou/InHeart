@@ -34,9 +34,33 @@
     
     //[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(checkUserState:) name:kLoginSuccess object:nil];
     [[EaseSDKHelper shareHelper] hyphenateApplication:application didFinishLaunchingWithOptions:launchOptions appkey:EMChatKey apnsCertName:nil otherConfig:@{kSDKConfigEnableConsoleLogger:[NSNumber numberWithBool:YES]}];
-    //[self checkUserState:nil];
+    [EMClient sharedClient].options.isAutoLogin = YES;
+    //[[UserInfo sharedUserInfo] removePersonalInfo];
     
     return YES;
+}
+//将deviceToken传给SDK
+- (void)application:(UIApplication *)application didRegisterForRemoteNotificationsWithDeviceToken:(nonnull NSData *)deviceToken {
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+        [[EMClient sharedClient] bindDeviceToken:deviceToken];
+    });
+}
+//注册deviceToken失败
+- (void)application:(UIApplication *)application didFailToRegisterForRemoteNotificationsWithError:(nonnull NSError *)error {
+    //XLShowThenDismissHUD(NO, kNetworkError);
+}
+
+//接收到远程推送通知
+- (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo fetchCompletionHandler:(void (^)(UIBackgroundFetchResult))completionHandler {
+    //    NSError *error = nil;
+    //    NSData *jsonData = [NSJSONSerialization dataWithJSONObject:userInfo options:NSJSONWritingPrettyPrinted error:&error];
+    //    NSString *tempString = [[NSString alloc] initWithData:jsonData encoding:NSUTF8StringEncoding];
+    //    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:NSEaseLocalizedString(@"apns.content", @"Apns content")
+    //                                                    message:tempString
+    //                                                   delegate:nil
+    //                                          cancelButtonTitle:NSEaseLocalizedString(@"ok", @"OK")
+    //                                          otherButtonTitles:nil];
+    //    [alert show];
 }
 
 - (void)applicationWillResignActive:(UIApplication *)application {
@@ -70,16 +94,5 @@
     [[UINavigationBar appearance] setBackgroundImage:[UIImage imageWithColor:NAVIGATIONBAR_COLOR] forBarMetrics:UIBarMetricsDefault];
     [[UINavigationBar appearance] setShadowImage:[UIImage new]];
 }
-//- (void)checkUserState:(NSNotification *)notification {
-//    if ([[UserInfo sharedUserInfo] isLogined]) {
-//        MainTabBarController *tabBarController = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"MainTabBar"];
-//        self.window.rootViewController = tabBarController;
-//    } else {
-//        LoginViewController *loginViewController = [[UIStoryboard storyboardWithName:@"Login" bundle:nil] instantiateViewControllerWithIdentifier:@"Login"];
-//        UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:loginViewController];
-//        self.window.rootViewController = navigationController;
-//    }
-//    [self.window makeKeyAndVisible];
-//}
 
 @end

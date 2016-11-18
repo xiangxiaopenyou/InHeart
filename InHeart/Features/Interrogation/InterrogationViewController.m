@@ -9,12 +9,18 @@
 #import "InterrogationViewController.h"
 #import "LoginViewController.h"
 #import "ExpertDetailViewController.h"
+#import "FilterDoctorsResultTableViewController.h"
 
 #import "DoctorCell.h"
 
 #import "DoctorModel.h"
+#import "CityModel.h"
+#import "ProvinceModel.h"
+#import "ContentTypeModel.h"
 
 #import <ChineseString.h>
+#import <MJRefresh.h>
+#import <GJCFUitils.h>
 
 @interface InterrogationViewController ()<UIScrollViewDelegate, UITableViewDelegate, UITableViewDataSource>
 @property (weak, nonatomic) IBOutlet UIView *viewOfTopTab;
@@ -36,6 +42,7 @@
 @property (copy, nonatomic) NSArray *diseaseIndexArray;
 
 @property (strong, nonatomic) NSMutableArray *doctorsArray;
+@property (assign, nonatomic) NSInteger paging;
 
 @end
 
@@ -50,38 +57,23 @@
     self.contentViewWidth.constant = SCREEN_WIDTH * 3.0;
     self.areaTableView.tableFooterView = [UIView new];
     self.diseaseTableView.tableFooterView = [UIView new];
+    [self.doctorsTableView setMj_header:[MJRefreshNormalHeader headerWithRefreshingBlock:^{
+        _paging = 1;
+        [self fetchDoctors];
+    }]];
+    [self.doctorsTableView setMj_footer:[MJRefreshAutoNormalFooter footerWithRefreshingBlock:^{
+        [self fetchDoctors];
+    }]];
+    self.doctorsTableView.mj_footer.hidden = YES;
     
-    NSArray *tempArray1 = @[@"杭州市", @"温州市", @"金华市"];
-    NSArray *tempArray2 = @[@"南京市", @"苏州市", @"无锡市"];
-    self.provincesArray = @[@"江苏省", @"浙江省"];
-    self.areasIndexArray = [ChineseString IndexArray:self.provincesArray];
-    self.areasArray = @[tempArray2, tempArray1];
-    
-    NSArray *tempDiseasesArray = @[@"神经病", @"弱智", @"阳痿", @"痔疮", @"包皮", @"艾滋", @"梅毒", @"前列腺炎", @"智障", @"sb", @"mdzz", @"你妈嗨", @"sdkfja"];
-    self.diseaseIndexArray = [[ChineseString IndexArray:tempDiseasesArray] copy];
-    self.diseaseArray = [[ChineseString LetterSortArray:tempDiseasesArray] copy];
-    
-    DoctorModel *model1 = [DoctorModel new];
-    model1.name = @"徐坷楠";
-    model1.photo = @"http://i5.qhimg.com/t0173180eace578b33f.jpg";
-    model1.level = @"妇科专家";
-    model1.motto = @"妇科一把好手";
-    model1.consultNumber = @(100);
-    model1.city = @"杭州市";
-    
-    DoctorModel *model2 = [DoctorModel new];
-    model2.name = @"项小盆友";
-    model2.photo = @"http://img1.3lian.com/img013/v4/57/d/2.jpg";
-    model2.level = @"主任医师";
-    model2.motto = @"用爱心来做事，用感恩的心做人";
-    model2.consultNumber = @(1000);
-    model2.city = @"杭州市";
-    
-    self.doctorsArray = [@[model1, model2] mutableCopy];
-    
+    _paging = 1;
+    [self fetchDoctors];
+    [self fetchDiseases];
+    [self fetchAreas];
     
 }
 
+#pragma mark - Getters
 - (UILabel *)tipLabel {
     if (!_tipLabel) {
         _tipLabel = [[UILabel alloc] initWithFrame:CGRectMake(SCREEN_WIDTH / 6.0 - 27, 43, 54, 2)];
@@ -89,6 +81,14 @@
     }
     return _tipLabel;
 }
+- (NSMutableArray *)doctorsArray {
+    if (!_doctorsArray) {
+        _doctorsArray = [[NSMutableArray alloc] init];
+    }
+    return _doctorsArray;
+}
+
+#pragma mark - private methods
 - (void)updateTipLabelFrame:(CGFloat)positionX {
     [UIView animateWithDuration:0.2 animations:^{
         self.tipLabel.frame = CGRectMake(positionX, 43, 54, 2);
@@ -100,23 +100,78 @@
     // Dispose of any resources that can be recreated.
 }
 
+#pragma mark - Requests
+- (void)fetchDoctors {
+    [SVProgressHUD show];
+    [DoctorModel fetchDoctorsList:nil region:nil disease:nil paging:@(_paging) handler:^(id object, NSString *msg) {
+        [self.doctorsTableView.mj_header endRefreshing];
+        [self.doctorsTableView.mj_footer endRefreshing];
+        if (object) {
+            [SVProgressHUD dismiss];
+            NSArray *resultArray = [object copy];
+            if (_paging == 1) {
+                self.doctorsArray = [resultArray mutableCopy];
+            } else {
+                NSMutableArray *tempArray = [self.doctorsArray mutableCopy];
+                [tempArray addObjectsFromArray:resultArray];
+                self.doctorsArray = [tempArray mutableCopy];
+            }
+            GJCFAsyncMainQueue(^{
+                [self.doctorsTableView reloadData];
+                if (resultArray.count < 10) {
+                    [self.doctorsTableView.mj_footer endRefreshingWithNoMoreData];
+                    self.doctorsTableView.mj_footer.hidden = YES;
+                } else {
+                    _paging += 1;
+                    self.doctorsTableView.mj_footer.hidden = NO;
+                }
+            });
+        } else {
+            XLShowThenDismissHUD(NO, msg);
+        }
+    }];
+}
+- (void)fetchDiseases {
+    [DoctorModel fetchDiseasesList:^(id object, NSString *msg) {
+        if (object) {
+            NSArray *tempArray = [object copy];
+            NSMutableArray *tempMutableArray = [[NSMutableArray alloc] init];
+            NSMutableArray *tempIndexArray = [[NSMutableArray alloc] init];
+            for (NSDictionary *tempDictionary in tempArray) {
+                NSArray *tempDiseasesArray = [[ContentTypeModel class] setupWithArray:tempDictionary[@"array"]];
+                [tempMutableArray addObject:tempDiseasesArray];
+                [tempIndexArray addObject:tempDictionary[@"letter"]];
+            }
+            self.diseaseIndexArray = [tempIndexArray copy];
+            self.diseaseArray = [tempMutableArray copy];
+            [self.diseaseTableView reloadData];
+        }
+    }];
+}
+- (void)fetchAreas {
+    [DoctorModel fetchAreasList:^(id object, NSString *msg) {
+        if (object) {
+            self.provincesArray = [object copy];
+            [self.areaTableView reloadData];
+        }
+    }];
+}
+
 #pragma mark - UIScrollView Delegate
 - (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView {
     if (scrollView == self.scrollView) {
         if (scrollView.contentOffset.x <= 0) {
-            [self areaButtonClick:nil];
+            [self doctorsButtonClick:nil];
         } else if (scrollView.contentOffset.x > 0 && scrollView.contentOffset.x <= SCREEN_WIDTH) {
             [self diseaseButtonClick:nil];
         } else {
-            [self doctorsButtonClick:nil];
+            [self areaButtonClick:nil];
         }
     }
 }
 #pragma mark - UITableView Delegate DataSource
 - (NSArray<NSString *> *)sectionIndexTitlesForTableView:(UITableView *)tableView {
-    if (tableView == self.areaTableView) {
-        return self.areasIndexArray;
-    } else if (tableView == self.diseaseTableView) {
+    if (tableView == self.diseaseTableView) {
         return self.diseaseIndexArray;
     } else{
         return nil;
@@ -124,7 +179,7 @@
 }
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
     if (tableView == self.areaTableView) {
-        return self.areasIndexArray.count;
+        return self.provincesArray.count;
     } else if (tableView == self.diseaseTableView) {
         return self.diseaseIndexArray.count;
     } else {
@@ -133,7 +188,8 @@
 }
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     if (tableView == self.areaTableView) {
-        return [self.areasArray[section] count];
+        ProvinceModel *provinceModel = [self.provincesArray[section] copy];
+        return provinceModel.array.count;
     } else if (tableView == self.diseaseTableView) {
         return [self.diseaseArray[section] count];
     } else {
@@ -144,8 +200,10 @@
     if (tableView == self.areaTableView) {
         static NSString *identifier = @"AreaCell";
         UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:identifier forIndexPath:indexPath];
-        NSArray *tempArray = [self.areasArray[indexPath.section] copy];
-        cell.textLabel.text = [NSString stringWithFormat:@"%@", tempArray[indexPath.row]];
+        ProvinceModel *provinceModel = [self.provincesArray[indexPath.section] copy];
+        NSArray *tempArray = [provinceModel.array copy];
+        CityModel *tempModel = [[CityModel alloc] initWithDictionary:tempArray[indexPath.row] error:nil];
+        cell.textLabel.text = [NSString stringWithFormat:@"%@", tempModel.name];
         cell.textLabel.font = kSystemFont(13);
         cell.textLabel.textColor = kHexRGBColorWithAlpha(0x323232, 1.0);
         return cell;
@@ -153,7 +211,8 @@
         static NSString *identifier = @"DiseaseCell";
         UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:identifier forIndexPath:indexPath];
         NSArray *tempArray = [self.diseaseArray[indexPath.section] copy];
-        cell.textLabel.text = [NSString stringWithFormat:@"%@", tempArray[indexPath.row]];
+        ContentTypeModel *tempModel = [tempArray[indexPath.row] copy];
+        cell.textLabel.text = [NSString stringWithFormat:@"%@", tempModel.name];
         cell.textLabel.font = kSystemFont(13);
         cell.textLabel.textColor = kHexRGBColorWithAlpha(0x323232, 1.0);
         return cell;
@@ -168,8 +227,26 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     if (tableView == self.areaTableView || tableView == self.diseaseTableView) {
         [tableView deselectRowAtIndexPath:indexPath animated:YES];
+        if (tableView == self.diseaseTableView) {
+            NSArray *tempArray = [self.diseaseArray[indexPath.section] copy];
+            ContentTypeModel *tempModel = [tempArray[indexPath.row] copy];
+            FilterDoctorsResultTableViewController *filterResultViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"FilterDoctors"];
+            filterResultViewController.diseaseString = tempModel.name;
+            filterResultViewController.filterType = 1;
+            [self.navigationController pushViewController:filterResultViewController animated:YES];
+        } else {
+            ProvinceModel *provinceModel = [self.provincesArray[indexPath.section] copy];
+            NSArray *tempArray = [provinceModel.array copy];
+            CityModel *tempModel = [[CityModel alloc] initWithDictionary:tempArray[indexPath.row] error:nil];
+            FilterDoctorsResultTableViewController *filterResultViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"FilterDoctors"];
+            filterResultViewController.cityCode = tempModel.code;
+            filterResultViewController.cityName = tempModel.name;
+            filterResultViewController.filterType = 2;
+            [self.navigationController pushViewController:filterResultViewController animated:YES];
+        }
     } else {
         ExpertDetailViewController *expertDetailController = [self.storyboard instantiateViewControllerWithIdentifier:@"ExpertDetail"];
+        expertDetailController.doctorModel = self.doctorsArray[indexPath.row];
         [self.navigationController pushViewController:expertDetailController animated:YES];
     }
 }
@@ -177,8 +254,12 @@
     if (tableView == self.doctorsTableView) {
         CGFloat height = 241.0;
         DoctorModel *tempModel = self.doctorsArray[indexPath.row];
-        CGSize mottoSize = XLSizeOfText(tempModel.motto, SCREEN_WIDTH - 155, kSystemFont(12));
-        height += mottoSize.height;
+        if (XLIsNullObject(tempModel.signature)) {
+            height += 15;
+        } else {
+            CGSize mottoSize = XLSizeOfText(tempModel.signature, SCREEN_WIDTH - 155, kSystemFont(12));
+            height += mottoSize.height;
+        }
         return height;
     } else {
         return 43.0;
@@ -196,7 +277,8 @@
     headerView.backgroundColor = kRGBColor(240, 240, 240, 1.0);
     UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(15, 0, 100, 21)];
     if (tableView == self.areaTableView) {
-        label.text = self.provincesArray[section];
+         ProvinceModel *provinceModel = [self.provincesArray[section] copy];
+        label.text = [NSString stringWithFormat:@"%@", provinceModel.name];
     } else {
         label.text = self.diseaseIndexArray[section];
     }
@@ -221,8 +303,8 @@
         self.areaButton.selected = YES;
         self.diseaseButton.selected = NO;
         self.doctorsButton.selected = NO;
-        [self updateTipLabelFrame:SCREEN_WIDTH / 6.0 - 27];
-        [self.scrollView setContentOffset:CGPointMake(0, 0) animated:YES];
+        [self updateTipLabelFrame:5.0 * SCREEN_WIDTH / 6.0 - 27];
+        [self.scrollView setContentOffset:CGPointMake(SCREEN_WIDTH * 2, 0) animated:YES];
     }
 }
 - (IBAction)diseaseButtonClick:(id)sender {
@@ -239,14 +321,17 @@
         self.areaButton.selected = NO;
         self.diseaseButton.selected = NO;
         self.doctorsButton.selected = YES;
-        [self updateTipLabelFrame:5.0 * SCREEN_WIDTH / 6.0 - 27];
-        [self.scrollView setContentOffset:CGPointMake(SCREEN_WIDTH * 2, 0) animated:YES];
+        [self updateTipLabelFrame:SCREEN_WIDTH / 6.0 - 27];
+        [self.scrollView setContentOffset:CGPointMake(0, 0) animated:YES];
     }
 }
 - (void)searchSelector {
-    LoginViewController *loginViewController = [[UIStoryboard storyboardWithName:@"Login" bundle:nil] instantiateViewControllerWithIdentifier:@"Login"];
-    UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:loginViewController];
-    [self presentViewController:navigationController animated:YES completion:nil];
+//    LoginViewController *loginViewController = [[UIStoryboard storyboardWithName:@"Login" bundle:nil] instantiateViewControllerWithIdentifier:@"Login"];
+//    UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:loginViewController];
+//    [self presentViewController:navigationController animated:YES completion:nil];
+    FilterDoctorsResultTableViewController *filterResultViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"FilterDoctors"];
+    filterResultViewController.filterType = 3;
+    [self.navigationController pushViewController:filterResultViewController animated:YES];
 }
 
 @end

@@ -7,12 +7,16 @@
 //
 
 #import "ConversationListView.h"
+#import "UserInfo.h"
+#import "UserMessageModel.h"
+#import "ConversationModel.h"
+
 #import <GJCFUitils.h>
-#import <EMConversation.h>
-//#import <EMSDK.h>
-@interface ConversationListView ()<UITableViewDelegate, UITableViewDataSource, EMChatManagerDelegate>
+
+@interface ConversationListView ()<UITableViewDelegate, UITableViewDataSource>
 @property (strong, nonatomic) UITableView *tableView;
 @property (strong, nonatomic) NSMutableArray *conversationArray;
+
 
 @end
 
@@ -20,7 +24,6 @@
 - (instancetype)initWithFrame:(CGRect)frame {
     self = [super initWithFrame:frame];
     if (self) {
-        [[EMClient sharedClient].chatManager addDelegate:self delegateQueue:nil];
         self.backgroundColor = [UIColor clearColor];
         [self addSubview:self.tableView];
         self.tableView.frame = CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT - TABBARHEIGHT);
@@ -29,6 +32,8 @@
     }
     return self;
 }
+
+#pragma mark - Getters
 - (UITableView *)tableView {
     if (!_tableView) {
         _tableView = [[UITableView alloc] initWithFrame:CGRectZero style:UITableViewStylePlain];
@@ -41,14 +46,51 @@
     }
     return _tableView;
 }
+- (NSMutableArray *)conversationArray {
+    if (!_conversationArray) {
+        _conversationArray = [[NSMutableArray alloc] init];
+    }
+    return _conversationArray;
+}
+
+
 - (void)fetchConversations {
     NSArray *tempArray = [[[EMClient sharedClient].chatManager getAllConversations] copy];
-    self.conversationArray = [[NSMutableArray alloc] init];
-    for (EMConversation *conversation in tempArray) {
-        EaseConversationModel *tempModel = [[EaseConversationModel alloc] initWithConversation:conversation];
-        [self.conversationArray addObject:tempModel];
+    NSArray *sortedArray = [tempArray sortedArrayUsingComparator:^NSComparisonResult(EMConversation *obj1, EMConversation *obj2) {
+        EMMessage *message1 = [obj1 latestMessage];
+        EMMessage *message2 = [obj2 latestMessage];
+        if (message1.timestamp > message2.timestamp) {
+            return (NSComparisonResult)NSOrderedAscending;
+        } else {
+            return (NSComparisonResult)NSOrderedDescending;
+        }
+    }];
+    [self.conversationArray removeAllObjects];
+    for (EMConversation *conversation in sortedArray) {
+        ConversationModel *model = [[ConversationModel alloc] initWithConversation:conversation];
+        if (model) {
+            [self.conversationArray addObject:model];
+        }
     }
-    [self.tableView reloadData];
+    __block NSInteger count = 0;
+    for (ConversationModel *tempModel in self.conversationArray) {
+        [UserMessageModel fetchUsersIdAndName:tempModel.conversation.conversationId handler:^(id object, NSString *msg) {
+            if (object) {
+                UserMessageModel *userModel = [object copy];
+                tempModel.userId = userModel.userId;
+                tempModel.realname = userModel.realname;
+                count += 1;
+                if (count == self.conversationArray.count) {
+                    dispatch_async(dispatch_get_main_queue(), ^{
+                        [self.tableView reloadData];
+                    });
+                }
+            }
+        }];
+    }
+    //[self.tableView reloadData];
+    
+    [[NSNotificationCenter defaultCenter] postNotificationName:kSetupUnreadMessagesCount object:nil];
 }
 
 - (void)removeEmptyConversationsFromDB {
@@ -85,9 +127,9 @@
     cell.detailLabelColor = TABBAR_TITLE_COLOR;
     cell.timeLabelFont = kSystemFont(13);
     cell.timeLabelColor = TABBAR_TITLE_COLOR;
-    EaseConversationModel *tempModel = self.conversationArray[indexPath.row];
+    ConversationModel *tempModel = self.conversationArray[indexPath.row];
     EMMessage *lastMessage = tempModel.conversation.latestMessage;
-    cell.titleLabel.text = tempModel.conversation.conversationId;
+    cell.titleLabel.text = XLIsNullObject(tempModel.realname) ? tempModel.conversation.conversationId : tempModel.realname;
     [cell.avatarView.imageView setImage:[UIImage imageNamed:@"default_doctor_avatar"]];
     cell.detailLabel.text = [self messageTextForLastMessage:tempModel];
     NSDate *messageDate = [NSDate dateWithTimeIntervalInMilliSecondSince1970:lastMessage.timestamp];
@@ -100,12 +142,41 @@
 }
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
-    EaseConversationModel *tempModel = self.conversationArray[indexPath.row];
+    ConversationModel *tempModel = self.conversationArray[indexPath.row];
     if (self.block) {
         self.block(tempModel);
     }
 }
-- (NSString *)messageTextForLastMessage:(EaseConversationModel *)model {
+- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
+    return [[UserInfo sharedUserInfo] isLogined] ? 0 : 100;
+}
+- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
+    UIButton *turnToLoginButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    turnToLoginButton.titleLabel.font = kSystemFont(18);
+    [turnToLoginButton setTitleColor:NAVIGATIONBAR_COLOR forState:UIControlStateNormal];
+    [turnToLoginButton setTitle:kClickToLogin forState:UIControlStateNormal];
+    [turnToLoginButton addTarget:self action:@selector(loginAction) forControlEvents:UIControlEventTouchUpInside];
+    return turnToLoginButton;
+}
+- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
+    return YES;
+}
+- (UITableViewCellEditingStyle)tableView:(UITableView *)tableView editingStyleForRowAtIndexPath:(NSIndexPath *)indexPath {
+    return UITableViewCellEditingStyleDelete;
+}
+- (NSString *)tableView:(UITableView *)tableView titleForDeleteConfirmationButtonForRowAtIndexPath:(NSIndexPath *)indexPath {
+    return @"删除";
+}
+- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
+    if (editingStyle == UITableViewCellEditingStyleDelete) {
+        ConversationModel *tempModel = self.conversationArray[indexPath.row];
+        [[EMClient sharedClient].chatManager deleteConversation:tempModel.conversation.conversationId isDeleteMessages:YES completion:nil];
+        [self.conversationArray removeObjectAtIndex:indexPath.row];
+        [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
+    }
+}
+
+- (NSString *)messageTextForLastMessage:(ConversationModel *)model {
     NSString *text = @"";
     EMMessage *lastMessage = model.conversation.latestMessage;
     if (lastMessage) {
@@ -131,11 +202,6 @@
     }
     return text;
 }
-
-#pragma mark - EMChatManagerDelegate
-- (void)conversationListDidUpdate:(NSArray *)aConversationList {
-    [self fetchConversations];
-}
 /*
 // Only override drawRect: if you perform custom drawing.
 // An empty implementation adversely affects performance during animation.
@@ -143,5 +209,11 @@
     // Drawing code
 }
 */
+
+- (void)loginAction {
+    if (self.delegate && [self.delegate respondsToSelector:@selector(didClickLogin)]) {
+        [self.delegate didClickLogin];
+    }
+}
 
 @end

@@ -29,5 +29,6 @@
 + (BOOL)checkPassword:(NSString *)password;
 + (NSString *)convertTime:(CGFloat)second; //秒转换为HH:mm:ss
 + (NSString *)detailTimeAgoString:(NSDate *)date;
++ (void)showThenDismissHud:(BOOL)success message:(NSString *)message;
 
 @end

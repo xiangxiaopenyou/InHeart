@@ -240,23 +240,23 @@
 */
 - (IBAction)registerClick:(id)sender {
     if (!GJCFStringIsMobilePhone(self.phoneNumberTextField.text)) {
-        [SVProgressHUD showErrorWithStatus:kInputCorrectPhoneNumberTip];
+        XLShowThenDismissHUD(NO, kInputCorrectPhoneNumberTip);
         return;
     }
     if (XLIsNullObject(self.codeTextField.text)) {
-        [SVProgressHUD showErrorWithStatus:kInputVerificationCodeTip];
+        XLShowThenDismissHUD(NO, kInputVerificationCodeTip);
         return;
     }
     if (XLIsNullObject(self.passwordTextField.text)) {
-        [SVProgressHUD showErrorWithStatus:kInputPasswordTip];
+        XLShowThenDismissHUD(NO, kInputPasswordTip);
         return;
     }
     if (!XLCheckPassword(self.passwordTextField.text)) {
-        [SVProgressHUD showErrorWithStatus:kPasswordFormatTip];
+        XLShowThenDismissHUD(NO, kPasswordFormatTip);
         return;
     }
     if (![self.passwordTextField.text isEqualToString:self.validatePasswordTextField.text]) {
-        [SVProgressHUD showErrorWithStatus:kDifferentPasswordTip];
+        XLShowThenDismissHUD(NO, kDifferentPasswordTip);
         return;
     }
     [SVProgressHUD show];
@@ -273,32 +273,32 @@
                         if ([[UserInfo sharedUserInfo] savePersonalInfo:tempInfo]) {
                             [SVProgressHUD dismiss];
                             [self dismissViewControllerAnimated:YES completion:nil];
-                            [[EMClient sharedClient] loginWithUsername:userModel.username password:self.passwordTextField.text];
+                            [[EMClient sharedClient] loginWithUsername:userModel.username password:userModel.encryptPw];
                         } else {
-                            [SVProgressHUD showErrorWithStatus:@"自动登录失败"];
+                            XLShowThenDismissHUD(NO, @"自动登录失败");
                             [self.navigationController popViewControllerAnimated:YES];
                         }
                     } else {
-                        [SVProgressHUD showErrorWithStatus:@"自动登录失败"];
+                        XLShowThenDismissHUD(NO, @"自动登录失败");
                         [self.navigationController popViewControllerAnimated:YES];
                     }
                 } else {
                     dispatch_async(dispatch_get_main_queue(), ^{
-                        [SVProgressHUD showErrorWithStatus:@"自动登录失败"];
+                        XLShowThenDismissHUD(NO, @"自动登录失败");
                         [self.navigationController popViewControllerAnimated:YES];
                     });
                 }
             }];
             
         } else {
-            [SVProgressHUD showErrorWithStatus:msg];
+            XLShowThenDismissHUD(NO, msg);
         }
     }];
 
 }
 - (void)fetchCodeClick {
     if (!GJCFStringIsMobilePhone(self.phoneNumberTextField.text)) {
-        [SVProgressHUD showErrorWithStatus:kInputCorrectPhoneNumberTip];
+        XLShowThenDismissHUD(NO, kInputCorrectPhoneNumberTip);
         return;
     }
     self.fetchCodeButton.enabled = NO;

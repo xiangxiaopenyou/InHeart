@@ -13,8 +13,8 @@
 #define SCREEN_WIDTH CGRectGetWidth(UIScreen.mainScreen.bounds)
 #define SCREEN_HEIGHT CGRectGetHeight(UIScreen.mainScreen.bounds)
 //推荐内容高度和宽度
-#define kCollectionCellItemWidth (SCREEN_WIDTH - 30.0) / 2.0
-#define kCollectionCellItemHeight kCollectionCellItemWidth / 2.0
+#define kCollectionCellItemWidth (SCREEN_WIDTH - 40.0) / 2.0
+#define kCollectionCellItemHeight kCollectionCellItemWidth * 2.0 / 3.0
 
 /**
  *  常用颜色
@@ -104,4 +104,7 @@
  *时间详细
  */
 #define XLDetailTimeAgoString(aData) [Util detailTimeAgoString:aData]
+
+//提示
+#define XLShowThenDismissHUD(aSuccess, aMessage) [Util showThenDismissHud:aSuccess message:aMessage]
 

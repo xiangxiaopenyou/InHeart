@@ -20,5 +20,10 @@
 
     // Configure the view for the selected state
 }
+- (IBAction)attentionAction:(id)sender {
+    if (self.attentionBlock) {
+        self.attentionBlock();
+    }
+}
 
 @end
