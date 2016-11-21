@@ -9,6 +9,7 @@
 #import "PersonalCenterTableViewController.h"
 #import "LoginViewController.h"
 #import "SystemSettingTableViewController.h"
+#import "EditInformationsTableViewController.h"
 #import "PersonalInformationCell.h"
 #import "CommonFunctionCell.h"
 
@@ -131,15 +132,9 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     if (indexPath.section == 0) {
-//        if (![[UserInfo sharedUserInfo] isLogined]) {
-//            LoginViewController *loginViewController = [[UIStoryboard storyboardWithName:@"Login" bundle:nil] instantiateViewControllerWithIdentifier:@"Login"];
-//            UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:loginViewController];
-//            [self presentViewController:navigationController animated:YES completion:nil];
-//        } else {
-//            
-//        }
         if (![[UserInfo sharedUserInfo] shouldLogin:self]) {
-            
+            EditInformationsTableViewController *informationViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"EditInformations"];
+            [self.navigationController pushViewController:informationViewController animated:YES];
         }
         
     } else if (indexPath.section == 1) {

@@ -18,7 +18,7 @@
     self.nameLabel.text = XLIsNullObject(model.realname) ? @"未知姓名" : [NSString stringWithFormat:@"%@", model.realname];
     self.levelLabel.text = XLIsNullObject(model.title) ? nil : [NSString stringWithFormat:@"%@", model.title];
     self.mottoLabel.text = XLIsNullObject(model.signature) ? nil : [NSString stringWithFormat:@"%@", model.signature];
-    self.consultNumber.text =  [NSString stringWithFormat:@"%@人咨询过", model.consultationTimes];
+    self.consultNumber.text = model.consultationTimes ?  [NSString stringWithFormat:@"%@人咨询过", model.consultationTimes] : @"0人咨询过";
     self.cityLabel.text = XLIsNullObject(model.region) ? @"未知地区" : [NSString stringWithFormat:@"%@", model.region];
 }
 

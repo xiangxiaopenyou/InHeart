@@ -47,6 +47,12 @@ extern NSString * const kHelpAndFeedback;
 extern NSString * const kPersonalSetting;
 extern NSString * const kClearCache;
 extern NSString * const kAboutUs;
+extern NSString * const kName;
+extern NSString * const kIdCardNumber;
+extern NSString * const kAge;
+extern NSString * const kEmergencyContactPerson;
+extern NSString * const kEmergencyContactPhone;
+extern NSString * const kHomeAddress;
 
 
 //登录注册

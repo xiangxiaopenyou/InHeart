@@ -153,6 +153,8 @@
 		3D8787061DDD7739005A8FE2 /* AddAttentionRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D8787051DDD7739005A8FE2 /* AddAttentionRequest.m */; };
 		3D8787091DDD774B005A8FE2 /* CancelAttentionRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D8787081DDD774B005A8FE2 /* CancelAttentionRequest.m */; };
 		3D87870C1DDDB046005A8FE2 /* InformationModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D87870B1DDDB046005A8FE2 /* InformationModel.m */; };
+		3D894B1D1DDEC7BF004963C7 /* EditInformationsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D894B1C1DDEC7BF004963C7 /* EditInformationsTableViewController.m */; };
+		3D894B201DDECE08004963C7 /* UserAddressCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D894B1F1DDECE08004963C7 /* UserAddressCell.m */; };
 		3D90F0FA1DCADB5800D5B93A /* MessagesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D90F0F91DCADB5800D5B93A /* MessagesViewController.m */; };
 		3D90F0FD1DCAE41A00D5B93A /* ChatViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D90F0FC1DCAE41A00D5B93A /* ChatViewController.m */; };
 		3D9C18021D93D4A8001A1A43 /* ExpertNameCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D9C18011D93D4A8001A1A43 /* ExpertNameCell.m */; };
@@ -492,6 +494,10 @@
 		3D8787081DDD774B005A8FE2 /* CancelAttentionRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CancelAttentionRequest.m; sourceTree = "<group>"; };
 		3D87870A1DDDB046005A8FE2 /* InformationModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InformationModel.h; sourceTree = "<group>"; };
 		3D87870B1DDDB046005A8FE2 /* InformationModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InformationModel.m; sourceTree = "<group>"; };
+		3D894B1B1DDEC7BF004963C7 /* EditInformationsTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EditInformationsTableViewController.h; sourceTree = "<group>"; };
+		3D894B1C1DDEC7BF004963C7 /* EditInformationsTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EditInformationsTableViewController.m; sourceTree = "<group>"; };
+		3D894B1E1DDECE08004963C7 /* UserAddressCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserAddressCell.h; sourceTree = "<group>"; };
+		3D894B1F1DDECE08004963C7 /* UserAddressCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserAddressCell.m; sourceTree = "<group>"; };
 		3D90F0F81DCADB5800D5B93A /* MessagesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MessagesViewController.h; sourceTree = "<group>"; };
 		3D90F0F91DCADB5800D5B93A /* MessagesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MessagesViewController.m; sourceTree = "<group>"; };
 		3D90F0FB1DCAE41A00D5B93A /* ChatViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChatViewController.h; sourceTree = "<group>"; };
@@ -571,6 +577,8 @@
 				3D1CF7681D921DA300A63F05 /* PersonalInformationCell.m */,
 				3D1CF76A1D9226CA00A63F05 /* CommonFunctionCell.h */,
 				3D1CF76B1D9226CA00A63F05 /* CommonFunctionCell.m */,
+				3D894B1E1DDECE08004963C7 /* UserAddressCell.h */,
+				3D894B1F1DDECE08004963C7 /* UserAddressCell.m */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -1330,6 +1338,8 @@
 				3D1CF7611D91338200A63F05 /* PersonalCenterTableViewController.m */,
 				3D8787011DDD56DB005A8FE2 /* SystemSettingTableViewController.h */,
 				3D8787021DDD56DB005A8FE2 /* SystemSettingTableViewController.m */,
+				3D894B1B1DDEC7BF004963C7 /* EditInformationsTableViewController.h */,
+				3D894B1C1DDEC7BF004963C7 /* EditInformationsTableViewController.m */,
 			);
 			path = PersonalCenter;
 			sourceTree = "<group>";
@@ -1643,6 +1653,7 @@
 				3D7F79FA1DC745970009C668 /* UIImage+EMGIF.m in Sources */,
 				3D7F7A151DC745970009C668 /* UIViewController+DismissKeyboard.m in Sources */,
 				3D7F7A081DC745970009C668 /* PSTCollectionViewUpdateItem.m in Sources */,
+				3D894B201DDECE08004963C7 /* UserAddressCell.m in Sources */,
 				3D8786F01DDC42C4005A8FE2 /* ContentModel.m in Sources */,
 				3D8485E71D83D1400066E2E5 /* XLBlockedButton.m in Sources */,
 				3D1CF76C1D9226CA00A63F05 /* CommonFunctionCell.m in Sources */,
@@ -1720,6 +1731,7 @@
 				3D7F79CF1DC745970009C668 /* EMVoiceConverter.mm in Sources */,
 				3D8787001DDC50ED005A8FE2 /* ContentCollectionCell.m in Sources */,
 				3D7F79F11DC745970009C668 /* EMSDWebImageCompat.m in Sources */,
+				3D894B1D1DDEC7BF004963C7 /* EditInformationsTableViewController.m in Sources */,
 				3DF089F71DD9AF3500D64EA6 /* UsersNameAndIdRequest.m in Sources */,
 				3DCE05321D90E7BC0017B2E6 /* DoctorModel.m in Sources */,
 				3D7F7A1F1DC745970009C668 /* EaseConversationListViewController.m in Sources */,

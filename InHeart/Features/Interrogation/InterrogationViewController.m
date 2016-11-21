@@ -326,9 +326,6 @@
     }
 }
 - (void)searchSelector {
-//    LoginViewController *loginViewController = [[UIStoryboard storyboardWithName:@"Login" bundle:nil] instantiateViewControllerWithIdentifier:@"Login"];
-//    UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:loginViewController];
-//    [self presentViewController:navigationController animated:YES completion:nil];
     FilterDoctorsResultTableViewController *filterResultViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"FilterDoctors"];
     filterResultViewController.filterType = 3;
     [self.navigationController pushViewController:filterResultViewController animated:YES];

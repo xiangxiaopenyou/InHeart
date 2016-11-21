@@ -30,7 +30,7 @@
 @property (strong, nonatomic) NSNumber *status;
 @property (copy, nonatomic) NSString<Optional> *token;
 @property (copy, nonatomic) NSString<Optional> *title;
-@property (strong, nonatomic) NSNumber *consultationTimes;
+@property (strong, nonatomic) NSNumber<Optional> *consultationTimes;
 @property (strong, nonatomic) NSNumber<Optional> *isCollect;
 @property (strong, nonatomic) NSNumber<Optional> *minPrice;
 

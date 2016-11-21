@@ -45,6 +45,7 @@
     DoctorModel *tempModel = [DoctorModel new];
     tempModel.id = self.conversationModel.userId;
     expertDetailController.doctorModel = tempModel;
+    expertDetailController.isChatting = YES;
     [self.navigationController pushViewController:expertDetailController animated:YES];
 }
 - (void)pushToPrescriptionContentsView:(NSString *)prescriptionId {

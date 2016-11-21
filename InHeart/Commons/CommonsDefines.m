@@ -39,6 +39,12 @@ NSString * const kHelpAndFeedback = @"帮助与反馈";
 NSString * const kPersonalSetting = @"设置";
 NSString * const kClearCache = @"清除缓存";
 NSString * const kAboutUs = @"关于";
+NSString * const kName = @"姓名";
+NSString * const kIdCardNumber = @"身份证号";
+NSString * const kAge = @"年龄";
+NSString * const kEmergencyContactPerson = @"紧急联系人";
+NSString * const kEmergencyContactPhone = @"紧急联系方式";
+NSString * const kHomeAddress = @"家庭住址";
 
 NSString * const kInputPhoneNumber = @"请输入您的手机号";
 NSString * const kInputPassword = @"请输入您的密码";

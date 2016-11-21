@@ -69,6 +69,8 @@
     [self.photoView setImageWithURL:XLURLFromString(self.doctorModel.photo) placeholderImage:[UIImage imageNamed:@"default_image"]];
     if (!XLIsNullObject(self.doctorModel.consultationTimes)) {
         [self.consultationNumberButton setTitle:[NSString stringWithFormat:@"%@人咨询过", self.doctorModel.consultationTimes] forState:UIControlStateNormal];
+    } else {
+        [self.consultationNumberButton setTitle:@"0人咨询过" forState:UIControlStateNormal];
     }
     if (self.doctorModel.minPrice) {
         self.consultationPriceLabel.text = [NSString stringWithFormat:@"咨询费：￥%@", self.doctorModel.minPrice];
@@ -136,10 +138,8 @@
         ConversationModel *tempModel = [ConversationModel new];
         tempModel.userId = self.doctorModel.id;
         tempModel.realname = self.doctorModel.realname;
-        //tempModel.conversation.conversationId = self.doctorModel.mobile;
         ChatViewController *chatViewController = [[ChatViewController alloc] initWithConversationChatter:self.doctorModel.mobile conversationType:EMConversationTypeChat];
         chatViewController.hidesBottomBarWhenPushed = YES;
-        //chatViewController.title = model.conversation.conversationId;
         chatViewController.conversationModel = tempModel;
         [self.navigationController pushViewController:chatViewController animated:YES];
     }
