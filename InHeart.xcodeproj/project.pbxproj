@@ -155,6 +155,7 @@
 		3D87870C1DDDB046005A8FE2 /* InformationModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D87870B1DDDB046005A8FE2 /* InformationModel.m */; };
 		3D894B1D1DDEC7BF004963C7 /* EditInformationsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D894B1C1DDEC7BF004963C7 /* EditInformationsTableViewController.m */; };
 		3D894B201DDECE08004963C7 /* UserAddressCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D894B1F1DDECE08004963C7 /* UserAddressCell.m */; };
+		3D894B261DE2F1D8004963C7 /* EditInformationsRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D894B251DE2F1D8004963C7 /* EditInformationsRequest.m */; };
 		3D90F0FA1DCADB5800D5B93A /* MessagesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D90F0F91DCADB5800D5B93A /* MessagesViewController.m */; };
 		3D90F0FD1DCAE41A00D5B93A /* ChatViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D90F0FC1DCAE41A00D5B93A /* ChatViewController.m */; };
 		3D9C18021D93D4A8001A1A43 /* ExpertNameCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D9C18011D93D4A8001A1A43 /* ExpertNameCell.m */; };
@@ -498,6 +499,8 @@
 		3D894B1C1DDEC7BF004963C7 /* EditInformationsTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EditInformationsTableViewController.m; sourceTree = "<group>"; };
 		3D894B1E1DDECE08004963C7 /* UserAddressCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserAddressCell.h; sourceTree = "<group>"; };
 		3D894B1F1DDECE08004963C7 /* UserAddressCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserAddressCell.m; sourceTree = "<group>"; };
+		3D894B241DE2F1D8004963C7 /* EditInformationsRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EditInformationsRequest.h; sourceTree = "<group>"; };
+		3D894B251DE2F1D8004963C7 /* EditInformationsRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EditInformationsRequest.m; sourceTree = "<group>"; };
 		3D90F0F81DCADB5800D5B93A /* MessagesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MessagesViewController.h; sourceTree = "<group>"; };
 		3D90F0F91DCADB5800D5B93A /* MessagesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MessagesViewController.m; sourceTree = "<group>"; };
 		3D90F0FB1DCAE41A00D5B93A /* ChatViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChatViewController.h; sourceTree = "<group>"; };
@@ -1200,6 +1203,7 @@
 		3D80D4281D82B564005B8FD0 /* Requests */ = {
 			isa = PBXGroup;
 			children = (
+				3D894B231DE2F1C4004963C7 /* Personal */,
 				3D8786F11DDC4348005A8FE2 /* Contents */,
 				3DF089F41DD9AF1D00D64EA6 /* Messages */,
 				3DF025941DD30B1A008F6467 /* Homepage */,
@@ -1364,6 +1368,15 @@
 				3D8786FC1DDC4995005A8FE2 /* FetchPrescriptionContentsRequest.m */,
 			);
 			path = Contents;
+			sourceTree = "<group>";
+		};
+		3D894B231DE2F1C4004963C7 /* Personal */ = {
+			isa = PBXGroup;
+			children = (
+				3D894B241DE2F1D8004963C7 /* EditInformationsRequest.h */,
+				3D894B251DE2F1D8004963C7 /* EditInformationsRequest.m */,
+			);
+			path = Personal;
 			sourceTree = "<group>";
 		};
 		3D9C18061D94F3B5001A1A43 /* Views */ = {
@@ -1682,6 +1695,7 @@
 				3D8786E31DDC23B8005A8FE2 /* PrescriptionMessageCell.m in Sources */,
 				3DAB0F0A1DC88A2900908000 /* UserModel.m in Sources */,
 				3D7F7A051DC745970009C668 /* PSTCollectionViewFlowLayout.m in Sources */,
+				3D894B261DE2F1D8004963C7 /* EditInformationsRequest.m in Sources */,
 				3D7F7A171DC745970009C668 /* EaseChineseToPinyin.m in Sources */,
 				3D7F7A2D1DC745970009C668 /* EaseBubbleView+Location.m in Sources */,
 				3DAB0F171DC893F200908000 /* FindPasswordRequest.m in Sources */,
@@ -1941,6 +1955,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.medvision.vruser;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -1969,6 +1984,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.medvision.vruser;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};

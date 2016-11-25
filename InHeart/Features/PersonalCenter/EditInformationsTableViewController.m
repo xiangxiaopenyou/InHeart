@@ -11,7 +11,10 @@
 
 #import "UserAddressCell.h"
 
+#import "InformationModel.h"
+
 #import <Masonry.h>
+#import <GJCFUitils.h>
 
 @interface EditInformationsTableViewController ()<UITextFieldDelegate>
 @property (copy, nonatomic) NSArray *itemsArray;
@@ -32,7 +35,12 @@
     self.tableView.tableFooterView = [UIView new];
     
     _itemsArray = @[kName, kIdCardNumber, kAge, kEmergencyContactPerson, kEmergencyContactPhone];
-    _addressString = @"浙江";
+    //_addressString = @"浙江";
+}
+- (void)viewDidAppear:(BOOL)animated {
+    [super viewDidAppear:animated];
+    UITextField *textField = (UITextField *)[self.tableView viewWithTag:100];
+    [textField becomeFirstResponder];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -42,6 +50,35 @@
 
 #pragma mark - Getters
 
+#pragma mark - Private Methods
+- (void)hideKeyboard {
+    for (NSInteger i = 0; i < 5; i ++) {
+        UITextField *textField = [self.tableView viewWithTag:100 + i];
+        [textField resignFirstResponder];
+    }
+    UserAddressCell *cell = [self.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:5 inSection:0]];
+    [cell.textView resignFirstResponder];
+}
+
+
+#pragma mark - UITextField Delegate
+- (BOOL)textFieldShouldReturn:(UITextField *)textField {
+    UITextField *textField1 = (UITextField *)[self.tableView viewWithTag:100];
+    UITextField *textField2 = (UITextField *)[self.tableView viewWithTag:101];
+    UITextField *textField3 = (UITextField *)[self.tableView viewWithTag:102];
+    UITextField *textField4 = (UITextField *)[self.tableView viewWithTag:103];
+    UITextField *textField5 = (UITextField *)[self.tableView viewWithTag:104];
+    if (textField == textField1) {
+        [textField2 becomeFirstResponder];
+    } else if (textField == textField2) {
+        [textField3 becomeFirstResponder];
+    } else if (textField == textField4) {
+        [textField5 becomeFirstResponder];
+    } else if (textField == textField5) {
+        [textField5 resignFirstResponder];
+    }
+    return YES;
+}
 
 #pragma mark - Table view data source
 
@@ -50,8 +87,12 @@
 }
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     if (indexPath.row == 5) {
-        CGSize size = XLSizeOfText(_addressString, SCREEN_WIDTH - 140, kSystemFont(14));
-        return size.height + 38.0;
+        if (XLIsNullObject(_addressString)) {
+            return 46.0;
+        } else {
+            CGSize size = XLSizeOfText(_addressString, SCREEN_WIDTH - 140, kSystemFont(14));
+            return size.height + 38.0;
+        }
     } else {
         return 46.0;
     }
@@ -149,6 +190,62 @@
 }
 */
 - (IBAction)saveAction:(id)sender {
+    UITextField *textField1 = (UITextField *)[self.tableView viewWithTag:100];
+    UITextField *textField2 = (UITextField *)[self.tableView viewWithTag:101];
+    UITextField *textField3 = (UITextField *)[self.tableView viewWithTag:102];
+    UITextField *textField4 = (UITextField *)[self.tableView viewWithTag:103];
+    UITextField *textField5 = (UITextField *)[self.tableView viewWithTag:104];
+    if (XLIsNullObject(textField1.text) && XLIsNullObject(textField2.text) && XLIsNullObject(textField3.text) && XLIsNullObject(textField4.text) && XLIsNullObject(textField5.text) && XLIsNullObject(_addressString)) {
+        XLShowThenDismissHUD(NO, kInputSomeInformations);
+        return;
+    }
+    if (!XLIsNullObject(textField2.text) && !GJCFStringIsPersonCardNumber(textField2.text)) {
+        XLShowThenDismissHUD(NO, kPleaseInputCorrectIDCardNumber);
+        return;
+    } else if (!XLIsNullObject(textField2.text)) {
+        if (XLIsNullObject(textField1.text)) {
+            XLShowThenDismissHUD(NO, kInputRealname);
+            return;
+        }
+    }
+    if (!XLIsNullObject(textField4.text) && XLIsNullObject(textField5.text)) {
+        XLShowThenDismissHUD(NO, kInputEmergencyContactPhone);
+        return;
+    }
+    if (!XLIsNullObject(textField5.text) && !GJCFStringIsMobilePhone(textField5.text)) {
+        XLShowThenDismissHUD(NO, kInputCorrectPhoneNumberTip);
+        return;
+    }
+    [self hideKeyboard];
+    [SVProgressHUD showWithStatus:@"正在保存..."];
+    
+    InformationModel *model = [InformationModel new];
+    if (!XLIsNullObject(textField1.text)) {
+        model.realname = textField1.text;
+    }
+    if (!XLIsNullObject(textField2.text)) {
+        model.idNumber = textField2.text;
+    }
+    if (!XLIsNullObject(textField3.text)) {
+        model.age = @([textField3.text integerValue]);
+    }
+    if (!XLIsNullObject(textField4.text)) {
+        model.emergencyContact = textField4.text;
+    }
+    if (!XLIsNullObject(textField5.text)) {
+        model.emergencyContactPhone = textField5.text;
+    }
+    if (!XLIsNullObject(_addressString)) {
+        model.address = _addressString;
+    }
+    [InformationModel editInformations:model handler:^(id object, NSString *msg) {
+        if (object) {
+            XLShowThenDismissHUD(YES, @"保存成功");
+            [self.navigationController popViewControllerAnimated:YES];
+        } else {
+            XLShowThenDismissHUD(NO, msg);
+        }
+    }];
 }
 
 @end

@@ -8,6 +8,8 @@
 
 #import "CommonsDefines.h"
 NSString * const EMChatKey = @"1109161016178876#xinjing";
+NSString * const APNSCertName = @"InHeart-User-Dev";
+//NSString * const APNSCertName = @"InHeart-User-Dis";
 
 NSString * const USERID = @"UserId";
 NSString * const USERTOKEN = @"UserToken";
@@ -45,6 +47,9 @@ NSString * const kAge = @"年龄";
 NSString * const kEmergencyContactPerson = @"紧急联系人";
 NSString * const kEmergencyContactPhone = @"紧急联系方式";
 NSString * const kHomeAddress = @"家庭住址";
+NSString * const kInputRealname = @"请输入身份证号对应的真实姓名";
+NSString * const kInputEmergencyContactPhone = @"请输入紧急联系人的联系方式";
+NSString * const kInputSomeInformations = @"请先填写一些个人信息吧";
 
 NSString * const kInputPhoneNumber = @"请输入您的手机号";
 NSString * const kInputPassword = @"请输入您的密码";
@@ -87,3 +92,4 @@ NSString * const CANCEL_ATTENTION = @"doctor/cancelCollect";
 NSString * const FETCH_USERS_NAME = @"getUserIDAndName";
 NSString * const FETCH_CONTENT_DETAIL = @"content/info";
 NSString * const FETCH_PRESCRIPTION_CONTENTS = @"prescription/info";
+NSString * const EDIT_INFORMATIONS = @"fillInfo";

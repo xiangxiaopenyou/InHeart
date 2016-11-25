@@ -16,4 +16,6 @@
 @property (copy, nonatomic) NSString *emergencyContact;
 @property (copy, nonatomic) NSString *emergencyContactPhone;
 
++ (void)editInformations:(InformationModel *)model handler:(RequestResultHandler)handler;
+
 @end

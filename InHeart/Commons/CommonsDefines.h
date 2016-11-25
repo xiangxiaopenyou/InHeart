@@ -9,6 +9,7 @@
 
 //key & secret
 extern NSString * const EMChatKey;
+extern NSString * const APNSCertName;
 /**
  *  用户相关
  */
@@ -53,6 +54,9 @@ extern NSString * const kAge;
 extern NSString * const kEmergencyContactPerson;
 extern NSString * const kEmergencyContactPhone;
 extern NSString * const kHomeAddress;
+extern NSString * const kInputRealname;
+extern NSString * const kInputEmergencyContactPhone;
+extern NSString * const kInputSomeInformations;
 
 
 //登录注册
@@ -105,5 +109,8 @@ extern NSString * const CANCEL_ATTENTION;
 extern NSString * const FETCH_USERS_NAME;
 extern NSString * const FETCH_CONTENT_DETAIL;
 extern NSString * const FETCH_PRESCRIPTION_CONTENTS;
+
+//5.个人中心
+extern NSString * const EDIT_INFORMATIONS;
 
 
