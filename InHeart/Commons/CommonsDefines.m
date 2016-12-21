@@ -93,3 +93,4 @@ NSString * const FETCH_USERS_NAME = @"getUserIDAndName";
 NSString * const FETCH_CONTENT_DETAIL = @"content/info";
 NSString * const FETCH_PRESCRIPTION_CONTENTS = @"prescription/info";
 NSString * const EDIT_INFORMATIONS = @"fillInfo";
+NSString * const FETCH_CONCERNED_DOCTORS = @"doctor/collect/search";

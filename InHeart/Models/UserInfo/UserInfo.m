@@ -45,6 +45,9 @@
     if (userModel.encryptPw) {
         [[NSUserDefaults standardUserDefaults] setObject:userModel.encryptPw forKey:USERENCRYPTEDPASSWORD];
     }
+    if (userModel.userId) {
+        [[NSUserDefaults standardUserDefaults] setObject:userModel.userId forKey:USERID];
+    }
     [[NSUserDefaults standardUserDefaults] synchronize];
     return YES;
 }
@@ -62,6 +65,9 @@
     if ([[NSUserDefaults standardUserDefaults] objectForKey:USERENCRYPTEDPASSWORD]) {
         model.encryptPw = [[NSUserDefaults standardUserDefaults] objectForKey:USERENCRYPTEDPASSWORD];
     }
+    if ([[NSUserDefaults standardUserDefaults] objectForKey:USERID]) {
+        model.userId = [[NSUserDefaults standardUserDefaults] objectForKey:USERID];
+    }
     return model;
 }
 - (void)removeUserInfo {
@@ -69,6 +75,7 @@
     [[NSUserDefaults standardUserDefaults] removeObjectForKey:USERNAME];
     [[NSUserDefaults standardUserDefaults] removeObjectForKey:USERREALNAME];
     [[NSUserDefaults standardUserDefaults] removeObjectForKey:USERENCRYPTEDPASSWORD];
+    [[NSUserDefaults standardUserDefaults] removeObjectForKey:USERID];
     [[NSUserDefaults standardUserDefaults] synchronize];
 }
 - (BOOL)shouldLogin:(UIViewController *)viewController {

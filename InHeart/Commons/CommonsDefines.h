@@ -112,5 +112,6 @@ extern NSString * const FETCH_PRESCRIPTION_CONTENTS;
 
 //5.个人中心
 extern NSString * const EDIT_INFORMATIONS;
+extern NSString * const FETCH_CONCERNED_DOCTORS;
 
 

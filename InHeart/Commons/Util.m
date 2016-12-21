@@ -66,8 +66,6 @@
 }
 
 + (NSURL *)urlWithString:(NSString *)urlString {
-    //NSString *imageUrlString = [NSString stringWithFormat:@"%@%@", @"", urlString];
-    //imageUrlString = [imageUrlString stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
     NSURL *url = [NSURL URLWithString:urlString];
     return url;
 }
@@ -152,14 +150,24 @@
     
     return string;
 }
-+ (void)showThenDismissHud:(BOOL)success message:(NSString *)message {
-    if (success) {
-        [SVProgressHUD showSuccessWithStatus:message];
-    } else {
-        [SVProgressHUD showErrorWithStatus:message];
++ (void)showHUDWithMessage:(NSString *)message view:(UIView *)view {
+    MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:view animated:YES];
+    hud.square = YES;
+    if (message) {
+        hud.labelText = message;
     }
-    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1.2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-        [SVProgressHUD dismiss];
-    });
+}
++ (void)dismissHUD:(UIView *)view showTip:(BOOL)isShow success:(BOOL)isSuccess message:(NSString *)message {
+    [MBProgressHUD hideHUDForView:view animated:YES];
+    if (isShow) {
+        [self showThenDismissHud:isSuccess message:message view:view];
+    }
+}
++ (void)showThenDismissHud:(BOOL)success message:(NSString *)message view:(UIView *)view {
+    if (success) {
+        [MBProgressHUD showSuccess:message toView:view];
+    } else {
+        [MBProgressHUD showError:message toView:view];
+    }
 }
 @end

@@ -54,7 +54,7 @@
                 if (!aError) {
                     [self.conversationsView fetchConversations];
                 } else {
-                    XLShowThenDismissHUD(NO, kNetworkError);
+                    XLShowThenDismissHUD(NO, kNetworkError, self.view);
                 }
             }];
         } else {

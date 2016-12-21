@@ -1463,7 +1463,7 @@
     id <MWPhoto> photo = [self photoAtIndex:_currentPageIndex];
     if ([self numberOfPhotos] && [photo underlyingImage]) {
         UIImageWriteToSavedPhotosAlbum([photo underlyingImage], self, @selector(image:didFinishSavingWithError:contextInfo:), NULL);
-        XLShowThenDismissHUD(YES, @"已保存到相册");
+        XLShowThenDismissHUD(YES, @"已保存到相册", self.view);
     }
     //    if (_actionsSheet) {
     //

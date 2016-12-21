@@ -40,6 +40,7 @@
 + (void)fetchDoctorDetail:(NSString *)doctorId handler:(RequestResultHandler)handler;
 + (void)addAttention:(NSString *)doctorId handler:(RequestResultHandler)handler;
 + (void)cancelAttention:(NSString *)doctorId handler:(RequestResultHandler)handler;
++ (void)fetchConcernedDoctors:(RequestResultHandler)handler;
 
 
 @end

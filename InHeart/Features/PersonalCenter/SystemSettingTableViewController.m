@@ -128,7 +128,7 @@
             if ([self folderSizeAtPath] >= 0.1) {
                 [[[XLBlockAlertView alloc] initWithTitle:@"提示" message:@"确定要清除缓存吗？" block:^(NSInteger buttonIndex) {
                     if (buttonIndex == 1) {
-                        [SVProgressHUD show];
+                        XLShowHUDWithMessage(nil, self.view);
                         [self clearCache];
                     }
                 } cancelButtonTitle:@"取消" otherButtonTitles:@"清除", nil] show];
@@ -148,12 +148,12 @@
                                 [[NSNotificationCenter defaultCenter] postNotificationName:kLoginSuccess object:nil];
                                 [self.tableView reloadData];
                             } else {
-                                XLShowThenDismissHUD(NO, kNetworkError);
+                                XLDismissHUD(self.view, YES, NO, kNetworkError);
                             }
                         }];
                         
                     } else {
-                        XLShowThenDismissHUD(NO, msg);
+                        XLDismissHUD(self.view, YES, NO, msg);
                     }
                 }];
             }
@@ -207,7 +207,7 @@
 */
 - (void)refreshTableView {
     [self.tableView reloadData];
-    XLShowThenDismissHUD(YES, @"清除成功");
+    XLDismissHUD(self.view, YES, YES, @"清除成功");
 }
 
 @end

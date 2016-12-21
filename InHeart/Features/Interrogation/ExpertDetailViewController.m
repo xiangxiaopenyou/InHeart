@@ -49,17 +49,17 @@
 }
 #pragma mark - Request
 - (void)fetchDetail {
-    [SVProgressHUD show];
+    XLShowHUDWithMessage(nil, self.view);
     [DoctorModel fetchDoctorDetail:self.doctorModel.id handler:^(id object, NSString *msg) {
         if (object) {
-            [SVProgressHUD dismiss];
+            XLDismissHUD(self.view, NO, YES, nil);
             self.doctorModel = [object copy];
             GJCFAsyncMainQueue(^{
                 [self resetContentsViews];
                 [self.tableView reloadData];
             });
         } else {
-            XLShowThenDismissHUD(NO, msg);
+            XLDismissHUD(self.view, YES, NO, msg);
         }
     }];
 }

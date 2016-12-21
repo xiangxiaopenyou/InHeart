@@ -60,16 +60,16 @@
 
 #pragma mark - Requests
 - (void)fetchPrescriptionContents {
-    [SVProgressHUD show];
+    XLShowHUDWithMessage(nil, self.view);
     [PrescriptionModel fetchPrescriptionContents:self.prescriptionId handler:^(id object, NSString *msg) {
         if (object) {
-            [SVProgressHUD dismiss];
+            XLDismissHUD(self.view, NO, YES, nil);
             self.model = [object copy];
             GJCFAsyncMainQueue(^{
                 [self.tableView reloadData];
             });
         } else {
-            XLShowThenDismissHUD(NO, msg);
+            XLDismissHUD(self.view, YES, NO, msg);
         }
     }];
 }

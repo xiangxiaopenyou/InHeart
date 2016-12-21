@@ -143,7 +143,7 @@
                 self.conversationModel.realname = userModel.realname;
                 [self pushToDoctorDetailView];
             } else {
-                XLShowThenDismissHUD(NO, kNetworkError);
+                XLShowThenDismissHUD(NO, kNetworkError, self.view);
             }
         }];
     }

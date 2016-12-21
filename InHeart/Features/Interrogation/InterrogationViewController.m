@@ -102,12 +102,12 @@
 
 #pragma mark - Requests
 - (void)fetchDoctors {
-    [SVProgressHUD show];
+    XLShowHUDWithMessage(nil, self.view);
     [DoctorModel fetchDoctorsList:nil region:nil disease:nil paging:@(_paging) handler:^(id object, NSString *msg) {
         [self.doctorsTableView.mj_header endRefreshing];
         [self.doctorsTableView.mj_footer endRefreshing];
         if (object) {
-            [SVProgressHUD dismiss];
+            XLDismissHUD(self.view, NO, YES, nil);
             NSArray *resultArray = [object copy];
             if (_paging == 1) {
                 self.doctorsArray = [resultArray mutableCopy];
@@ -127,7 +127,7 @@
                 }
             });
         } else {
-            XLShowThenDismissHUD(NO, msg);
+            XLDismissHUD(self.view, YES, NO, msg);
         }
     }];
 }
@@ -144,7 +144,9 @@
             }
             self.diseaseIndexArray = [tempIndexArray copy];
             self.diseaseArray = [tempMutableArray copy];
-            [self.diseaseTableView reloadData];
+            GJCFAsyncMainQueue(^{
+                [self.diseaseTableView reloadData];
+            });
         }
     }];
 }
@@ -152,7 +154,9 @@
     [DoctorModel fetchAreasList:^(id object, NSString *msg) {
         if (object) {
             self.provincesArray = [object copy];
-            [self.areaTableView reloadData];
+            GJCFAsyncMainQueue(^{
+                [self.areaTableView reloadData];
+            });
         }
     }];
 }

@@ -196,28 +196,28 @@
     UITextField *textField4 = (UITextField *)[self.tableView viewWithTag:103];
     UITextField *textField5 = (UITextField *)[self.tableView viewWithTag:104];
     if (XLIsNullObject(textField1.text) && XLIsNullObject(textField2.text) && XLIsNullObject(textField3.text) && XLIsNullObject(textField4.text) && XLIsNullObject(textField5.text) && XLIsNullObject(_addressString)) {
-        XLShowThenDismissHUD(NO, kInputSomeInformations);
+        XLShowThenDismissHUD(NO, kInputSomeInformations, self.view);
         return;
     }
     if (!XLIsNullObject(textField2.text) && !GJCFStringIsPersonCardNumber(textField2.text)) {
-        XLShowThenDismissHUD(NO, kPleaseInputCorrectIDCardNumber);
+        XLShowThenDismissHUD(NO, kPleaseInputCorrectIDCardNumber, self.view);
         return;
     } else if (!XLIsNullObject(textField2.text)) {
         if (XLIsNullObject(textField1.text)) {
-            XLShowThenDismissHUD(NO, kInputRealname);
+            XLShowThenDismissHUD(NO, kInputRealname, self.view);
             return;
         }
     }
     if (!XLIsNullObject(textField4.text) && XLIsNullObject(textField5.text)) {
-        XLShowThenDismissHUD(NO, kInputEmergencyContactPhone);
+        XLShowThenDismissHUD(NO, kInputEmergencyContactPhone, self.view);
         return;
     }
     if (!XLIsNullObject(textField5.text) && !GJCFStringIsMobilePhone(textField5.text)) {
-        XLShowThenDismissHUD(NO, kInputCorrectPhoneNumberTip);
+        XLShowThenDismissHUD(NO, kInputCorrectPhoneNumberTip, self.view);
         return;
     }
     [self hideKeyboard];
-    [SVProgressHUD showWithStatus:@"正在保存..."];
+    XLShowHUDWithMessage(@"正在保存", self.view);
     
     InformationModel *model = [InformationModel new];
     if (!XLIsNullObject(textField1.text)) {
@@ -240,10 +240,10 @@
     }
     [InformationModel editInformations:model handler:^(id object, NSString *msg) {
         if (object) {
-            XLShowThenDismissHUD(YES, @"保存成功");
+            XLDismissHUD(self.view, YES, YES, @"保存成功");
             [self.navigationController popViewControllerAnimated:YES];
         } else {
-            XLShowThenDismissHUD(NO, msg);
+            XLDismissHUD(self.view, YES, NO, msg);
         }
     }];
 }

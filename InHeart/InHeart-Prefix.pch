@@ -15,7 +15,7 @@
 #import "CommonsDefines.h"
 #import "EaseUI.h"
 
-#import <SVProgressHUD.h>
+#import "MBProgressHUD+Add.h"
 
 #endif /* InHeart_Prefix_pch */
 #endif

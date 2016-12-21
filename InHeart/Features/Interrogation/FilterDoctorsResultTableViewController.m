@@ -116,12 +116,12 @@
 
 #pragma mark - Request
 - (void)fetchDoctors:(NSString *)keyword {
-    [SVProgressHUD show];
+    XLShowHUDWithMessage(nil, self.view);
     [DoctorModel fetchDoctorsList:keyword region:self.cityCode disease:self.diseaseString paging:@(_paging) handler:^(id object, NSString *msg) {
         [self.tableView.mj_header endRefreshing];
         [self.tableView.mj_footer endRefreshing];
         if (object) {
-            [SVProgressHUD dismiss];
+            XLDismissHUD(self.view, NO, YES, nil);
             NSArray *resultArray = [object copy];
             if (_paging == 1) {
                 self.doctorsArray = [resultArray mutableCopy];
@@ -139,7 +139,7 @@
                 self.tableView.mj_footer.hidden = NO;
             }
         } else {
-            XLShowThenDismissHUD(NO, msg);
+            XLDismissHUD(self.view, YES, NO, msg);
         }
     }];
 }
@@ -147,7 +147,7 @@
 #pragma mark - UITextField Delegate
 - (BOOL)textFieldShouldReturn:(UITextField *)textField {
     if (XLIsNullObject(textField.text)) {
-        XLShowThenDismissHUD(NO, @"请先输入关键字");
+        XLShowThenDismissHUD(NO, @"请先输入关键字", self.view);
     } else {
         _paging = 1;
         [self fetchDoctors:textField.text];

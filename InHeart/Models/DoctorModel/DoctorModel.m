@@ -15,6 +15,7 @@
 #import "FetchDoctorsDetailRequest.h"
 #import "AddAttentionRequest.h"
 #import "CancelAttentionRequest.h"
+#import "FetchConcernedDoctorsRequest.h"
 
 @implementation DoctorModel
 + (void)fetchDoctorsList:(NSString *)keyword region:(NSString *)region disease:(NSString *)disease paging:(NSNumber *)paging handler:(RequestResultHandler)handler {
@@ -80,6 +81,19 @@
         request.doctorId = doctorId;
         return YES;
     } result:handler];
+}
++ (void)fetchConcernedDoctors:(RequestResultHandler)handler {
+    [[FetchConcernedDoctorsRequest new] request:^BOOL(id request) {
+        return YES;
+    } result:^(id object, NSString *msg) {
+        if (msg) {
+            !handler ?: handler(nil, msg);
+        } else {
+            NSArray *tempArray = [object copy];
+            NSArray *resultArray = [[DoctorModel class] setupWithArray:tempArray];
+            !handler ?: handler(resultArray, nil);
+        }
+    }];
 }
 
 @end

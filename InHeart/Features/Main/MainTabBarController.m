@@ -184,7 +184,7 @@ static CGFloat const kTipLabelHeight = 2.0;
                 if (!aError) {
                     [[EMClient sharedClient].chatManager addDelegate:self delegateQueue:nil];
                 } else {
-                    XLShowThenDismissHUD(NO, kNetworkError);
+                    XLShowThenDismissHUD(NO, kNetworkError, self.view);
                 }
             }];
         } else {

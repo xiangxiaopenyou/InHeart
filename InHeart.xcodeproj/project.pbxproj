@@ -156,6 +156,9 @@
 		3D894B1D1DDEC7BF004963C7 /* EditInformationsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D894B1C1DDEC7BF004963C7 /* EditInformationsTableViewController.m */; };
 		3D894B201DDECE08004963C7 /* UserAddressCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D894B1F1DDECE08004963C7 /* UserAddressCell.m */; };
 		3D894B261DE2F1D8004963C7 /* EditInformationsRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D894B251DE2F1D8004963C7 /* EditInformationsRequest.m */; };
+		3D894B531DED11C8004963C7 /* MyConcernedDoctorsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D894B521DED11C7004963C7 /* MyConcernedDoctorsTableViewController.m */; };
+		3D894B561DED15A5004963C7 /* FetchConcernedDoctorsRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D894B551DED15A5004963C7 /* FetchConcernedDoctorsRequest.m */; };
+		3D894B5A1DED7EE0004963C7 /* ConcernedDoctorCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D894B591DED7EE0004963C7 /* ConcernedDoctorCell.m */; };
 		3D90F0FA1DCADB5800D5B93A /* MessagesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D90F0F91DCADB5800D5B93A /* MessagesViewController.m */; };
 		3D90F0FD1DCAE41A00D5B93A /* ChatViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D90F0FC1DCAE41A00D5B93A /* ChatViewController.m */; };
 		3D9C18021D93D4A8001A1A43 /* ExpertNameCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D9C18011D93D4A8001A1A43 /* ExpertNameCell.m */; };
@@ -184,12 +187,12 @@
 		3DF089F71DD9AF3500D64EA6 /* UsersNameAndIdRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DF089F61DD9AF3500D64EA6 /* UsersNameAndIdRequest.m */; };
 		3DF089FA1DD9B05300D64EA6 /* UserMessageModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DF089F91DD9B05300D64EA6 /* UserMessageModel.m */; };
 		3DF089FE1DD9B1F600D64EA6 /* ConversationModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DF089FD1DD9B1F600D64EA6 /* ConversationModel.m */; };
-		6421B4A1F042C56373EDEA19 /* libPods-InHeart.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 1992C05E7A2E9619DCBEBD73 /* libPods-InHeart.a */; };
+		D94740F4C29F37CE1D824FB9 /* libPods-InHeart.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 06F5912AE434CD93226ED268 /* libPods-InHeart.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		05863AB1A7ABD9219CD76815 /* Pods-InHeart.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-InHeart.debug.xcconfig"; path = "Pods/Target Support Files/Pods-InHeart/Pods-InHeart.debug.xcconfig"; sourceTree = "<group>"; };
-		1992C05E7A2E9619DCBEBD73 /* libPods-InHeart.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-InHeart.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		06F5912AE434CD93226ED268 /* libPods-InHeart.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-InHeart.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		3C4EC34CDFA5C60240308818 /* Pods-InHeart.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-InHeart.debug.xcconfig"; path = "Pods/Target Support Files/Pods-InHeart/Pods-InHeart.debug.xcconfig"; sourceTree = "<group>"; };
 		3D1CF75B1D912DC300A63F05 /* Personal.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Personal.storyboard; sourceTree = "<group>"; };
 		3D1CF7601D91338200A63F05 /* PersonalCenterTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PersonalCenterTableViewController.h; sourceTree = "<group>"; };
 		3D1CF7611D91338200A63F05 /* PersonalCenterTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PersonalCenterTableViewController.m; sourceTree = "<group>"; };
@@ -501,6 +504,13 @@
 		3D894B1F1DDECE08004963C7 /* UserAddressCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserAddressCell.m; sourceTree = "<group>"; };
 		3D894B241DE2F1D8004963C7 /* EditInformationsRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EditInformationsRequest.h; sourceTree = "<group>"; };
 		3D894B251DE2F1D8004963C7 /* EditInformationsRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EditInformationsRequest.m; sourceTree = "<group>"; };
+		3D894B511DED11C7004963C7 /* MyConcernedDoctorsTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyConcernedDoctorsTableViewController.h; sourceTree = "<group>"; };
+		3D894B521DED11C7004963C7 /* MyConcernedDoctorsTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyConcernedDoctorsTableViewController.m; sourceTree = "<group>"; };
+		3D894B541DED15A5004963C7 /* FetchConcernedDoctorsRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FetchConcernedDoctorsRequest.h; sourceTree = "<group>"; };
+		3D894B551DED15A5004963C7 /* FetchConcernedDoctorsRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FetchConcernedDoctorsRequest.m; sourceTree = "<group>"; };
+		3D894B571DED2789004963C7 /* InHeart.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = InHeart.entitlements; sourceTree = "<group>"; };
+		3D894B581DED7EE0004963C7 /* ConcernedDoctorCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ConcernedDoctorCell.h; sourceTree = "<group>"; };
+		3D894B591DED7EE0004963C7 /* ConcernedDoctorCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ConcernedDoctorCell.m; sourceTree = "<group>"; };
 		3D90F0F81DCADB5800D5B93A /* MessagesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MessagesViewController.h; sourceTree = "<group>"; };
 		3D90F0F91DCADB5800D5B93A /* MessagesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MessagesViewController.m; sourceTree = "<group>"; };
 		3D90F0FB1DCAE41A00D5B93A /* ChatViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChatViewController.h; sourceTree = "<group>"; };
@@ -555,7 +565,7 @@
 		3DF089F91DD9B05300D64EA6 /* UserMessageModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UserMessageModel.m; path = InHeart/Models/UserMessageModel.m; sourceTree = SOURCE_ROOT; };
 		3DF089FC1DD9B1F600D64EA6 /* ConversationModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ConversationModel.h; sourceTree = "<group>"; };
 		3DF089FD1DD9B1F600D64EA6 /* ConversationModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ConversationModel.m; sourceTree = "<group>"; };
-		D7B640329E600B250F1736F6 /* Pods-InHeart.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-InHeart.release.xcconfig"; path = "Pods/Target Support Files/Pods-InHeart/Pods-InHeart.release.xcconfig"; sourceTree = "<group>"; };
+		5B64A29588BE29867AC11B6B /* Pods-InHeart.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-InHeart.release.xcconfig"; path = "Pods/Target Support Files/Pods-InHeart/Pods-InHeart.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -563,16 +573,24 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				6421B4A1F042C56373EDEA19 /* libPods-InHeart.a in Frameworks */,
 				3D7F79D11DC745970009C668 /* libopencore-amrwb.a in Frameworks */,
 				3D7F7A3F1DC745B10009C668 /* UtoVRPlayer.framework in Frameworks */,
 				3D7F79D01DC745970009C668 /* libopencore-amrnb.a in Frameworks */,
+				D94740F4C29F37CE1D824FB9 /* libPods-InHeart.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0084AA091818A375ED241B1F /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				06F5912AE434CD93226ED268 /* libPods-InHeart.a */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		3D1CF7631D91340100A63F05 /* Views */ = {
 			isa = PBXGroup;
 			children = (
@@ -582,6 +600,8 @@
 				3D1CF76B1D9226CA00A63F05 /* CommonFunctionCell.m */,
 				3D894B1E1DDECE08004963C7 /* UserAddressCell.h */,
 				3D894B1F1DDECE08004963C7 /* UserAddressCell.m */,
+				3D894B581DED7EE0004963C7 /* ConcernedDoctorCell.h */,
+				3D894B591DED7EE0004963C7 /* ConcernedDoctorCell.m */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -1133,8 +1153,8 @@
 			children = (
 				3D80D40D1D827CCC005B8FD0 /* InHeart */,
 				3D80D40C1D827CCB005B8FD0 /* Products */,
-				54D424FE1D2A230ECB217EB0 /* Pods */,
-				A8F1656A1356B84F5C783769 /* Frameworks */,
+				4AE5E1AC7716E251BCD7581B /* Pods */,
+				0084AA091818A375ED241B1F /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -1149,6 +1169,7 @@
 		3D80D40D1D827CCC005B8FD0 /* InHeart */ = {
 			isa = PBXGroup;
 			children = (
+				3D894B571DED2789004963C7 /* InHeart.entitlements */,
 				3D80D4261D82B485005B8FD0 /* Features */,
 				3D80D4271D82B509005B8FD0 /* Models */,
 				3D80D4281D82B564005B8FD0 /* Requests */,
@@ -1344,6 +1365,8 @@
 				3D8787021DDD56DB005A8FE2 /* SystemSettingTableViewController.m */,
 				3D894B1B1DDEC7BF004963C7 /* EditInformationsTableViewController.h */,
 				3D894B1C1DDEC7BF004963C7 /* EditInformationsTableViewController.m */,
+				3D894B511DED11C7004963C7 /* MyConcernedDoctorsTableViewController.h */,
+				3D894B521DED11C7004963C7 /* MyConcernedDoctorsTableViewController.m */,
 			);
 			path = PersonalCenter;
 			sourceTree = "<group>";
@@ -1375,6 +1398,8 @@
 			children = (
 				3D894B241DE2F1D8004963C7 /* EditInformationsRequest.h */,
 				3D894B251DE2F1D8004963C7 /* EditInformationsRequest.m */,
+				3D894B541DED15A5004963C7 /* FetchConcernedDoctorsRequest.h */,
+				3D894B551DED15A5004963C7 /* FetchConcernedDoctorsRequest.m */,
 			);
 			path = Personal;
 			sourceTree = "<group>";
@@ -1487,21 +1512,13 @@
 			path = UserMessageModel;
 			sourceTree = "<group>";
 		};
-		54D424FE1D2A230ECB217EB0 /* Pods */ = {
+		4AE5E1AC7716E251BCD7581B /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				05863AB1A7ABD9219CD76815 /* Pods-InHeart.debug.xcconfig */,
-				D7B640329E600B250F1736F6 /* Pods-InHeart.release.xcconfig */,
+				3C4EC34CDFA5C60240308818 /* Pods-InHeart.debug.xcconfig */,
+				5B64A29588BE29867AC11B6B /* Pods-InHeart.release.xcconfig */,
 			);
 			name = Pods;
-			sourceTree = "<group>";
-		};
-		A8F1656A1356B84F5C783769 /* Frameworks */ = {
-			isa = PBXGroup;
-			children = (
-				1992C05E7A2E9619DCBEBD73 /* libPods-InHeart.a */,
-			);
-			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -1511,12 +1528,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 3D80D4221D827CCC005B8FD0 /* Build configuration list for PBXNativeTarget "InHeart" */;
 			buildPhases = (
-				CFF0B2FBD789130137C43F93 /* Check Pods Manifest.lock */,
+				434F226354DFE877AF5FC960 /* [CP] Check Pods Manifest.lock */,
 				3D80D4071D827CCB005B8FD0 /* Sources */,
 				3D80D4081D827CCB005B8FD0 /* Frameworks */,
 				3D80D4091D827CCB005B8FD0 /* Resources */,
-				FF22D40FAA125201EAB7B027 /* Embed Pods Frameworks */,
-				CFF5E3837329321AEDC203C1 /* Copy Pods Resources */,
+				6E0A730BD176A4D1FF859E95 /* [CP] Embed Pods Frameworks */,
+				DF2A0C6F884C6B242832CF8E /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -1542,7 +1559,10 @@
 						ProvisioningStyle = Automatic;
 						SystemCapabilities = {
 							com.apple.BackgroundModes = {
-								enabled = 0;
+								enabled = 1;
+							};
+							com.apple.Push = {
+								enabled = 1;
 							};
 						};
 					};
@@ -1589,49 +1609,49 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		CFF0B2FBD789130137C43F93 /* Check Pods Manifest.lock */ = {
+		434F226354DFE877AF5FC960 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "Check Pods Manifest.lock";
+			name = "[CP] Check Pods Manifest.lock";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
-		CFF5E3837329321AEDC203C1 /* Copy Pods Resources */ = {
+		6E0A730BD176A4D1FF859E95 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "Copy Pods Resources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-InHeart/Pods-InHeart-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		FF22D40FAA125201EAB7B027 /* Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "Embed Pods Frameworks";
+			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-InHeart/Pods-InHeart-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		DF2A0C6F884C6B242832CF8E /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-InHeart/Pods-InHeart-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -1727,6 +1747,7 @@
 				3D8786FA1DDC4945005A8FE2 /* PrescriptionModel.m in Sources */,
 				3D8786E91DDC3F20005A8FE2 /* PrescriptionContentCell.m in Sources */,
 				3D7F79FE1DC745970009C668 /* UIImageView+EMWebCache.m in Sources */,
+				3D894B531DED11C8004963C7 /* MyConcernedDoctorsTableViewController.m in Sources */,
 				3D90F0FA1DCADB5800D5B93A /* MessagesViewController.m in Sources */,
 				3D1CF7691D921DA300A63F05 /* PersonalInformationCell.m in Sources */,
 				3DF089ED1DD98C2F00D64EA6 /* FilterDoctorsResultTableViewController.m in Sources */,
@@ -1770,6 +1791,7 @@
 				3D7F7A181DC745970009C668 /* EaseConvertToCommonEmoticonsHelper.m in Sources */,
 				3D7F7A011DC745970009C668 /* PSTCollectionView.m in Sources */,
 				3D7F79EC1DC745970009C668 /* MWTapDetectingImageView.m in Sources */,
+				3D894B5A1DED7EE0004963C7 /* ConcernedDoctorCell.m in Sources */,
 				3D7F7A0B1DC745970009C668 /* PSTGridLayoutRow.m in Sources */,
 				3D7F7A261DC745970009C668 /* EaseBaseMessageCell.m in Sources */,
 				3D8787031DDD56DB005A8FE2 /* SystemSettingTableViewController.m in Sources */,
@@ -1787,6 +1809,7 @@
 				3D7F7A271DC745970009C668 /* EaseCustomMessageCell.m in Sources */,
 				3D7F79CB1DC745970009C668 /* EMCDDeviceManager+Remind.m in Sources */,
 				3DB657071D8E9A8B00157BAA /* InterrogationViewController.m in Sources */,
+				3D894B561DED15A5004963C7 /* FetchConcernedDoctorsRequest.m in Sources */,
 				3D7F79F81DC745970009C668 /* NSData+EMImageContentType.m in Sources */,
 				3D8485E61D83D1400066E2E5 /* XLBlockActionSheet.m in Sources */,
 				3D7F7A301DC745970009C668 /* EaseBubbleView+Voice.m in Sources */,
@@ -1932,10 +1955,11 @@
 		};
 		3D80D4231D827CCC005B8FD0 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 05863AB1A7ABD9219CD76815 /* Pods-InHeart.debug.xcconfig */;
+			baseConfigurationReference = 3C4EC34CDFA5C60240308818 /* Pods-InHeart.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_ENTITLEMENTS = InHeart/InHeart.entitlements;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				DEVELOPMENT_TEAM = TC6ARYK6RK;
 				ENABLE_BITCODE = NO;
@@ -1961,10 +1985,11 @@
 		};
 		3D80D4241D827CCC005B8FD0 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = D7B640329E600B250F1736F6 /* Pods-InHeart.release.xcconfig */;
+			baseConfigurationReference = 5B64A29588BE29867AC11B6B /* Pods-InHeart.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_ENTITLEMENTS = InHeart/InHeart.entitlements;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				DEVELOPMENT_TEAM = TC6ARYK6RK;
 				ENABLE_BITCODE = NO;

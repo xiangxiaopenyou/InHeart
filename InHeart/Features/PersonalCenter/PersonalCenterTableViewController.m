@@ -10,6 +10,7 @@
 #import "LoginViewController.h"
 #import "SystemSettingTableViewController.h"
 #import "EditInformationsTableViewController.h"
+#import "MyConcernedDoctorsTableViewController.h"
 #import "PersonalInformationCell.h"
 #import "CommonFunctionCell.h"
 
@@ -138,6 +139,23 @@
         }
         
     } else if (indexPath.section == 1) {
+        switch (indexPath.row) {
+            case 0:{
+            }
+                break;
+            case 1:{
+                if (![[UserInfo sharedUserInfo] shouldLogin:self]) {
+                    MyConcernedDoctorsTableViewController *concernedViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"ConcernedDoctors"];
+                    [self.navigationController pushViewController:concernedViewController animated:YES];
+                }
+            }
+                break;
+            case 2:{
+            }
+                break;
+            default:
+                break;
+        }
         
     } else {
         if ( indexPath.row == 0) {
