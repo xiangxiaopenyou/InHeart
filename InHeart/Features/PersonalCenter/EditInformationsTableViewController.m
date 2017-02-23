@@ -39,8 +39,8 @@
 }
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
-    UITextField *textField = (UITextField *)[self.tableView viewWithTag:100];
-    [textField becomeFirstResponder];
+//    UITextField *textField = (UITextField *)[self.tableView viewWithTag:100];
+//    [textField becomeFirstResponder];
 }
 
 - (void)didReceiveMemoryWarning {

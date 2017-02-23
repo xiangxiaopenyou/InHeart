@@ -104,6 +104,7 @@ extern NSString * const FETCH_AREAS;
 extern NSString * const DOCTOR_DETAIL;
 extern NSString * const ADD_ATTENTION;
 extern NSString * const CANCEL_ATTENTION;
+extern NSString * const UPLOAD_ORDER;
 
 //4.消息
 extern NSString * const FETCH_USERS_NAME;

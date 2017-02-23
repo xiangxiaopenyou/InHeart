@@ -75,6 +75,7 @@ NSString * const kSetupUnreadMessagesCount = @"SetupUnreadMessagesCount";
 NSString * const kConversationsDidChange = @"ConversationsDidChange";
 
 NSString * const BASEAPIURL = @"http://xj.dosnsoft.com:8000/api/v1/patient/";
+//NSString * const BASEAPIURL = @"http://test.med-vision.cn/patient/";
 
 NSString * const USER_LOGIN = @"login";
 NSString * const USER_REGISTER = @"register";
@@ -88,6 +89,7 @@ NSString * const FETCH_AREAS = @"getRegion";
 NSString * const DOCTOR_DETAIL = @"doctor/info";
 NSString * const ADD_ATTENTION = @"doctor/collect";
 NSString * const CANCEL_ATTENTION = @"doctor/cancelCollect";
+NSString * const UPLOAD_ORDER = @"wxGoPay";
 
 NSString * const FETCH_USERS_NAME = @"getUserIDAndName";
 NSString * const FETCH_CONTENT_DETAIL = @"content/info";

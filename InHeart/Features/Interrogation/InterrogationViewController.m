@@ -309,6 +309,9 @@
         self.doctorsButton.selected = NO;
         [self updateTipLabelFrame:5.0 * SCREEN_WIDTH / 6.0 - 27];
         [self.scrollView setContentOffset:CGPointMake(SCREEN_WIDTH * 2, 0) animated:YES];
+        if (!self.areasArray || self.areasArray.count == 0) {
+            [self fetchAreas];
+        }
     }
 }
 - (IBAction)diseaseButtonClick:(id)sender {
@@ -318,6 +321,9 @@
         self.doctorsButton.selected = NO;
         [self updateTipLabelFrame:SCREEN_WIDTH / 2.0 - 27];
         [self.scrollView setContentOffset:CGPointMake(SCREEN_WIDTH, 0) animated:YES];
+        if (!self.diseaseArray || self.diseaseArray.count == 0) {
+            [self fetchDiseases];
+        }
     }
 }
 - (IBAction)doctorsButtonClick:(id)sender {
@@ -327,6 +333,9 @@
         self.doctorsButton.selected = YES;
         [self updateTipLabelFrame:SCREEN_WIDTH / 6.0 - 27];
         [self.scrollView setContentOffset:CGPointMake(0, 0) animated:YES];
+        if (!self.doctorsArray || self.doctorsArray.count == 0) {
+            [self .doctorsTableView.mj_header beginRefreshing];
+        }
     }
 }
 - (void)searchSelector {
