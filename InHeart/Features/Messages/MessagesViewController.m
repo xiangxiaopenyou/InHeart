@@ -60,6 +60,8 @@
         } else {
             [self.conversationsView fetchConversations];
         }
+    } else {
+        [self.conversationsView.tableView reloadData];
     }
     
 }

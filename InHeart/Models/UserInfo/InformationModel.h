@@ -6,9 +6,9 @@
 //  Copyright © 2016年 项小盆友. All rights reserved.
 //
 
-#import "BaseModel.h"
+#import "XLModel.h"
 
-@interface InformationModel : BaseModel
+@interface InformationModel : XLModel
 @property (copy, nonatomic) NSString *idNumber;
 @property (copy, nonatomic) NSString *realname;
 @property (copy, nonatomic) NSString *address;

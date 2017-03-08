@@ -53,7 +53,7 @@
     [DoctorModel fetchDoctorDetail:self.doctorModel.id handler:^(id object, NSString *msg) {
         if (object) {
             XLDismissHUD(self.view, NO, YES, nil);
-            self.doctorModel = [object copy];
+            self.doctorModel = object;
             GJCFAsyncMainQueue(^{
                 [self resetContentsViews];
                 [self.tableView reloadData];

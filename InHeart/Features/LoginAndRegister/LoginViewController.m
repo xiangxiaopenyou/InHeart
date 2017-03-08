@@ -141,7 +141,7 @@
     XLShowHUDWithMessage(nil, self.view);
     [UserModel userLogin:self.phoneTextField.text password:self.passwordTextField.text handler:^(id object, NSString *msg) {
         if (object) {
-            UserModel *userModel = [object copy];
+            UserModel *userModel = object;
             if ([[UserInfo sharedUserInfo] saveUserInfo:userModel]) {
                 PersonalInfo *tempInfo = [PersonalInfo new];
                 tempInfo.username = userModel.username;
@@ -150,6 +150,7 @@
                     XLDismissHUD(self.view, NO, YES, nil);
                     [self dismissViewControllerAnimated:YES completion:nil];
                     [[EMClient sharedClient] loginWithUsername:userModel.username password:userModel.encryptPw];
+                    [[NSNotificationCenter defaultCenter] postNotificationName:kLoginSuccess object:@YES];
                 } else {
                     XLDismissHUD(self.view, YES, NO, @"登录出现问题，请重试");
                 }

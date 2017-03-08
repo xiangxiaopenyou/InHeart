@@ -14,7 +14,6 @@
 #import <GJCFUitils.h>
 
 @interface ConversationListView ()<UITableViewDelegate, UITableViewDataSource>
-@property (strong, nonatomic) UITableView *tableView;
 @property (strong, nonatomic) NSMutableArray *conversationArray;
 
 
@@ -76,7 +75,7 @@
     for (ConversationModel *tempModel in self.conversationArray) {
         [UserMessageModel fetchUsersIdAndName:tempModel.conversation.conversationId handler:^(id object, NSString *msg) {
             if (object) {
-                UserMessageModel *userModel = [object copy];
+                UserMessageModel *userModel = object;
                 tempModel.userId = userModel.userId;
                 tempModel.realname = userModel.realname;
                 count += 1;
@@ -112,7 +111,7 @@
 
 #pragma mark - UITableView DataSource Delegate
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return self.conversationArray.count;
+    return [[UserInfo sharedUserInfo] isLogined] ? self.conversationArray.count : 0;
 }
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     return 70.0;

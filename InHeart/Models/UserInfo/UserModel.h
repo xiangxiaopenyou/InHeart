@@ -6,14 +6,14 @@
 //  Copyright © 2016年 项小盆友. All rights reserved.
 //
 
-#import "BaseModel.h"
+#import "XLModel.h"
 
-@interface UserModel : BaseModel
+@interface UserModel : XLModel
 @property (copy, nonatomic) NSString *token;
-@property (copy, nonatomic) NSString<Optional> *realname;
+@property (copy, nonatomic) NSString *realname;
 @property (copy, nonatomic) NSString *username;
-@property (strong, nonatomic) NSNumber<Optional> *code;
-@property (copy, nonatomic) NSString<Optional> *encryptPw;
+@property (strong, nonatomic) NSNumber *code;
+@property (copy, nonatomic) NSString *encryptPw;
 @property (copy, nonatomic) NSString *userId;
 
 + (void)userLogin:(NSString *)username password:(NSString *)password handler:(RequestResultHandler)handler;

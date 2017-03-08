@@ -138,7 +138,7 @@
             NSMutableArray *tempMutableArray = [[NSMutableArray alloc] init];
             NSMutableArray *tempIndexArray = [[NSMutableArray alloc] init];
             for (NSDictionary *tempDictionary in tempArray) {
-                NSArray *tempDiseasesArray = [[ContentTypeModel class] setupWithArray:tempDictionary[@"array"]];
+                NSArray *tempDiseasesArray = [ContentTypeModel setupWithArray:tempDictionary[@"array"]];
                 [tempMutableArray addObject:tempDiseasesArray];
                 [tempIndexArray addObject:tempDictionary[@"letter"]];
             }
@@ -192,7 +192,7 @@
 }
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     if (tableView == self.areaTableView) {
-        ProvinceModel *provinceModel = [self.provincesArray[section] copy];
+        ProvinceModel *provinceModel = self.provincesArray[section];
         return provinceModel.array.count;
     } else if (tableView == self.diseaseTableView) {
         return [self.diseaseArray[section] count];
@@ -204,9 +204,9 @@
     if (tableView == self.areaTableView) {
         static NSString *identifier = @"AreaCell";
         UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:identifier forIndexPath:indexPath];
-        ProvinceModel *provinceModel = [self.provincesArray[indexPath.section] copy];
+        ProvinceModel *provinceModel = self.provincesArray[indexPath.section];
         NSArray *tempArray = [provinceModel.array copy];
-        CityModel *tempModel = [[CityModel alloc] initWithDictionary:tempArray[indexPath.row] error:nil];
+        CityModel *tempModel = [CityModel yy_modelWithDictionary:tempArray[indexPath.row]];
         cell.textLabel.text = [NSString stringWithFormat:@"%@", tempModel.name];
         cell.textLabel.font = kSystemFont(13);
         cell.textLabel.textColor = kHexRGBColorWithAlpha(0x323232, 1.0);
@@ -215,7 +215,7 @@
         static NSString *identifier = @"DiseaseCell";
         UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:identifier forIndexPath:indexPath];
         NSArray *tempArray = [self.diseaseArray[indexPath.section] copy];
-        ContentTypeModel *tempModel = [tempArray[indexPath.row] copy];
+        ContentTypeModel *tempModel = tempArray[indexPath.row];
         cell.textLabel.text = [NSString stringWithFormat:@"%@", tempModel.name];
         cell.textLabel.font = kSystemFont(13);
         cell.textLabel.textColor = kHexRGBColorWithAlpha(0x323232, 1.0);
@@ -233,15 +233,15 @@
         [tableView deselectRowAtIndexPath:indexPath animated:YES];
         if (tableView == self.diseaseTableView) {
             NSArray *tempArray = [self.diseaseArray[indexPath.section] copy];
-            ContentTypeModel *tempModel = [tempArray[indexPath.row] copy];
+            ContentTypeModel *tempModel = tempArray[indexPath.row];
             FilterDoctorsResultTableViewController *filterResultViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"FilterDoctors"];
             filterResultViewController.diseaseString = tempModel.name;
             filterResultViewController.filterType = 1;
             [self.navigationController pushViewController:filterResultViewController animated:YES];
         } else {
-            ProvinceModel *provinceModel = [self.provincesArray[indexPath.section] copy];
+            ProvinceModel *provinceModel = self.provincesArray[indexPath.section];
             NSArray *tempArray = [provinceModel.array copy];
-            CityModel *tempModel = [[CityModel alloc] initWithDictionary:tempArray[indexPath.row] error:nil];
+            CityModel *tempModel = [CityModel yy_modelWithDictionary:tempArray[indexPath.row]];
             FilterDoctorsResultTableViewController *filterResultViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"FilterDoctors"];
             filterResultViewController.cityCode = tempModel.code;
             filterResultViewController.cityName = tempModel.name;
@@ -281,7 +281,7 @@
     headerView.backgroundColor = kRGBColor(240, 240, 240, 1.0);
     UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(15, 0, 100, 21)];
     if (tableView == self.areaTableView) {
-         ProvinceModel *provinceModel = [self.provincesArray[section] copy];
+         ProvinceModel *provinceModel = self.provincesArray[section];
         label.text = [NSString stringWithFormat:@"%@", provinceModel.name];
     } else {
         label.text = self.diseaseIndexArray[section];

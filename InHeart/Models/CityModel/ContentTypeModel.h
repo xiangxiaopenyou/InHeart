@@ -6,11 +6,11 @@
 //  Copyright © 2016年 项小盆友. All rights reserved.
 //
 
-#import "BaseModel.h"
+#import "XLModel.h"
 
-@interface ContentTypeModel : BaseModel
+@interface ContentTypeModel : XLModel
 @property (copy, nonatomic) NSString *typeId;
 @property (copy, nonatomic) NSString *name;
-@property (strong, nonatomic) NSNumber<Optional> *status;
+@property (strong, nonatomic) NSNumber *status;
 
 @end

@@ -10,8 +10,8 @@
 #import "FetchContentDetailRequest.h"
 
 @implementation ContentModel
-+ (JSONKeyMapper *)keyMapper {
-    return [[JSONKeyMapper alloc] initWithModelToJSONDictionary:@{@"contentId" : @"id"}];
++ (NSDictionary<NSString *,id> *)modelCustomPropertyMapper {
+    return @{@"contentId" : @"id"};
 }
 + (void)fetchContentDetail:(NSString *)contentId handler:(RequestResultHandler)handler {
     [[FetchContentDetailRequest new] request:^BOOL(FetchContentDetailRequest *request) {
@@ -21,7 +21,7 @@
         if (msg) {
             !handler ?: handler(nil, msg);
         } else {
-            ContentModel *tempModel = [[ContentModel alloc] initWithDictionary:object error:nil];
+            ContentModel *tempModel = [ContentModel yy_modelWithDictionary:object];
             !handler ?: handler(tempModel, nil);
         }
     }];

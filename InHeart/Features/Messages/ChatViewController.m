@@ -138,7 +138,7 @@
     } else {
         [UserMessageModel fetchUsersIdAndName:self.conversationModel.conversation.conversationId handler:^(id object, NSString *msg) {
             if (object) {
-                UserMessageModel *userModel = [object copy];
+                UserMessageModel *userModel = object;
                 self.conversationModel.userId = userModel.userId;
                 self.conversationModel.realname = userModel.realname;
                 [self pushToDoctorDetailView];

@@ -265,7 +265,7 @@
             XLShowHUDWithMessage(@"正在登录...", self.view);
             [UserModel userLogin:self.phoneNumberTextField.text password:self.passwordTextField.text handler:^(id object, NSString *msg) {
                 if (object) {
-                    UserModel *userModel = [object copy];
+                    UserModel *userModel = object;
                     if ([[UserInfo sharedUserInfo] saveUserInfo:userModel]) {
                         PersonalInfo *tempInfo = [PersonalInfo new];
                         tempInfo.username = userModel.username;
@@ -274,6 +274,7 @@
                             XLDismissHUD(self.view, NO, YES, nil);
                             [self dismissViewControllerAnimated:YES completion:nil];
                             [[EMClient sharedClient] loginWithUsername:userModel.username password:userModel.encryptPw];
+                            [[NSNotificationCenter defaultCenter] postNotificationName:kLoginSuccess object:@YES];
                         } else {
                             XLDismissHUD(self.view, YES, NO, @"自动登录失败");
                             [self.navigationController popViewControllerAnimated:YES];

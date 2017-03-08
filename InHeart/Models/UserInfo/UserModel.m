@@ -25,7 +25,7 @@
             !handler ?: handler(nil, msg);
         } else {
             if (object && [object isKindOfClass:[NSDictionary class]]) {
-                UserModel *tempModel = [[UserModel alloc] initWithDictionary:object[@"data"] error:nil];
+                UserModel *tempModel = [UserModel yy_modelWithDictionary:object[@"data"]];
                 !handler ?: handler(tempModel, [object[@"code"] stringValue]);
             }
         }

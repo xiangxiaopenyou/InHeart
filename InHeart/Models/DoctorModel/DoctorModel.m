@@ -29,7 +29,7 @@
         if (msg) {
             !handler ?: handler(nil, msg);
         } else {
-            NSArray *tempArray = [[DoctorModel class] setupWithArray:object];
+            NSArray *tempArray = [DoctorModel setupWithArray:object];
             !handler ?: handler(tempArray, nil);
         }
     }];
@@ -52,7 +52,7 @@
         if (msg) {
             !handler ?: handler(nil, msg);
         } else {
-            NSArray *tempArray = [[ProvinceModel class] setupWithArray:object];
+            NSArray *tempArray = [ProvinceModel setupWithArray:object];
             !handler ?: handler(tempArray, nil);
         }
     }];
@@ -65,7 +65,7 @@
         if (msg) {
             !handler ?: handler(nil, msg);
         } else {
-            DoctorModel *tempModel = [[DoctorModel alloc] initWithDictionary:object error:nil];
+            DoctorModel *tempModel = [DoctorModel yy_modelWithDictionary:object];
             !handler ?: handler(tempModel, nil);
         }
     }];
@@ -90,7 +90,7 @@
             !handler ?: handler(nil, msg);
         } else {
             NSArray *tempArray = [object copy];
-            NSArray *resultArray = [[DoctorModel class] setupWithArray:tempArray];
+            NSArray *resultArray = [DoctorModel setupWithArray:tempArray];
             !handler ?: handler(resultArray, nil);
         }
     }];

@@ -6,9 +6,9 @@
 //  Copyright © 2016年 项小盆友. All rights reserved.
 //
 
-#import "BaseModel.h"
+#import "XLModel.h"
 
-@interface UserMessageModel : BaseModel
+@interface UserMessageModel : XLModel
 @property (copy, nonatomic) NSString *userId;
 @property (copy, nonatomic) NSString *realname;
 

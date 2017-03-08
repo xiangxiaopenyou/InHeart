@@ -9,8 +9,8 @@
 #import "ContentTypeModel.h"
 
 @implementation ContentTypeModel
-+ (JSONKeyMapper *)keyMapper {
-    return [[JSONKeyMapper alloc] initWithModelToJSONDictionary:@{@"typeId" : @"id"}];
++ (NSDictionary<NSString *,id> *)modelCustomPropertyMapper {
+    return @{@"typeId" : @"id"};
 }
 
 @end

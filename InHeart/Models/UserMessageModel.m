@@ -11,8 +11,8 @@
 #import "UsersNameAndIdRequest.h"
 
 @implementation UserMessageModel
-+ (JSONKeyMapper *)keyMapper {
-    return [[JSONKeyMapper alloc] initWithModelToJSONDictionary:@{@"userId" : @"id"}];
++ (NSDictionary<NSString *,id> *)modelCustomPropertyMapper {
+    return @{@"userId" : @"id"};
 }
 + (void)fetchUsersIdAndName:(NSString *)phone handler:(RequestResultHandler)handler {
     [[UsersNameAndIdRequest new] request:^BOOL(UsersNameAndIdRequest *request) {
@@ -22,7 +22,7 @@
         if (msg) {
             !handler ?: handler(nil, msg);
         } else {
-            UserMessageModel *tempModel = [[UserMessageModel alloc] initWithDictionary:object error:nil];
+            UserMessageModel *tempModel = [UserMessageModel yy_modelWithDictionary:object];
             !handler ?: handler(tempModel, nil);
         }
     }];

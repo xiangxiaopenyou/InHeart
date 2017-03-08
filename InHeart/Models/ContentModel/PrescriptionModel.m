@@ -18,7 +18,7 @@
         if (msg) {
             !handler ?: handler(nil, msg);
         } else {
-            PrescriptionModel *tempModel = [[PrescriptionModel alloc] initWithDictionary:object error:nil];
+            PrescriptionModel *tempModel = [PrescriptionModel yy_modelWithDictionary:object];
             !handler ?: handler(tempModel, nil);
         }
     }];

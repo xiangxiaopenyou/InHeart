@@ -15,6 +15,7 @@
 
 typedef void (^selectedRowBlock)(ConversationModel *model);
 @interface ConversationListView : UIView
+@property (strong, nonatomic) UITableView *tableView;
 @property (copy, nonatomic) selectedRowBlock block;
 @property (weak, nonatomic) id<ConversationListViewDelegate> delegate;
 

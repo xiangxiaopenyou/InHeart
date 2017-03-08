@@ -176,22 +176,27 @@ static CGFloat const kTipLabelHeight = 2.0;
     [application setApplicationIconBadgeNumber:unreadCount];
 }
 - (void)checkUserState:(NSNotification *)notification {
-    if ([[UserInfo sharedUserInfo] isLogined]) {
-        //环信
-        if (![[EMClient sharedClient] isLoggedIn]) {
-            UserModel *user = [[UserInfo sharedUserInfo] userInfo];
-            [[EMClient sharedClient] loginWithUsername:user.username password:user.encryptPw completion:^(NSString *aUsername, EMError *aError) {
-                if (!aError) {
-                    [[EMClient sharedClient].chatManager addDelegate:self delegateQueue:nil];
-                } else {
-                    XLShowThenDismissHUD(NO, kNetworkError, self.view);
-                }
-            }];
-        } else {
-            [[EMClient sharedClient].chatManager addDelegate:self delegateQueue:nil];
-            
+    if ([notification.object boolValue]) {
+        if ([[UserInfo sharedUserInfo] isLogined]) {
+            //环信
+            if (![[EMClient sharedClient] isLoggedIn]) {
+                UserModel *user = [[UserInfo sharedUserInfo] userInfo];
+                [[EMClient sharedClient] loginWithUsername:user.username password:user.encryptPw completion:^(NSString *aUsername, EMError *aError) {
+                    if (!aError) {
+                        [[EMClient sharedClient].chatManager addDelegate:self delegateQueue:nil];
+                    } else {
+                        XLShowThenDismissHUD(NO, kNetworkError, self.view);
+                    }
+                }];
+            } else {
+                [[EMClient sharedClient].chatManager addDelegate:self delegateQueue:nil];
+                
+            }
         }
+    } else {
+        [[EMClient sharedClient].chatManager removeDelegate:self];
     }
+    
 }
 
 @end

@@ -130,7 +130,6 @@
 		3D8485E61D83D1400066E2E5 /* XLBlockActionSheet.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D8485E21D83D1400066E2E5 /* XLBlockActionSheet.m */; };
 		3D8485E71D83D1400066E2E5 /* XLBlockedButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D8485E41D83D1400066E2E5 /* XLBlockedButton.m */; };
 		3D8485EB1D83D17D0066E2E5 /* Util.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D8485EA1D83D17D0066E2E5 /* Util.m */; };
-		3D8485EF1D83E66B0066E2E5 /* BaseModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D8485EE1D83E66B0066E2E5 /* BaseModel.m */; };
 		3D8485FD1D83F04D0066E2E5 /* MainTabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D8485FC1D83F04D0066E2E5 /* MainTabBarController.m */; };
 		3D8486011D8405350066E2E5 /* Content.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3D8486001D8405350066E2E5 /* Content.storyboard */; };
 		3D8486051D8409100066E2E5 /* ContentNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D8486041D8409100066E2E5 /* ContentNavigationController.m */; };
@@ -177,6 +176,7 @@
 		3DB651311DD969BC006F5C29 /* CityModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DB6512F1DD969BC006F5C29 /* CityModel.m */; };
 		3DB657041D8E7A5E00157BAA /* Interrogation.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3DB657031D8E7A5E00157BAA /* Interrogation.storyboard */; };
 		3DB657071D8E9A8B00157BAA /* InterrogationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DB657061D8E9A8B00157BAA /* InterrogationViewController.m */; };
+		3DCB12F61E6F9ADA00DCE94E /* XLModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DCB12F51E6F9ADA00DCE94E /* XLModel.m */; };
 		3DCE052E1D90E2E20017B2E6 /* DoctorCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DCE052D1D90E2E20017B2E6 /* DoctorCell.m */; };
 		3DCE05321D90E7BC0017B2E6 /* DoctorModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DCE05311D90E7BC0017B2E6 /* DoctorModel.m */; };
 		3DF025971DD30C55008F6467 /* FetchDoctorsListRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DF025961DD30C55008F6467 /* FetchDoctorsListRequest.m */; };
@@ -221,6 +221,7 @@
 		3D6282B21DCB3ACC001BC363 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/LaunchScreen.strings"; sourceTree = "<group>"; };
 		3D6282B61DCB3AF0001BC363 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Localizable.strings"; sourceTree = "<group>"; };
 		3D6282B81DCB3AF2001BC363 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
+		3D7F5FE71E6E56640050E99A /* InHeart.entitlements */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.entitlements; name = InHeart.entitlements; path = InHeart/InHeart.entitlements; sourceTree = "<group>"; };
 		3D7F78A21DC745970009C668 /* EaseUI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EaseUI.h; sourceTree = "<group>"; };
 		3D7F78A71DC745970009C668 /* EMCDDeviceManagerDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EMCDDeviceManagerDelegate.h; sourceTree = "<group>"; };
 		3D7F78A81DC745970009C668 /* EMCDDeviceManagerProximitySensorDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EMCDDeviceManagerProximitySensorDelegate.h; sourceTree = "<group>"; };
@@ -452,8 +453,6 @@
 		3D8485E81D83D17D0066E2E5 /* UtilDefine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UtilDefine.h; sourceTree = "<group>"; };
 		3D8485E91D83D17D0066E2E5 /* Util.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Util.h; sourceTree = "<group>"; };
 		3D8485EA1D83D17D0066E2E5 /* Util.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Util.m; sourceTree = "<group>"; };
-		3D8485ED1D83E66B0066E2E5 /* BaseModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseModel.h; sourceTree = "<group>"; };
-		3D8485EE1D83E66B0066E2E5 /* BaseModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseModel.m; sourceTree = "<group>"; };
 		3D8485FB1D83F04D0066E2E5 /* MainTabBarController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainTabBarController.h; sourceTree = "<group>"; };
 		3D8485FC1D83F04D0066E2E5 /* MainTabBarController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainTabBarController.m; sourceTree = "<group>"; };
 		3D8485FE1D83FCCB0066E2E5 /* InHeart-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "InHeart-Prefix.pch"; sourceTree = "<group>"; };
@@ -508,7 +507,6 @@
 		3D894B521DED11C7004963C7 /* MyConcernedDoctorsTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyConcernedDoctorsTableViewController.m; sourceTree = "<group>"; };
 		3D894B541DED15A5004963C7 /* FetchConcernedDoctorsRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FetchConcernedDoctorsRequest.h; sourceTree = "<group>"; };
 		3D894B551DED15A5004963C7 /* FetchConcernedDoctorsRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FetchConcernedDoctorsRequest.m; sourceTree = "<group>"; };
-		3D894B571DED2789004963C7 /* InHeart.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = InHeart.entitlements; sourceTree = "<group>"; };
 		3D894B581DED7EE0004963C7 /* ConcernedDoctorCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ConcernedDoctorCell.h; sourceTree = "<group>"; };
 		3D894B591DED7EE0004963C7 /* ConcernedDoctorCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ConcernedDoctorCell.m; sourceTree = "<group>"; };
 		3D90F0F81DCADB5800D5B93A /* MessagesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MessagesViewController.h; sourceTree = "<group>"; };
@@ -545,6 +543,8 @@
 		3DB657031D8E7A5E00157BAA /* Interrogation.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Interrogation.storyboard; sourceTree = "<group>"; };
 		3DB657051D8E9A8B00157BAA /* InterrogationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InterrogationViewController.h; sourceTree = "<group>"; };
 		3DB657061D8E9A8B00157BAA /* InterrogationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InterrogationViewController.m; sourceTree = "<group>"; };
+		3DCB12F41E6F9ADA00DCE94E /* XLModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XLModel.h; sourceTree = "<group>"; };
+		3DCB12F51E6F9ADA00DCE94E /* XLModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XLModel.m; sourceTree = "<group>"; };
 		3DCE052C1D90E2E20017B2E6 /* DoctorCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DoctorCell.h; sourceTree = "<group>"; };
 		3DCE052D1D90E2E20017B2E6 /* DoctorCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DoctorCell.m; sourceTree = "<group>"; };
 		3DCE05301D90E7BC0017B2E6 /* DoctorModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DoctorModel.h; sourceTree = "<group>"; };
@@ -1151,6 +1151,7 @@
 		3D80D4021D827CCB005B8FD0 = {
 			isa = PBXGroup;
 			children = (
+				3D7F5FE71E6E56640050E99A /* InHeart.entitlements */,
 				3D80D40D1D827CCC005B8FD0 /* InHeart */,
 				3D80D40C1D827CCB005B8FD0 /* Products */,
 				4AE5E1AC7716E251BCD7581B /* Pods */,
@@ -1169,7 +1170,6 @@
 		3D80D40D1D827CCC005B8FD0 /* InHeart */ = {
 			isa = PBXGroup;
 			children = (
-				3D894B571DED2789004963C7 /* InHeart.entitlements */,
 				3D80D4261D82B485005B8FD0 /* Features */,
 				3D80D4271D82B509005B8FD0 /* Models */,
 				3D80D4281D82B564005B8FD0 /* Requests */,
@@ -1265,8 +1265,8 @@
 		3D8485EC1D83E6560066E2E5 /* BaseModel */ = {
 			isa = PBXGroup;
 			children = (
-				3D8485ED1D83E66B0066E2E5 /* BaseModel.h */,
-				3D8485EE1D83E66B0066E2E5 /* BaseModel.m */,
+				3DCB12F41E6F9ADA00DCE94E /* XLModel.h */,
+				3DCB12F51E6F9ADA00DCE94E /* XLModel.m */,
 			);
 			path = BaseModel;
 			sourceTree = "<group>";
@@ -1680,7 +1680,6 @@
 				3D84860C1D8508DC0066E2E5 /* ContentCell.m in Sources */,
 				3D7F7A2A1DC745970009C668 /* EaseBubbleView+File.m in Sources */,
 				3D90F0FD1DCAE41A00D5B93A /* ChatViewController.m in Sources */,
-				3D8485EF1D83E66B0066E2E5 /* BaseModel.m in Sources */,
 				3D7F79E71DC745970009C668 /* MWCaptionView.m in Sources */,
 				3D7F7A2C1DC745970009C668 /* EaseBubbleView+Image.m in Sources */,
 				3D7F79FA1DC745970009C668 /* UIImage+EMGIF.m in Sources */,
@@ -1688,6 +1687,7 @@
 				3D7F7A081DC745970009C668 /* PSTCollectionViewUpdateItem.m in Sources */,
 				3D894B201DDECE08004963C7 /* UserAddressCell.m in Sources */,
 				3D8786F01DDC42C4005A8FE2 /* ContentModel.m in Sources */,
+				3DCB12F61E6F9ADA00DCE94E /* XLModel.m in Sources */,
 				3D8485E71D83D1400066E2E5 /* XLBlockedButton.m in Sources */,
 				3D1CF76C1D9226CA00A63F05 /* CommonFunctionCell.m in Sources */,
 				3D7F7A121DC745970009C668 /* NSDate+Category.m in Sources */,

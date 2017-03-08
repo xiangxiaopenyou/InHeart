@@ -64,7 +64,7 @@
     [PrescriptionModel fetchPrescriptionContents:self.prescriptionId handler:^(id object, NSString *msg) {
         if (object) {
             XLDismissHUD(self.view, NO, YES, nil);
-            self.model = [object copy];
+            self.model = object;
             GJCFAsyncMainQueue(^{
                 [self.tableView reloadData];
             });

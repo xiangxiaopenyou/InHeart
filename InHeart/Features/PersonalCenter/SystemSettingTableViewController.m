@@ -140,12 +140,12 @@
             if (buttonIndex == 1) {
                 [UserModel userLogout:^(id object, NSString *msg) {
                     if (object) {
-                        [[EMClient sharedClient] logout:NO completion:^(EMError *aError) {
+                        [[EMClient sharedClient] logout:YES completion:^(EMError *aError) {
                             if (!aError) {
                                 [[UserInfo sharedUserInfo] removeUserInfo];
                                 [[UserInfo sharedUserInfo] removePersonalInfo];
                                 //[self.navigationController popToRootViewControllerAnimated:YES];
-                                [[NSNotificationCenter defaultCenter] postNotificationName:kLoginSuccess object:nil];
+                                [[NSNotificationCenter defaultCenter] postNotificationName:kLoginSuccess object:NO];
                                 [self.tableView reloadData];
                             } else {
                                 XLDismissHUD(self.view, YES, NO, kNetworkError);

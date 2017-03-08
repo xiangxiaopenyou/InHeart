@@ -4,7 +4,6 @@ target 'InHeart' do
 pod 'AFNetworking'
 pod 'MJRefresh'
 pod 'Masonry'
-pod 'JSONModel'
 pod 'OpenShare'
 pod 'SDCycleScrollView'
 pod 'GJCFUitils'
@@ -14,5 +13,6 @@ pod 'IQKeyboardManager'
 pod 'GTSDK'
 pod 'Hyphenate_CN'
 pod 'SAMKeychain'
+pod 'YYModel'
 end 
 
