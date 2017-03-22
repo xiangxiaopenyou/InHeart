@@ -119,9 +119,10 @@
             }];
         }
     } cancelButtonTitle:kCommonCancel otherButtonTitles:kCommonEnsure, nil] show];
+}
+- (void)moreViewVideoCallAction:(EaseChatBarMoreView *)moreView {
     
 }
-
 
 /*
 #pragma mark - Navigation

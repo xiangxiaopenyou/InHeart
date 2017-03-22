@@ -145,7 +145,7 @@
                                 [[UserInfo sharedUserInfo] removeUserInfo];
                                 [[UserInfo sharedUserInfo] removePersonalInfo];
                                 //[self.navigationController popToRootViewControllerAnimated:YES];
-                                [[NSNotificationCenter defaultCenter] postNotificationName:kLoginSuccess object:NO];
+                                [[NSNotificationCenter defaultCenter] postNotificationName:kLoginSuccess object:@NO];
                                 [self.tableView reloadData];
                             } else {
                                 XLDismissHUD(self.view, YES, NO, kNetworkError);

@@ -28,6 +28,7 @@ static CGFloat const kTipLabelHeight = 2.0;
 
 @implementation MainTabBarController
 
+#pragma mark - UIViewController
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
@@ -78,20 +79,14 @@ static CGFloat const kTipLabelHeight = 2.0;
     [super viewDidAppear:animated];
     [self setupUnreadMessagesCount];
 }
-- (UILabel *)bottomTipLabel {
-    if (!_bottomTipLabel) {
-        _bottomTipLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, kTipLabelWidth, kTipLabelHeight)];
-        _bottomTipLabel.backgroundColor = NAVIGATIONBAR_COLOR;
-    }
-    return _bottomTipLabel;
-}
-- (void)addViewToTabBar {
-    [self.tabBar addSubview:self.bottomTipLabel];
-}
-
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+#pragma mark - Private Methods
+- (void)addViewToTabBar {
+    [self.tabBar addSubview:self.bottomTipLabel];
 }
 
 - (void)setupChildControllerWith:(UIViewController *)childViewController normalImage:(UIImage *)normalImage selectedImage:(UIImage *)selectedImage title:(NSString *)title index:(NSInteger)index {
@@ -123,6 +118,60 @@ static CGFloat const kTipLabelHeight = 2.0;
     notification.alertBody = NSEaseLocalizedString(@"receiveMessage", @"you have a new message");
     //发送通知
     [[UIApplication sharedApplication] scheduleLocalNotification:notification];
+}
+//设置未读消息数量
+- (void)setupUnreadMessagesCount {
+    NSArray *conversations = [[EMClient sharedClient].chatManager getAllConversations];
+    NSInteger unreadCount = 0;
+    for (EMConversation *conversation in conversations) {
+        unreadCount += conversation.unreadMessagesCount;
+    }
+    UITabBarItem *item = self.tabBar.items[1];
+    item.badgeValue = unreadCount > 0 ? [NSString stringWithFormat:@"%@", @(unreadCount)] : nil;
+    UIApplication *application = [UIApplication sharedApplication];
+    [application setApplicationIconBadgeNumber:unreadCount];
+}
+- (void)checkUserState:(NSNotification *)notification {
+    if (!notification) {
+        if ([[UserInfo sharedUserInfo] isLogined]) {
+            //环信
+            if (![[EMClient sharedClient] isLoggedIn]) {
+                UserModel *user = [[UserInfo sharedUserInfo] userInfo];
+                [[EMClient sharedClient] loginWithUsername:user.username password:user.encryptPw completion:^(NSString *aUsername, EMError *aError) {
+                    if (!aError) {
+                        [[EMClient sharedClient].chatManager addDelegate:self delegateQueue:nil];
+                    } else {
+                        XLShowThenDismissHUD(NO, kNetworkError, self.view);
+                    }
+                }];
+            } else {
+                [[EMClient sharedClient].chatManager addDelegate:self delegateQueue:nil];
+                
+            }
+        }
+    } else {
+        if ([notification.object boolValue]) {
+            if ([[UserInfo sharedUserInfo] isLogined]) {
+                //环信
+                if (![[EMClient sharedClient] isLoggedIn]) {
+                    UserModel *user = [[UserInfo sharedUserInfo] userInfo];
+                    [[EMClient sharedClient] loginWithUsername:user.username password:user.encryptPw completion:^(NSString *aUsername, EMError *aError) {
+                        if (!aError) {
+                            [[EMClient sharedClient].chatManager addDelegate:self delegateQueue:nil];
+                        } else {
+                            XLShowThenDismissHUD(NO, kNetworkError, self.view);
+                        }
+                    }];
+                } else {
+                    [[EMClient sharedClient].chatManager addDelegate:self delegateQueue:nil];
+                    
+                }
+            }
+        } else {
+            [[EMClient sharedClient].chatManager removeDelegate:self];
+        }
+        
+    }
 }
 
 
@@ -163,40 +212,14 @@ static CGFloat const kTipLabelHeight = 2.0;
     // Pass the selected object to the new view controller.
 }
 */
-//设置未读消息数量
-- (void)setupUnreadMessagesCount {
-    NSArray *conversations = [[EMClient sharedClient].chatManager getAllConversations];
-    NSInteger unreadCount = 0;
-    for (EMConversation *conversation in conversations) {
-        unreadCount += conversation.unreadMessagesCount;
+
+#pragma mark - Getters
+- (UILabel *)bottomTipLabel {
+    if (!_bottomTipLabel) {
+        _bottomTipLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, kTipLabelWidth, kTipLabelHeight)];
+        _bottomTipLabel.backgroundColor = NAVIGATIONBAR_COLOR;
     }
-    UITabBarItem *item = self.tabBar.items[1];
-    item.badgeValue = unreadCount > 0 ? [NSString stringWithFormat:@"%@", @(unreadCount)] : nil;
-    UIApplication *application = [UIApplication sharedApplication];
-    [application setApplicationIconBadgeNumber:unreadCount];
-}
-- (void)checkUserState:(NSNotification *)notification {
-    if ([notification.object boolValue]) {
-        if ([[UserInfo sharedUserInfo] isLogined]) {
-            //环信
-            if (![[EMClient sharedClient] isLoggedIn]) {
-                UserModel *user = [[UserInfo sharedUserInfo] userInfo];
-                [[EMClient sharedClient] loginWithUsername:user.username password:user.encryptPw completion:^(NSString *aUsername, EMError *aError) {
-                    if (!aError) {
-                        [[EMClient sharedClient].chatManager addDelegate:self delegateQueue:nil];
-                    } else {
-                        XLShowThenDismissHUD(NO, kNetworkError, self.view);
-                    }
-                }];
-            } else {
-                [[EMClient sharedClient].chatManager addDelegate:self delegateQueue:nil];
-                
-            }
-        }
-    } else {
-        [[EMClient sharedClient].chatManager removeDelegate:self];
-    }
-    
+    return _bottomTipLabel;
 }
 
 @end
