@@ -33,8 +33,7 @@
     keyboardManager.shouldResignOnTouchOutside = YES;
     
     //[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(checkUserState:) name:kLoginSuccess object:nil];
-    [[EaseSDKHelper shareHelper] hyphenateApplication:application didFinishLaunchingWithOptions:launchOptions appkey:EMChatKey apnsCertName:APNSCertName otherConfig:@{kSDKConfigEnableConsoleLogger:[NSNumber numberWithBool:YES]}];
-    [EMClient sharedClient].options.isAutoLogin = YES;
+    [[EaseSDKHelper shareHelper] hyphenateApplication:application didFinishLaunchingWithOptions:launchOptions appkey:EMChatKey apnsCertName:APNSCertName otherConfig:@{@"httpsOnly":[NSNumber numberWithBool:YES], kSDKConfigEnableConsoleLogger:[NSNumber numberWithBool:YES],@"easeSandBox":[NSNumber numberWithBool:NO]}];
     //[[UserInfo sharedUserInfo] removePersonalInfo];
     
     return YES;

@@ -71,6 +71,7 @@
 - (void)setupSubviewsForType:(EMChatToolbarType)type
 {
     //self.backgroundColor = [UIColor clearColor];
+    self.accessibilityIdentifier = @"more_view";
     
     _scrollview = [[UIScrollView alloc] init];
     _scrollview.pagingEnabled = YES;
@@ -87,6 +88,7 @@
     CGFloat insets = (self.frame.size.width - 4 * CHAT_BUTTON_SIZE) / 5;
     
     _photoButton =[UIButton buttonWithType:UIButtonTypeCustom];
+    _photoButton.accessibilityIdentifier = @"image";
     [_photoButton setFrame:CGRectMake(insets, 10, CHAT_BUTTON_SIZE , 90)];
 //    [_photoButton setImage:[UIImage imageNamed:@"EaseUIResource.bundle/chatBar_colorMore_photo"] forState:UIControlStateNormal];
 //    [_photoButton setImage:[UIImage imageNamed:@"EaseUIResource.bundle/chatBar_colorMore_photoSelected"] forState:UIControlStateHighlighted];
@@ -113,8 +115,8 @@
     }
     [_scrollview addSubview:_phoneCallButton];
     
-    
 //    _locationButton =[UIButton buttonWithType:UIButtonTypeCustom];
+//    _locationButton.accessibilityIdentifier = @"location";
 //    [_locationButton setFrame:CGRectMake(insets * 2 + CHAT_BUTTON_SIZE, 10, CHAT_BUTTON_SIZE , CHAT_BUTTON_SIZE)];
 //    [_locationButton setImage:[UIImage imageNamed:@"EaseUIResource.bundle/chatBar_colorMore_location"] forState:UIControlStateNormal];
 //    [_locationButton setImage:[UIImage imageNamed:@"EaseUIResource.bundle/chatBar_colorMore_locationSelected"] forState:UIControlStateHighlighted];
@@ -128,9 +130,8 @@
 //    [_takePicButton setImage:[UIImage imageNamed:@"EaseUIResource.bundle/chatBar_colorMore_cameraSelected"] forState:UIControlStateHighlighted];
 //    [_takePicButton addTarget:self action:@selector(takePicAction) forControlEvents:UIControlEventTouchUpInside];
 //    _takePicButton.tag = MOREVIEW_BUTTON_TAG + 2;
-//    _maxIndex = 2;
+    _maxIndex = 2;
 //    [_scrollview addSubview:_takePicButton];
-    
 
     CGRect frame = self.frame;
     if (type == EMChatToolbarTypeChat) {
@@ -144,7 +145,7 @@
 //        [_scrollview addSubview:_audioCallButton];
 //        
         _videoCallButton =[UIButton buttonWithType:UIButtonTypeCustom];
-        [_videoCallButton setFrame:CGRectMake(insets * 3 + CHAT_BUTTON_SIZE * 2, 10, CHAT_BUTTON_SIZE , CHAT_BUTTON_SIZE)];
+        [_videoCallButton setFrame:CGRectMake(insets * 3 + CHAT_BUTTON_SIZE * 2, 10, CHAT_BUTTON_SIZE , 90)];
         [_videoCallButton setImage:[UIImage imageNamed:@"EaseUIResource.bundle/chatBar_colorMore_videoCall"] forState:UIControlStateNormal];
         [_videoCallButton setImage:[UIImage imageNamed:@"EaseUIResource.bundle/chatBar_colorMore_videoCallSelected"] forState:UIControlStateHighlighted];
         [_videoCallButton addTarget:self action:@selector(takeVideoCallAction) forControlEvents:UIControlEventTouchUpInside];
@@ -358,6 +359,5 @@
         [_delegate moreView:self didItemInMoreViewAtIndex:button.tag-MOREVIEW_BUTTON_TAG];
     }
 }
-
 
 @end

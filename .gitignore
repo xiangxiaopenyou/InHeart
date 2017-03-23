@@ -18,4 +18,5 @@ DerivedData
 *.ipa
 *.xccheckout
 #CocoaPods
+/InHeart/ThirdLibs/HyphenateFullSDK/
 Pods

@@ -356,3 +356,7 @@
 "NSDateCategory.text12" = "晚上hh:mm";
 "NSDateCategory.text13" = "昨天HH:mm";
 "NSDateCategory.text14" = "今天 %@";
+
+//Login
+"login.loginFailed" = "登录出现问题，请重试";
+"login.autoLoginFailed" = "自动登录失败";

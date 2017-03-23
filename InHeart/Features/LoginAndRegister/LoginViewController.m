@@ -147,15 +147,26 @@
                 tempInfo.username = userModel.username;
                 tempInfo.password = self.passwordTextField.text;
                 if ([[UserInfo sharedUserInfo] savePersonalInfo:tempInfo]) {
-                    XLDismissHUD(self.view, NO, YES, nil);
-                    [self dismissViewControllerAnimated:YES completion:nil];
-                    [[EMClient sharedClient] loginWithUsername:userModel.username password:userModel.encryptPw];
-                    [[NSNotificationCenter defaultCenter] postNotificationName:kLoginSuccess object:@YES];
+                    GJCFAsyncGlobalDefaultQueue(^{
+                        EMError *error = [[EMClient sharedClient] loginWithUsername:userModel.username password:userModel.encryptPw];
+                        GJCFAsyncMainQueue(^{
+                            if (!error) { //环信登录成功
+                                XLDismissHUD(self.view, NO, YES, nil);
+                                [self dismissViewControllerAnimated:YES completion:nil];
+                                [[NSNotificationCenter defaultCenter] postNotificationName:kLoginSuccess object:@YES];
+                                [[EMClient sharedClient].options setIsAutoLogin:YES];
+                                [[EMClient sharedClient] migrateDatabaseToLatestSDK];
+                            } else {
+                                XLDismissHUD(self.view, YES, NO, NSLocalizedString(@"login.loginFailed", nil));
+                            }
+                        });
+                    });
+                    
                 } else {
-                    XLDismissHUD(self.view, YES, NO, @"登录出现问题，请重试");
+                    XLDismissHUD(self.view, YES, NO, NSLocalizedString(@"login.loginFailed", nil));
                 }
             } else {
-                XLDismissHUD(self.view, YES, NO, @" 登录出现问题，请重试");
+                XLDismissHUD(self.view, YES, NO, NSLocalizedString(@"login.loginFailed", nil));
             }
         } else {
             XLDismissHUD(self.view, YES, NO, msg);

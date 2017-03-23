@@ -271,21 +271,33 @@
                         tempInfo.username = userModel.username;
                         tempInfo.password = self.passwordTextField.text;
                         if ([[UserInfo sharedUserInfo] savePersonalInfo:tempInfo]) {
-                            XLDismissHUD(self.view, NO, YES, nil);
-                            [self dismissViewControllerAnimated:YES completion:nil];
-                            [[EMClient sharedClient] loginWithUsername:userModel.username password:userModel.encryptPw];
-                            [[NSNotificationCenter defaultCenter] postNotificationName:kLoginSuccess object:@YES];
+                            GJCFAsyncGlobalDefaultQueue(^{
+                                EMError *error = [[EMClient sharedClient] loginWithUsername:userModel.username password:userModel.encryptPw];
+                                GJCFAsyncMainQueue(^{
+                                    if (!error) {
+                                        XLDismissHUD(self.view, NO, YES, nil);
+                                        [self dismissViewControllerAnimated:YES completion:nil];
+                                        [[NSNotificationCenter defaultCenter] postNotificationName:kLoginSuccess object:@YES];
+                                        [[EMClient sharedClient].options setIsAutoLogin:YES];
+                                        [[EMClient sharedClient] migrateDatabaseToLatestSDK];
+                                    } else {
+                                        XLDismissHUD(self.view, YES, NO, NSLocalizedString(@"login.autoLoginFailed", nil));
+                                        [self.navigationController popViewControllerAnimated:YES];
+                                    }
+                                });
+                            });
+                            
                         } else {
-                            XLDismissHUD(self.view, YES, NO, @"自动登录失败");
+                            XLDismissHUD(self.view, YES, NO, NSLocalizedString(@"login.autoLoginFailed", nil));
                             [self.navigationController popViewControllerAnimated:YES];
                         }
                     } else {
-                        XLDismissHUD(self.view, YES, NO, @"自动登录失败");
+                        XLDismissHUD(self.view, YES, NO, NSLocalizedString(@"login.autoLoginFailed", nil));
                         [self.navigationController popViewControllerAnimated:YES];
                     }
                 } else {
                     dispatch_async(dispatch_get_main_queue(), ^{
-                        XLDismissHUD(self.view, YES, NO, @"自动登录失败");
+                        XLDismissHUD(self.view, YES, NO, NSLocalizedString(@"login.autoLoginFailed", nil));
                         [self.navigationController popViewControllerAnimated:YES];
                     });
                 }
