@@ -183,6 +183,7 @@
 		3DEED7C31E83747A00F96A5A /* Hyphenate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3DEED7C11E83746800F96A5A /* Hyphenate.framework */; };
 		3DEED7C41E83747A00F96A5A /* Hyphenate.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 3DEED7C11E83746800F96A5A /* Hyphenate.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		3DEED7C71E8374D800F96A5A /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DEED7C61E8374D800F96A5A /* AppDelegate.m */; };
+		3DEED7C91E83898B00F96A5A /* Hyphenate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3DEED7C81E83898B00F96A5A /* Hyphenate.framework */; };
 		3DF025971DD30C55008F6467 /* FetchDoctorsListRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DF025961DD30C55008F6467 /* FetchDoctorsListRequest.m */; };
 		3DF089EA1DD9855000D64EA6 /* ContentTypeModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DF089E91DD9855000D64EA6 /* ContentTypeModel.m */; };
 		3DF089ED1DD98C2F00D64EA6 /* FilterDoctorsResultTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DF089EC1DD98C2F00D64EA6 /* FilterDoctorsResultTableViewController.m */; };
@@ -571,6 +572,7 @@
 		3DEED7591E83730D00F96A5A /* EaseUIResource.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = EaseUIResource.bundle; sourceTree = "<group>"; };
 		3DEED7C11E83746800F96A5A /* Hyphenate.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Hyphenate.framework; path = /Users/xiangxiaopenyou/Desktop/InHeart/InHeart/ThirdLibs/HyphenateFullSDK/Hyphenate.framework; sourceTree = "<absolute>"; };
 		3DEED7C61E8374D800F96A5A /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		3DEED7C81E83898B00F96A5A /* Hyphenate.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Hyphenate.framework; sourceTree = "<group>"; };
 		3DF025951DD30C55008F6467 /* FetchDoctorsListRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FetchDoctorsListRequest.h; sourceTree = "<group>"; };
 		3DF025961DD30C55008F6467 /* FetchDoctorsListRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FetchDoctorsListRequest.m; sourceTree = "<group>"; };
 		3DF089E81DD9855000D64EA6 /* ContentTypeModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ContentTypeModel.h; sourceTree = "<group>"; };
@@ -594,6 +596,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				3D7F7A3F1DC745B10009C668 /* UtoVRPlayer.framework in Frameworks */,
+				3DEED7C91E83898B00F96A5A /* Hyphenate.framework in Frameworks */,
 				3DEED7C31E83747A00F96A5A /* Hyphenate.framework in Frameworks */,
 				3DEED7651E83730D00F96A5A /* libopencore-amrnb.a in Frameworks */,
 				3DEED7661E83730D00F96A5A /* libopencore-amrwb.a in Frameworks */,
@@ -1556,6 +1559,7 @@
 		3DEED7C01E83746800F96A5A /* HyphenateFullSDK */ = {
 			isa = PBXGroup;
 			children = (
+				3DEED7C81E83898B00F96A5A /* Hyphenate.framework */,
 			);
 			path = HyphenateFullSDK;
 			sourceTree = "<group>";
