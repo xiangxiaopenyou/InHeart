@@ -208,6 +208,7 @@
 "call.hangup"="挂断";
 "call.finished"="连接建立完成";
 "call.autoHangup"="没有响应，自动挂断";
+"call.offline"="对方不在线";
 "call.noResponse"="对方没有回应";
 "call.connectFailed"="建立连接失败";
 "call.failed"="通话失败";

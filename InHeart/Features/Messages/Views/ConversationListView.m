@@ -72,22 +72,25 @@
         }
     }
     __block NSInteger count = 0;
-    for (ConversationModel *tempModel in self.conversationArray) {
-        [UserMessageModel fetchUsersIdAndName:tempModel.conversation.conversationId handler:^(id object, NSString *msg) {
-            if (object) {
-                UserMessageModel *userModel = object;
-                tempModel.userId = userModel.userId;
-                tempModel.realname = userModel.realname;
-                count += 1;
-                if (count == self.conversationArray.count) {
-                    dispatch_async(dispatch_get_main_queue(), ^{
-                        [self.tableView reloadData];
-                    });
+    if (self.conversationArray.count > 0) {
+        for (ConversationModel *tempModel in self.conversationArray) {
+            [UserMessageModel fetchUsersIdAndName:tempModel.conversation.conversationId handler:^(id object, NSString *msg) {
+                if (object) {
+                    UserMessageModel *userModel = object;
+                    tempModel.userId = userModel.userId;
+                    tempModel.realname = userModel.realname;
+                    count += 1;
+                    if (count == self.conversationArray.count) {
+                        dispatch_async(dispatch_get_main_queue(), ^{
+                            [self.tableView reloadData];
+                        });
+                    }
                 }
-            }
-        }];
+            }];
+        }
+    } else {
+        [self.tableView reloadData];
     }
-    //[self.tableView reloadData];
     
     [[NSNotificationCenter defaultCenter] postNotificationName:kSetupUnreadMessagesCount object:nil];
 }

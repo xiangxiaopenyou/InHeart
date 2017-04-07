@@ -16,6 +16,9 @@
 #define kCollectionCellItemWidth (SCREEN_WIDTH - 40.0) / 2.0
 #define kCollectionCellItemHeight kCollectionCellItemWidth * 2.0 / 3.0
 
+//视频通话
+#define DEMO_CALL 1
+
 /**
  *  常用颜色
  */

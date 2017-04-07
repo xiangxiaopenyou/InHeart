@@ -17,6 +17,8 @@
 #import "DoctorModel.h"
 #import "UserMessageModel.h"
 
+#import "DemoCallManager.h"
+
 @interface ChatViewController ()<EaseMessageViewControllerDelegate, EaseMessageViewControllerDataSource>
 
 @end
@@ -111,17 +113,15 @@
 
 #pragma mark - EaseChatBarMoreViewDelegate
 - (void)moreViewPhoneCallAction:(EaseChatBarMoreView *)moreView {
-    [[[XLBlockAlertView alloc] initWithTitle:kCommonTip message:kIsMakePhoneCall block:^(NSInteger buttonIndex) {
-        if (buttonIndex == 1) {
-            NSString *tempString = [NSString stringWithFormat:@"tel://%@", self.title];
-            [[UIApplication sharedApplication] openURL:XLURLFromString(tempString) options:@{} completionHandler:^(BOOL success) {
-                
-            }];
-        }
-    } cancelButtonTitle:kCommonCancel otherButtonTitles:kCommonEnsure, nil] show];
+    [self.chatToolbar endEditing:YES];
+    NSString *tempString = [NSString stringWithFormat:@"tel://%@", self.title];
+    [[UIApplication sharedApplication] openURL:XLURLFromString(tempString) options:@{} completionHandler:^(BOOL success) {
+        
+    }];
 }
 - (void)moreViewVideoCallAction:(EaseChatBarMoreView *)moreView {
-    
+    [self.chatToolbar endEditing:YES];
+    [[DemoCallManager sharedManager] makeCallWithUsername:self.conversationModel.conversation.conversationId type:EMCallTypeVideo];
 }
 
 /*

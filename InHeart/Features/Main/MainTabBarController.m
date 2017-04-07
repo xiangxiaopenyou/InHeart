@@ -15,6 +15,7 @@
 
 #import "UserInfo.h"
 #import "UserModel.h"
+#import "DemoCallManager.h"
 
 static CGFloat const kTipLabelHeight = 2.0;
 //#define kTipLabelWidth SCREEN_WIDTH / 4.0
@@ -140,13 +141,14 @@ static CGFloat const kTipLabelHeight = 2.0;
                 [[EMClient sharedClient] loginWithUsername:user.username password:user.encryptPw completion:^(NSString *aUsername, EMError *aError) {
                     if (!aError) {
                         [[EMClient sharedClient].chatManager addDelegate:self delegateQueue:nil];
+                        [[DemoCallManager sharedManager] setMainController:self];
                     } else {
                         XLShowThenDismissHUD(NO, kNetworkError, self.view);
                     }
                 }];
             } else {
                 [[EMClient sharedClient].chatManager addDelegate:self delegateQueue:nil];
-                
+                [[DemoCallManager sharedManager] setMainController:self];
             }
         }
     } else {
@@ -158,17 +160,20 @@ static CGFloat const kTipLabelHeight = 2.0;
                     [[EMClient sharedClient] loginWithUsername:user.username password:user.encryptPw completion:^(NSString *aUsername, EMError *aError) {
                         if (!aError) {
                             [[EMClient sharedClient].chatManager addDelegate:self delegateQueue:nil];
+                            [[DemoCallManager sharedManager] setMainController:self];
                         } else {
                             XLShowThenDismissHUD(NO, kNetworkError, self.view);
                         }
                     }];
                 } else {
                     [[EMClient sharedClient].chatManager addDelegate:self delegateQueue:nil];
+                    [[DemoCallManager sharedManager] setMainController:self];
                     
                 }
             }
         } else {
             [[EMClient sharedClient].chatManager removeDelegate:self];
+            [DemoCallManager dealloc];
         }
         
     }
