@@ -8,7 +8,7 @@
 
 #import "ChatViewController.h"
 #import "ExpertDetailViewController.h"
-#import "PrescriptionContentsViewController.h"
+#import "PrescriptionDetailViewController.h"
 
 #import "XLBlockAlertView.h"
 #import "PrescriptionMessageCell.h"
@@ -51,9 +51,11 @@
     [self.navigationController pushViewController:expertDetailController animated:YES];
 }
 - (void)pushToPrescriptionContentsView:(NSString *)prescriptionId {
-    PrescriptionContentsViewController *contentsViewController = [[UIStoryboard storyboardWithName:@"Message" bundle:nil] instantiateViewControllerWithIdentifier:@"PrescriptionContents"];
-    contentsViewController.prescriptionId = prescriptionId;
-    [self.navigationController pushViewController:contentsViewController animated:YES];
+    GJCFAsyncMainQueue(^{
+        PrescriptionDetailViewController *detailViewController = [[UIStoryboard storyboardWithName:@"Prescription" bundle:nil] instantiateViewControllerWithIdentifier:@"PrescriptionDetail"];
+        detailViewController.prescriptionId = prescriptionId;
+        [self.navigationController pushViewController:detailViewController animated:YES];
+    });
 }
 
 #pragma mark - EaseMessageViewController Delegate & DataSource

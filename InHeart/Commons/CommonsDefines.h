@@ -10,6 +10,8 @@
 //key & secret
 extern NSString * const EMChatKey;
 extern NSString * const APNSCertName;
+extern NSString * const WECHATAPPID;
+extern NSString * const WECHATAPPSECRET;
 /**
  *  用户相关
  */
@@ -104,15 +106,17 @@ extern NSString * const FETCH_AREAS;
 extern NSString * const DOCTOR_DETAIL;
 extern NSString * const ADD_ATTENTION;
 extern NSString * const CANCEL_ATTENTION;
-extern NSString * const UPLOAD_ORDER;
 
 //4.消息
 extern NSString * const FETCH_USERS_NAME;
 extern NSString * const FETCH_CONTENT_DETAIL;
-extern NSString * const FETCH_PRESCRIPTION_CONTENTS;
 
 //5.个人中心
 extern NSString * const EDIT_INFORMATIONS;
 extern NSString * const FETCH_CONCERNED_DOCTORS;
+
+//6.处方
+extern NSString * const FETCH_PRESCRIPTION_CONTENTS;
+extern NSString * const WECHAT_PAY;
 
 

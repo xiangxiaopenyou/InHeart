@@ -12,11 +12,14 @@
 
 #import "UserInfo.h"
 
+#import "WXApi.h"
+
 #import <UIImage-Helpers.h>
 #import <IQKeyboardManager.h>
 #import <IQKeyboardReturnKeyHandler.h>
+#import <OpenShareHeader.h>
 
-@interface AppDelegate ()
+@interface AppDelegate ()<WXApiDelegate>
 
 @end
 
@@ -35,8 +38,29 @@
     //[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(checkUserState:) name:kLoginSuccess object:nil];
     [[EaseSDKHelper shareHelper] hyphenateApplication:application didFinishLaunchingWithOptions:launchOptions appkey:EMChatKey apnsCertName:APNSCertName otherConfig:@{@"httpsOnly":[NSNumber numberWithBool:YES], kSDKConfigEnableConsoleLogger:[NSNumber numberWithBool:YES],@"easeSandBox":[NSNumber numberWithBool:NO]}];
     //[[UserInfo sharedUserInfo] removePersonalInfo];
+    //注册微信
+    [OpenShare connectWeixinWithAppId:WECHATAPPID];
+    [WXApi registerApp:WECHATAPPID];
     
     return YES;
+}
+- (BOOL)application:(UIApplication *)application handleOpenURL:(NSURL *)url {
+    if ([OpenShare handleOpenURL:url]) {
+        return YES;
+    }
+    return [WXApi handleOpenURL:url delegate:self];
+}
+- (BOOL)application:(UIApplication *)application openURL:(NSURL *)url sourceApplication:(NSString *)sourceApplication annotation:(id)annotation {
+    if ([OpenShare handleOpenURL:url]) {
+        return YES;
+    }
+    return [WXApi handleOpenURL:url delegate:self];
+}
+- (BOOL)application:(UIApplication *)app openURL:(NSURL *)url options:(NSDictionary<UIApplicationOpenURLOptionsKey,id> *)options {
+    if ([OpenShare handleOpenURL:url]) {
+        return YES;
+    }
+    return [WXApi handleOpenURL:url delegate:self];
 }
 //将deviceToken传给SDK
 - (void)application:(UIApplication *)application didRegisterForRemoteNotificationsWithDeviceToken:(nonnull NSData *)deviceToken {
@@ -92,6 +116,31 @@
                                                  NSFontAttributeName : kBoldSystemFont(18)}];
     [[UINavigationBar appearance] setBackgroundImage:[UIImage imageWithColor:NAVIGATIONBAR_COLOR] forBarMetrics:UIBarMetricsDefault];
     [[UINavigationBar appearance] setShadowImage:[UIImage new]];
+}
+- (void)onReq:(BaseReq *)req {
+    
+}
+-(void) onResp:(BaseResp*)resp
+{
+    //启动微信支付的response
+    NSString *payResoult = [NSString stringWithFormat:@"%@", @(resp.errCode)];
+    if([resp isKindOfClass:[PayResp class]]){
+        //支付返回结果，实际支付结果需要去微信服务器端查询
+        switch (resp.errCode) {
+            case 0:
+                payResoult = @"支付结果：成功！";
+                break;
+            case -1:
+                payResoult = @"支付结果：失败！";
+                break;
+            case -2:
+                payResoult = @"用户已经退出支付！";
+                break;
+            default:
+                payResoult = [NSString stringWithFormat:@"支付结果：失败！retcode = %d, retstr = %@", resp.errCode,resp.errStr];
+                break;
+        }
+    }
 }
 
 @end

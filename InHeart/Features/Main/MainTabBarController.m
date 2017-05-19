@@ -173,7 +173,7 @@ static CGFloat const kTipLabelHeight = 2.0;
             }
         } else {
             [[EMClient sharedClient].chatManager removeDelegate:self];
-            [DemoCallManager dealloc];
+            //[DemoCallManager dealloc];
         }
         
     }

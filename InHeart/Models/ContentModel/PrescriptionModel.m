@@ -1,17 +1,21 @@
 //
 //  PrescriptionModel.m
-//  InHeart
+//  InHeart-Doctors
 //
-//  Created by 项小盆友 on 16/11/16.
-//  Copyright © 2016年 项小盆友. All rights reserved.
+//  Created by 项小盆友 on 2017/5/3.
+//  Copyright © 2017年 项小盆友. All rights reserved.
 //
 
 #import "PrescriptionModel.h"
-#import "FetchPrescriptionContentsRequest.h"
+#import "PrescriptionDetailRequest.h"
 
 @implementation PrescriptionModel
-+ (void)fetchPrescriptionContents:(NSString *)prescriptionId handler:(RequestResultHandler)handler {
-    [[FetchPrescriptionContentsRequest new] request:^BOOL(FetchPrescriptionContentsRequest *request) {
++ (NSDictionary<NSString *,id> *)modelCustomPropertyMapper {
+    return @{ @"userId" : @"patientId", @"prescriptionContentList" : @"contents", @"price" : @"total" };
+}
+
++ (void)prescriptionDetail:(NSString *)prescriptionId handler:(RequestResultHandler)handler {
+    [[PrescriptionDetailRequest new] request:^BOOL(PrescriptionDetailRequest *request) {
         request.prescriptionId = prescriptionId;
         return YES;
     } result:^(id object, NSString *msg) {

@@ -10,6 +10,8 @@
 NSString * const EMChatKey = @"1109161016178876#xinjing";
 NSString * const APNSCertName = @"InHeart-User-Dev";
 //NSString * const APNSCertName = @"InHeart-User-Dis";
+NSString * const WECHATAPPID = @"wxc8cffdde73682f6b";
+NSString * const WECHATAPPSECRET = @"fea4338269d6675af018200ed59f7dc7";
 
 NSString * const USERID = @"UserId";
 NSString * const USERTOKEN = @"UserToken";
@@ -89,10 +91,11 @@ NSString * const FETCH_AREAS = @"getRegion";
 NSString * const DOCTOR_DETAIL = @"doctor/info";
 NSString * const ADD_ATTENTION = @"doctor/collect";
 NSString * const CANCEL_ATTENTION = @"doctor/cancelCollect";
-NSString * const UPLOAD_ORDER = @"wxGoPay";
 
 NSString * const FETCH_USERS_NAME = @"getUserIDAndName";
 NSString * const FETCH_CONTENT_DETAIL = @"content/info";
-NSString * const FETCH_PRESCRIPTION_CONTENTS = @"prescription/info";
 NSString * const EDIT_INFORMATIONS = @"fillInfo";
 NSString * const FETCH_CONCERNED_DOCTORS = @"doctor/collect/search";
+
+NSString * const FETCH_PRESCRIPTION_CONTENTS = @"prescription/info";
+NSString * const WECHAT_PAY = @"wxGoPay";

@@ -16,6 +16,7 @@
 #import "PersonalInfo.h"
 #import <Masonry.h>
 #import <GJCFUitils.h>
+#import <OpenShareHeader.h>
 
 @interface LoginViewController ()<UITableViewDelegate, UITableViewDataSource, UITextFieldDelegate>
 @property (strong, nonatomic) UITextField *phoneTextField;
@@ -127,6 +128,13 @@
     [self.navigationController pushViewController:registerViewController animated:YES];
 }
 - (IBAction)forgetPasswordClick:(id)sender {
+}
+- (IBAction)wechatLoginAction:(id)sender {
+    [OpenShare WeixinAuth:@"snsapi_userinfo" Success:^(NSDictionary *message) {
+        
+    } Fail:^(NSDictionary *message, NSError *error) {
+        
+    }];
 }
 - (IBAction)loginClick:(id)sender {
     if (!GJCFStringIsMobilePhone(self.phoneTextField.text)) {
