@@ -99,7 +99,15 @@
         make.leading.equalTo(self.prescriptionImageView.mas_trailing).with.mas_offset(8);
     }];
     
-    self.avatarImageView.image = model.avatarImage;
+    if (model.isSender) {
+        self.avatarImageView.image = model.avatarImage;
+    } else {
+        if (!XLIsNullObject(model.avatarURLPath)) {
+            [self.avatarImageView sd_setImageWithURL:XLURLFromString(model.avatarURLPath) placeholderImage:[UIImage imageNamed:@"default_doctor_avatar"]];
+        } else {
+            self.avatarImageView.image = model.avatarImage;
+        }
+    }
     
     NSDictionary *tempDictionary = [model.message.ext copy];
     if (tempDictionary[@"imageUrl"]) {
@@ -115,8 +123,12 @@
     }
     if ([tempDictionary[@"status"] integerValue] == 1) {
         self.prescriptionStateLabel.text = [NSString stringWithFormat:@"￥%@  未付款", priceString];
+        self.prescriptionStateLabel.textColor = kHexRGBColorWithAlpha(0xec0202, 1);
+        self.prescriptionTitleLabel.text = @"处方内容";
     } else if ([tempDictionary[@"status"] integerValue] == 2) {
         self.prescriptionStateLabel.text = [NSString stringWithFormat:@"￥%@  已付款", priceString];
+        self.prescriptionStateLabel.textColor = NAVIGATIONBAR_COLOR;
+        self.prescriptionTitleLabel.text = @"处方支付";
     }
 
 }
@@ -166,7 +178,7 @@
         _prescriptionTitleLabel = [[UILabel alloc] init];
         _prescriptionTitleLabel.font = kSystemFont(14);
         _prescriptionTitleLabel.textColor = MAIN_TEXT_COLOR;
-        _prescriptionTitleLabel.text = @"处方内容";
+        //_prescriptionTitleLabel.text = @"";
         [_prescriptionTitleLabel sizeToFit];
     }
     return _prescriptionTitleLabel;

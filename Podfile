@@ -11,7 +11,6 @@ pod 'UIImage-Helpers'
 pod 'YUChineseSorting'
 pod 'IQKeyboardManager'
 pod 'GTSDK'
-pod 'SAMKeychain'
 pod 'YYModel'
 end 
 

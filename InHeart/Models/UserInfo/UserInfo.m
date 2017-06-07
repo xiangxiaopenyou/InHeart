@@ -9,8 +9,6 @@
 #import "UserInfo.h"
 #import "UserModel.h"
 
-#import "PersonalInfo.h"
-#import <SAMKeychain.h>
 #import "LoginViewController.h"
 
 @implementation UserInfo
@@ -88,28 +86,5 @@
     return NO;
 }
 
-- (BOOL)savePersonalInfo:(PersonalInfo *)personalInfo {
-    if (!personalInfo) {
-        return NO;
-    }
-    if([SAMKeychain setPassword:personalInfo.password forService:KEYCHAINSERVICE account:personalInfo.username error:nil]) {
-        return YES;
-    }
-    return YES;
-}
-- (PersonalInfo *)personalInfo {
-    PersonalInfo *info = [PersonalInfo new];
-    UserModel *tempModel = [self userInfo];
-    NSString *username = tempModel.username;
-    NSString *password = [SAMKeychain passwordForService:KEYCHAINSERVICE account:username];
-    info.username = username;
-    info.password = password;
-    return info;
-}
-- (void)removePersonalInfo {
-    UserModel *tempModel = [self userInfo];
-    NSString *username = tempModel.username;
-    [SAMKeychain deletePasswordForService:KEYCHAINSERVICE account:username error:nil];
-}
 
 @end

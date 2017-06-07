@@ -11,6 +11,8 @@
 #import "ContentNavigationController.h"
 #import "InterrogationViewController.h"
 #import "PersonalCenterTableViewController.h"
+#import "PersonalNavigationController.h"
+#import "PersonalCenterViewController.h"
 #import "MessagesViewController.h"
 
 #import "UserInfo.h"
@@ -67,7 +69,8 @@ static CGFloat const kTipLabelHeight = 2.0;
 //    [self setupChildControllerWith:contentViewController normalImage:contentUnSelectedImage selectedImage:contentSelectedImage title:@"内容" index:2];
     
     //个人中心
-    PersonalCenterTableViewController *personalViewController = [[UIStoryboard storyboardWithName:@"Personal" bundle:nil] instantiateViewControllerWithIdentifier:@"PersonalCenter"];
+    //PersonalCenterTableViewController *personalViewController = [[UIStoryboard storyboardWithName:@"Personal" bundle:nil] instantiateViewControllerWithIdentifier:@"PersonalCenter"];
+    PersonalCenterViewController *personalViewController = [[UIStoryboard storyboardWithName:@"Personal" bundle:nil] instantiateViewControllerWithIdentifier:@"PersonalCenterView"];
     [self setupChildControllerWith:personalViewController normalImage:personalUnSelectedImage selectedImage:personalSelectedImage title:@"个人中心" index:3];
     
     [self checkUserState:nil];
@@ -97,6 +100,12 @@ static CGFloat const kTipLabelHeight = 2.0;
         childViewController.tabBarItem.image = normalImage;
         childViewController.tabBarItem.selectedImage = selectedImage;
         [self addChildViewController:navigationController];
+    } else if (index == 3) {
+        PersonalNavigationController *navigation = [[PersonalNavigationController alloc] initWithRootViewController:childViewController];
+        childViewController.title = title;
+        childViewController.tabBarItem.image = normalImage;
+        childViewController.tabBarItem.selectedImage = selectedImage;
+        [self addChildViewController:navigation];
     } else {
         UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:childViewController];
         childViewController.title = title;

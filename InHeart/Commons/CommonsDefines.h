@@ -85,6 +85,7 @@ extern NSString * const kChangePassword;
 extern NSString * const kLoginSuccess;
 extern NSString * const kSetupUnreadMessagesCount;
 extern NSString * const kConversationsDidChange;
+extern NSString * const kDidReceiveWechatPayResponse;
 
 /**
  *  接口

@@ -17,6 +17,7 @@
         if ([[NSUserDefaults standardUserDefaults] stringForKey:USERTOKEN]) {
             NSString *userToken = [[NSUserDefaults standardUserDefaults] stringForKey:USERTOKEN];
             [self.params setObject:userToken forKey:@"token"];
+            printf("token:%s\n", [[NSString stringWithFormat:@"%@", userToken] UTF8String]);
         }
     }
     return self;

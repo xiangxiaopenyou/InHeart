@@ -361,3 +361,14 @@
 //Login
 "login.loginFailed" = "登录出现问题，请重试";
 "login.autoLoginFailed" = "自动登录失败";
+
+//PersonalCenter
+"personal.myOrder" = "我的订单";
+"personal.myDoctors" = "我的医生";
+"personal.myAppointments" = "我的预约";
+"personal.consultionRecord" = "咨询记录";
+"personal.myCollections" = "我的收藏";
+"personal.myEvaluation" = "我的测评";
+"personal.setting" = "设置";
+"personal.feedback" = "意见反馈";
+"personal.recommend" = "推荐有礼";

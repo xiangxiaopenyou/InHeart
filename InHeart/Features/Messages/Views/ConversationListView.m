@@ -15,6 +15,7 @@
 
 @interface ConversationListView ()<UITableViewDelegate, UITableViewDataSource>
 @property (strong, nonatomic) NSMutableArray *conversationArray;
+@property (strong, nonatomic) NSMutableArray *userInformations;
 
 
 @end
@@ -27,7 +28,8 @@
         [self addSubview:self.tableView];
         self.tableView.frame = CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT - TABBARHEIGHT);
         [self removeEmptyConversationsFromDB];
-        [self fetchConversations];
+        //self
+        //[self fetchConversations];
     }
     return self;
 }
@@ -73,20 +75,38 @@
     }
     __block NSInteger count = 0;
     if (self.conversationArray.count > 0) {
-        for (ConversationModel *tempModel in self.conversationArray) {
-            [UserMessageModel fetchUsersIdAndName:tempModel.conversation.conversationId handler:^(id object, NSString *msg) {
-                if (object) {
-                    UserMessageModel *userModel = object;
-                    tempModel.userId = userModel.userId;
-                    tempModel.realname = userModel.realname;
-                    count += 1;
-                    if (count == self.conversationArray.count) {
-                        dispatch_async(dispatch_get_main_queue(), ^{
-                            [self.tableView reloadData];
-                        });
+        if (self.userInformations.count >= self.conversationArray.count) {
+            for (ConversationModel *tempModel in self.conversationArray) {
+                //NSString *conversationId = tempModel.conversation.conversationId;
+                for (UserMessageModel *messageModel in self.userInformations) {
+                    if ([tempModel.conversation.conversationId isEqualToString:messageModel.phone]) {
+                        tempModel.userId = messageModel.userId;
+                        tempModel.realname = messageModel.realname;
+                        tempModel.avatarUrl = messageModel.headpictureurl;
                     }
                 }
-            }];
+            }
+            [self.tableView reloadData];
+        } else {
+            [self.userInformations removeAllObjects];
+            for (ConversationModel *tempModel in self.conversationArray) {
+                [UserMessageModel fetchUsersIdAndName:tempModel.conversation.conversationId handler:^(id object, NSString *msg) {
+                    if (object) {
+                        UserMessageModel *userModel = object;
+                        userModel.phone = tempModel.conversation.conversationId;
+                        [self.userInformations addObject:userModel];
+                        tempModel.userId = userModel.userId;
+                        tempModel.realname = userModel.realname;
+                        tempModel.avatarUrl = userModel.headpictureurl;
+                        count += 1;
+                        if (count == self.conversationArray.count) {
+                            dispatch_async(dispatch_get_main_queue(), ^{
+                                [self.tableView reloadData];
+                            });
+                        }
+                    }
+                }];
+            }
         }
     } else {
         [self.tableView reloadData];
@@ -121,7 +141,8 @@
 }
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     EaseConversationCell *cell = [[EaseConversationCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"cell"];
-    cell.avatarView.imageCornerRadius = CGRectGetWidth(cell.avatarView.frame) / 2.0;
+    cell.avatarView.layer.masksToBounds = YES;
+    cell.avatarView.imageCornerRadius = 25.f;
     cell.avatarView.imageView.backgroundColor = [UIColor clearColor];
     cell.titleLabelFont = kSystemFont(15);
     cell.titleLabelColor = MAIN_TEXT_COLOR;
@@ -132,7 +153,8 @@
     ConversationModel *tempModel = self.conversationArray[indexPath.row];
     EMMessage *lastMessage = tempModel.conversation.latestMessage;
     cell.titleLabel.text = XLIsNullObject(tempModel.realname) ? tempModel.conversation.conversationId : tempModel.realname;
-    [cell.avatarView.imageView setImage:[UIImage imageNamed:@"default_doctor_avatar"]];
+    //[cell.avatarView.imageView setImage:[UIImage imageNamed:@"default_doctor_avatar"]];
+    [cell.avatarView.imageView sd_setImageWithURL:XLURLFromString(tempModel.avatarUrl) placeholderImage:[UIImage imageNamed:@"default_doctor_avatar"]];
     cell.detailLabel.text = [self messageTextForLastMessage:tempModel];
     NSDate *messageDate = [NSDate dateWithTimeIntervalInMilliSecondSince1970:lastMessage.timestamp];
     cell.timeLabel.text = XLDetailTimeAgoString(messageDate);
@@ -216,6 +238,14 @@
     if (self.delegate && [self.delegate respondsToSelector:@selector(didClickLogin)]) {
         [self.delegate didClickLogin];
     }
+}
+
+#pragma mark - Getters
+- (NSMutableArray *)userInformations {
+    if (!_userInformations) {
+        _userInformations = [[NSMutableArray alloc] init];
+    }
+    return _userInformations;
 }
 
 @end

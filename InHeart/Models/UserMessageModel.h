@@ -11,6 +11,8 @@
 @interface UserMessageModel : XLModel
 @property (copy, nonatomic) NSString *userId;
 @property (copy, nonatomic) NSString *realname;
+@property (copy, nonatomic) NSString *headpictureurl;
+@property (copy, nonatomic) NSString *phone;
 
 + (void)fetchUsersIdAndName:(NSString *)phone handler:(RequestResultHandler)handler;
 

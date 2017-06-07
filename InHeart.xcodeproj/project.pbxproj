@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3D0048E81ED2D8CB0025EF4F /* MXWechatSignAdaptor.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D0048E71ED2D8CA0025EF4F /* MXWechatSignAdaptor.m */; };
+		3D0048EC1ED2DC8E0025EF4F /* XMLDictionary.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D0048EB1ED2DC8E0025EF4F /* XMLDictionary.m */; };
 		3D1CF75C1D912DC300A63F05 /* Personal.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3D1CF75B1D912DC300A63F05 /* Personal.storyboard */; };
 		3D1CF7621D91338200A63F05 /* PersonalCenterTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D1CF7611D91338200A63F05 /* PersonalCenterTableViewController.m */; };
 		3D1CF7691D921DA300A63F05 /* PersonalInformationCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D1CF7681D921DA300A63F05 /* PersonalInformationCell.m */; };
@@ -135,9 +137,10 @@
 		3D9C18021D93D4A8001A1A43 /* ExpertNameCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D9C18011D93D4A8001A1A43 /* ExpertNameCell.m */; };
 		3D9C18051D93D4D4001A1A43 /* ExpertIntroductionCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D9C18041D93D4D4001A1A43 /* ExpertIntroductionCell.m */; };
 		3D9C18081D94F3C5001A1A43 /* Message.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3D9C18071D94F3C5001A1A43 /* Message.storyboard */; };
+		3DA417E41ED90F9C00613FBD /* Homepage.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3DA417E31ED90F9C00613FBD /* Homepage.storyboard */; };
+		3DA417E71ED91C3200613FBD /* HomepageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DA417E61ED91C3200613FBD /* HomepageViewController.m */; };
 		3DAB0F091DC88A2900908000 /* UserInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DAB0F041DC88A2900908000 /* UserInfo.m */; };
 		3DAB0F0A1DC88A2900908000 /* UserModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DAB0F061DC88A2900908000 /* UserModel.m */; };
-		3DAB0F0B1DC88A2900908000 /* PersonalInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DAB0F081DC88A2900908000 /* PersonalInfo.m */; };
 		3DAB0F151DC893F200908000 /* LoginRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DAB0F0E1DC893F200908000 /* LoginRequest.m */; };
 		3DAB0F161DC893F200908000 /* RegisterRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DAB0F101DC893F200908000 /* RegisterRequest.m */; };
 		3DAB0F171DC893F200908000 /* FindPasswordRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DAB0F121DC893F200908000 /* FindPasswordRequest.m */; };
@@ -151,6 +154,10 @@
 		3DCB12F61E6F9ADA00DCE94E /* XLModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DCB12F51E6F9ADA00DCE94E /* XLModel.m */; };
 		3DCE052E1D90E2E20017B2E6 /* DoctorCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DCE052D1D90E2E20017B2E6 /* DoctorCell.m */; };
 		3DCE05321D90E7BC0017B2E6 /* DoctorModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DCE05311D90E7BC0017B2E6 /* DoctorModel.m */; };
+		3DE4825B1EDFB2A4004E1110 /* PersonalCenterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DE4825A1EDFB2A4004E1110 /* PersonalCenterViewController.m */; };
+		3DE4825E1EDFECDE004E1110 /* PersonalNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DE4825D1EDFECDE004E1110 /* PersonalNavigationController.m */; };
+		3DE482611EE52C1F004E1110 /* MyDoctorsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DE482601EE52C1F004E1110 /* MyDoctorsViewController.m */; };
+		3DE482651EE52C87004E1110 /* DoctorInformationsCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DE482641EE52C87004E1110 /* DoctorInformationsCell.m */; };
 		3DEED75A1E83730D00F96A5A /* EaseUI.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DEED65C1E83730D00F96A5A /* EaseUI.m */; };
 		3DEED75B1E83730D00F96A5A /* EMAudioPlayerUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DEED6661E83730D00F96A5A /* EMAudioPlayerUtil.m */; };
 		3DEED75C1E83730D00F96A5A /* EMAudioRecorderUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DEED6681E83730D00F96A5A /* EMAudioRecorderUtil.m */; };
@@ -281,6 +288,11 @@
 /* Begin PBXFileReference section */
 		06F5912AE434CD93226ED268 /* libPods-InHeart.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-InHeart.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		3C4EC34CDFA5C60240308818 /* Pods-InHeart.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-InHeart.debug.xcconfig"; path = "Pods/Target Support Files/Pods-InHeart/Pods-InHeart.debug.xcconfig"; sourceTree = "<group>"; };
+		3D0048E61ED2D8CA0025EF4F /* MXWechatSignAdaptor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MXWechatSignAdaptor.h; sourceTree = "<group>"; };
+		3D0048E71ED2D8CA0025EF4F /* MXWechatSignAdaptor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MXWechatSignAdaptor.m; sourceTree = "<group>"; };
+		3D0048E91ED2D8E60025EF4F /* MXWechatConfig.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MXWechatConfig.h; sourceTree = "<group>"; };
+		3D0048EA1ED2DC8E0025EF4F /* XMLDictionary.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XMLDictionary.h; sourceTree = "<group>"; };
+		3D0048EB1ED2DC8E0025EF4F /* XMLDictionary.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XMLDictionary.m; sourceTree = "<group>"; };
 		3D1CF75B1D912DC300A63F05 /* Personal.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Personal.storyboard; sourceTree = "<group>"; };
 		3D1CF7601D91338200A63F05 /* PersonalCenterTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PersonalCenterTableViewController.h; sourceTree = "<group>"; };
 		3D1CF7611D91338200A63F05 /* PersonalCenterTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PersonalCenterTableViewController.m; sourceTree = "<group>"; };
@@ -480,12 +492,13 @@
 		3D9C18031D93D4D4001A1A43 /* ExpertIntroductionCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ExpertIntroductionCell.h; sourceTree = "<group>"; };
 		3D9C18041D93D4D4001A1A43 /* ExpertIntroductionCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ExpertIntroductionCell.m; sourceTree = "<group>"; };
 		3D9C18071D94F3C5001A1A43 /* Message.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Message.storyboard; sourceTree = "<group>"; };
+		3DA417E31ED90F9C00613FBD /* Homepage.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Homepage.storyboard; sourceTree = "<group>"; };
+		3DA417E51ED91C3200613FBD /* HomepageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HomepageViewController.h; sourceTree = "<group>"; };
+		3DA417E61ED91C3200613FBD /* HomepageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HomepageViewController.m; sourceTree = "<group>"; };
 		3DAB0F031DC88A2800908000 /* UserInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserInfo.h; sourceTree = "<group>"; };
 		3DAB0F041DC88A2900908000 /* UserInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserInfo.m; sourceTree = "<group>"; };
 		3DAB0F051DC88A2900908000 /* UserModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserModel.h; sourceTree = "<group>"; };
 		3DAB0F061DC88A2900908000 /* UserModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserModel.m; sourceTree = "<group>"; };
-		3DAB0F071DC88A2900908000 /* PersonalInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PersonalInfo.h; sourceTree = "<group>"; };
-		3DAB0F081DC88A2900908000 /* PersonalInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PersonalInfo.m; sourceTree = "<group>"; };
 		3DAB0F0D1DC893F200908000 /* LoginRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginRequest.h; sourceTree = "<group>"; };
 		3DAB0F0E1DC893F200908000 /* LoginRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginRequest.m; sourceTree = "<group>"; };
 		3DAB0F0F1DC893F200908000 /* RegisterRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RegisterRequest.h; sourceTree = "<group>"; };
@@ -511,6 +524,14 @@
 		3DCE052D1D90E2E20017B2E6 /* DoctorCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DoctorCell.m; sourceTree = "<group>"; };
 		3DCE05301D90E7BC0017B2E6 /* DoctorModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DoctorModel.h; sourceTree = "<group>"; };
 		3DCE05311D90E7BC0017B2E6 /* DoctorModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DoctorModel.m; sourceTree = "<group>"; };
+		3DE482591EDFB2A4004E1110 /* PersonalCenterViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PersonalCenterViewController.h; sourceTree = "<group>"; };
+		3DE4825A1EDFB2A4004E1110 /* PersonalCenterViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PersonalCenterViewController.m; sourceTree = "<group>"; };
+		3DE4825C1EDFECDE004E1110 /* PersonalNavigationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PersonalNavigationController.h; sourceTree = "<group>"; };
+		3DE4825D1EDFECDE004E1110 /* PersonalNavigationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PersonalNavigationController.m; sourceTree = "<group>"; };
+		3DE4825F1EE52C1F004E1110 /* MyDoctorsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyDoctorsViewController.h; sourceTree = "<group>"; };
+		3DE482601EE52C1F004E1110 /* MyDoctorsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyDoctorsViewController.m; sourceTree = "<group>"; };
+		3DE482631EE52C87004E1110 /* DoctorInformationsCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DoctorInformationsCell.h; sourceTree = "<group>"; };
+		3DE482641EE52C87004E1110 /* DoctorInformationsCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DoctorInformationsCell.m; sourceTree = "<group>"; };
 		3DEED65A1E83730D00F96A5A /* EaseUI-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "EaseUI-Prefix.pch"; sourceTree = "<group>"; };
 		3DEED65B1E83730D00F96A5A /* EaseUI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EaseUI.h; sourceTree = "<group>"; };
 		3DEED65C1E83730D00F96A5A /* EaseUI.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EaseUI.m; sourceTree = "<group>"; };
@@ -958,6 +979,11 @@
 		3D3F8D171ECAAA410040C0D5 /* WechatPay */ = {
 			isa = PBXGroup;
 			children = (
+				3D0048E91ED2D8E60025EF4F /* MXWechatConfig.h */,
+				3D0048E61ED2D8CA0025EF4F /* MXWechatSignAdaptor.h */,
+				3D0048E71ED2D8CA0025EF4F /* MXWechatSignAdaptor.m */,
+				3D0048EA1ED2DC8E0025EF4F /* XMLDictionary.h */,
+				3D0048EB1ED2DC8E0025EF4F /* XMLDictionary.m */,
 				3D3F8D181ECAAA490040C0D5 /* libWeChatSDK.a */,
 				3D3F8D191ECAAA490040C0D5 /* WechatAuthSDK.h */,
 				3D3F8D1A1ECAAA490040C0D5 /* WXApi.h */,
@@ -973,8 +999,6 @@
 				3DAB0F041DC88A2900908000 /* UserInfo.m */,
 				3DAB0F051DC88A2900908000 /* UserModel.h */,
 				3DAB0F061DC88A2900908000 /* UserModel.m */,
-				3DAB0F071DC88A2900908000 /* PersonalInfo.h */,
-				3DAB0F081DC88A2900908000 /* PersonalInfo.m */,
 				3D87870A1DDDB046005A8FE2 /* InformationModel.h */,
 				3D87870B1DDDB046005A8FE2 /* InformationModel.m */,
 			);
@@ -1052,13 +1076,14 @@
 		3D80D4261D82B485005B8FD0 /* Features */ = {
 			isa = PBXGroup;
 			children = (
-				3D3F8CED1ECA99FE0040C0D5 /* Prescription */,
 				3D8485FA1D83EF300066E2E5 /* Main */,
+				3DA417DC1ED814B800613FBD /* Homepage */,
 				3D84861C1D8793390066E2E5 /* Interrogation */,
 				3D84861D1D87945C0066E2E5 /* Messages */,
 				3D8485FF1D8405230066E2E5 /* Content */,
 				3D84861E1D8795A10066E2E5 /* PersonalCenter */,
 				3D1CF76D1D925E3200A63F05 /* LoginAndRegister */,
+				3D3F8CED1ECA99FE0040C0D5 /* Prescription */,
 			);
 			path = Features;
 			sourceTree = "<group>";
@@ -1214,8 +1239,12 @@
 			children = (
 				3D1CF7631D91340100A63F05 /* Views */,
 				3D1CF75B1D912DC300A63F05 /* Personal.storyboard */,
+				3DE4825C1EDFECDE004E1110 /* PersonalNavigationController.h */,
+				3DE4825D1EDFECDE004E1110 /* PersonalNavigationController.m */,
 				3D1CF7601D91338200A63F05 /* PersonalCenterTableViewController.h */,
 				3D1CF7611D91338200A63F05 /* PersonalCenterTableViewController.m */,
+				3DE482591EDFB2A4004E1110 /* PersonalCenterViewController.h */,
+				3DE4825A1EDFB2A4004E1110 /* PersonalCenterViewController.m */,
 				3D8787011DDD56DB005A8FE2 /* SystemSettingTableViewController.h */,
 				3D8787021DDD56DB005A8FE2 /* SystemSettingTableViewController.m */,
 				3D894B1B1DDEC7BF004963C7 /* EditInformationsTableViewController.h */,
@@ -1274,6 +1303,19 @@
 			path = Views;
 			sourceTree = "<group>";
 		};
+		3DA417DC1ED814B800613FBD /* Homepage */ = {
+			isa = PBXGroup;
+			children = (
+				3DE482621EE52C69004E1110 /* Views */,
+				3DA417E31ED90F9C00613FBD /* Homepage.storyboard */,
+				3DA417E51ED91C3200613FBD /* HomepageViewController.h */,
+				3DA417E61ED91C3200613FBD /* HomepageViewController.m */,
+				3DE4825F1EE52C1F004E1110 /* MyDoctorsViewController.h */,
+				3DE482601EE52C1F004E1110 /* MyDoctorsViewController.m */,
+			);
+			path = Homepage;
+			sourceTree = "<group>";
+		};
 		3DAB0F0C1DC893D800908000 /* LoginAndRegister */ = {
 			isa = PBXGroup;
 			children = (
@@ -1324,6 +1366,15 @@
 				3DCE05311D90E7BC0017B2E6 /* DoctorModel.m */,
 			);
 			path = DoctorModel;
+			sourceTree = "<group>";
+		};
+		3DE482621EE52C69004E1110 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				3DE482631EE52C87004E1110 /* DoctorInformationsCell.h */,
+				3DE482641EE52C87004E1110 /* DoctorInformationsCell.m */,
+			);
+			path = Views;
 			sourceTree = "<group>";
 		};
 		3DEED6591E83730D00F96A5A /* EaseUI */ = {
@@ -1964,6 +2015,7 @@
 				3D32F3EF1E8B908A00353864 /* EMVideoInfoViewController.xib in Resources */,
 				3D8486011D8405350066E2E5 /* Content.storyboard in Resources */,
 				3D1CF76F1D925E5800A63F05 /* Login.storyboard in Resources */,
+				3DA417E41ED90F9C00613FBD /* Homepage.storyboard in Resources */,
 				3D32F40E1E8B908A00353864 /* Button_Mute active@3x.png in Resources */,
 				3DB657041D8E7A5E00157BAA /* Interrogation.storyboard in Resources */,
 				3DEED78F1E83730D00F96A5A /* MWPhotoBrowser.bundle in Resources */,
@@ -2065,6 +2117,7 @@
 				3DB651311DD969BC006F5C29 /* CityModel.m in Sources */,
 				3D9C18051D93D4D4001A1A43 /* ExpertIntroductionCell.m in Sources */,
 				3DEED7621E83730D00F96A5A /* amrFileCodec.mm in Sources */,
+				3D0048EC1ED2DC8E0025EF4F /* XMLDictionary.m in Sources */,
 				3DAB0F151DC893F200908000 /* LoginRequest.m in Sources */,
 				3D3F8CF21ECA9A1D0040C0D5 /* PrescriptionDetailViewController.m in Sources */,
 				3D3F8CFA1ECA9A280040C0D5 /* DetailContentItemCell.m in Sources */,
@@ -2109,17 +2162,18 @@
 				3DEED7C71E8374D800F96A5A /* AppDelegate.m in Sources */,
 				3D3F8D021ECA9C820040C0D5 /* PrescriptionModel.m in Sources */,
 				3DEED7B81E83730D00F96A5A /* EaseFaceView.m in Sources */,
+				3DE482611EE52C1F004E1110 /* MyDoctorsViewController.m in Sources */,
 				3DAB0F0A1DC88A2900908000 /* UserModel.m in Sources */,
 				3D894B261DE2F1D8004963C7 /* EditInformationsRequest.m in Sources */,
 				3D3F8CFC1ECA9A280040C0D5 /* PrescriptionDetailInformationCell.m in Sources */,
 				3DAB0F171DC893F200908000 /* FindPasswordRequest.m in Sources */,
 				3D1CF77F1D93A9D100A63F05 /* ExpertDetailViewController.m in Sources */,
 				3D3F8D101ECAA4290040C0D5 /* WechatPayModel.m in Sources */,
+				3D0048E81ED2D8CB0025EF4F /* MXWechatSignAdaptor.m in Sources */,
 				3DEED7861E83730D00F96A5A /* PSTCollectionViewData.m in Sources */,
 				3D1CF7791D93696000A63F05 /* RegisterViewController.m in Sources */,
 				3DEED7991E83730D00F96A5A /* EaseChineseToPinyin.m in Sources */,
 				3DEED7641E83730D00F96A5A /* EMVoiceConverter.mm in Sources */,
-				3DAB0F0B1DC88A2900908000 /* PersonalInfo.m in Sources */,
 				3DB651301DD969BC006F5C29 /* ProvinceModel.m in Sources */,
 				3DEED7941E83730D00F96A5A /* NSDate+Category.m in Sources */,
 				3D3F0F401DD44107009CB26C /* FetchAreasRequest.m in Sources */,
@@ -2153,6 +2207,7 @@
 				3D289F671DC9B39600957421 /* RegisterPhoneCell.m in Sources */,
 				3DEED76D1E83730D00F96A5A /* MWPhotoBrowser.m in Sources */,
 				3DEED77E1E83730D00F96A5A /* UIImage+EMWebP.m in Sources */,
+				3DE4825B1EDFB2A4004E1110 /* PersonalCenterViewController.m in Sources */,
 				3DEED7AB1E83730D00F96A5A /* EaseMessageTimeCell.m in Sources */,
 				3DEED7A61E83730D00F96A5A /* EaseViewController.m in Sources */,
 				3DEED78D1E83730D00F96A5A /* PSTGridLayoutRow.m in Sources */,
@@ -2164,6 +2219,7 @@
 				3D3F8D0C1ECAA09D0040C0D5 /* WechatPayRequest.m in Sources */,
 				3DCE05321D90E7BC0017B2E6 /* DoctorModel.m in Sources */,
 				3DEED7791E83730D00F96A5A /* MKAnnotationView+EMWebCache.m in Sources */,
+				3DE4825E1EDFECDE004E1110 /* PersonalNavigationController.m in Sources */,
 				3DEED78C1E83730D00F96A5A /* PSTGridLayoutItem.m in Sources */,
 				3DEED7871E83730D00F96A5A /* PSTCollectionViewFlowLayout.m in Sources */,
 				3D8786F71DDC482C005A8FE2 /* AdviceCell.m in Sources */,
@@ -2184,6 +2240,7 @@
 				3DEED7A71E83730D00F96A5A /* EaseUserCell.m in Sources */,
 				3D80D4101D827CCC005B8FD0 /* main.m in Sources */,
 				3D84861A1D8562620066E2E5 /* RequestCacher.m in Sources */,
+				3DA417E71ED91C3200613FBD /* HomepageViewController.m in Sources */,
 				3DF089EA1DD9855000D64EA6 /* ContentTypeModel.m in Sources */,
 				3D1CF7761D928A2800A63F05 /* LoginContentCell.m in Sources */,
 				3DEED7A11E83730D00F96A5A /* EaseConversationListViewController.m in Sources */,
@@ -2227,6 +2284,7 @@
 				3DEED7B41E83730D00F96A5A /* EaseChatToolbar.m in Sources */,
 				3DEED7771E83730D00F96A5A /* EMSDWebImageManager.m in Sources */,
 				3D32F3EC1E8B908A00353864 /* EMCallViewController.mm in Sources */,
+				3DE482651EE52C87004E1110 /* DoctorInformationsCell.m in Sources */,
 				3DAB0F161DC893F200908000 /* RegisterRequest.m in Sources */,
 				3D1CF7721D92845200A63F05 /* LoginViewController.m in Sources */,
 				3DF025971DD30C55008F6467 /* FetchDoctorsListRequest.m in Sources */,

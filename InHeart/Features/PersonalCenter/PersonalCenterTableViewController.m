@@ -16,7 +16,6 @@
 
 #import "UserInfo.h"
 #import "UserModel.h"
-#import "PersonalInfo.h"
 
 @interface PersonalCenterTableViewController ()
 @property (strong, nonatomic) UserModel *userModel;

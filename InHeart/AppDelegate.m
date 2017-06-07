@@ -40,6 +40,12 @@
     //[[UserInfo sharedUserInfo] removePersonalInfo];
     //注册微信
     [OpenShare connectWeixinWithAppId:WECHATAPPID];
+    [OpenShare setPaySuccessCallback:^(NSDictionary *message) {
+        [[NSNotificationCenter defaultCenter] postNotificationName:kDidReceiveWechatPayResponse object:message];
+    }];
+    [OpenShare setPayFailCallback:^(NSDictionary *message, NSError *error) {
+        [[NSNotificationCenter defaultCenter] postNotificationName:kDidReceiveWechatPayResponse object:message];
+    }];
     [WXApi registerApp:WECHATAPPID];
     
     return YES;
@@ -123,23 +129,9 @@
 -(void) onResp:(BaseResp*)resp
 {
     //启动微信支付的response
-    NSString *payResoult = [NSString stringWithFormat:@"%@", @(resp.errCode)];
+//    NSString *payResoult = [NSString stringWithFormat:@"%@", @(resp.errCode)];
     if([resp isKindOfClass:[PayResp class]]){
-        //支付返回结果，实际支付结果需要去微信服务器端查询
-        switch (resp.errCode) {
-            case 0:
-                payResoult = @"支付结果：成功！";
-                break;
-            case -1:
-                payResoult = @"支付结果：失败！";
-                break;
-            case -2:
-                payResoult = @"用户已经退出支付！";
-                break;
-            default:
-                payResoult = [NSString stringWithFormat:@"支付结果：失败！retcode = %d, retstr = %@", resp.errCode,resp.errStr];
-                break;
-        }
+        [[NSNotificationCenter defaultCenter] postNotificationName:kDidReceiveWechatPayResponse object:resp];
     }
 }
 

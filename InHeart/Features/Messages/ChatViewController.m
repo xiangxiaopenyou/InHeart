@@ -16,6 +16,8 @@
 #import "ConversationModel.h"
 #import "DoctorModel.h"
 #import "UserMessageModel.h"
+#import "PrescriptionModel.h"
+#import "ContentModel.h"
 
 #import "DemoCallManager.h"
 
@@ -54,8 +56,26 @@
     GJCFAsyncMainQueue(^{
         PrescriptionDetailViewController *detailViewController = [[UIStoryboard storyboardWithName:@"Prescription" bundle:nil] instantiateViewControllerWithIdentifier:@"PrescriptionDetail"];
         detailViewController.prescriptionId = prescriptionId;
+        detailViewController.block = ^(PrescriptionModel *model) {
+            if (model) {
+                [self createPaySuccessMessage:model];
+            }
+        };
         [self.navigationController pushViewController:detailViewController animated:YES];
     });
+}
+//创建支付处方成功消息
+- (void)createPaySuccessMessage:(PrescriptionModel *)model {
+    NSArray *array = [model.prescriptionContentList copy];
+    ContentModel *tempModel = [ContentModel yy_modelWithDictionary:array[0]];
+    NSDictionary *param = @{        @"imageUrl" : tempModel.coverPic,
+                              @"prescriptionId" : model.id,
+                                       @"price" : model.price,
+                                      @"status" : @(2)};
+    EMMessage *prescriptionMessage = [EaseSDKHelper sendTextMessage:@"[处方支付]" to:self.conversation.conversationId messageType:EMChatTypeChat messageExt:param];
+    [self addMessageToDataSource:prescriptionMessage progress:nil];
+    [self.conversation insertMessage:prescriptionMessage error:nil];
+    [[EMClient sharedClient].chatManager sendMessage:prescriptionMessage progress:nil completion:nil];
 }
 
 #pragma mark - EaseMessageViewController Delegate & DataSource
@@ -80,7 +100,11 @@
     if (messageModel.isSender) {
         messageModel.avatarImage = [UIImage imageNamed:@"personal_avatar"];
     } else {
-        messageModel.avatarImage = [UIImage imageNamed:@"default_doctor_avatar"];
+        if (XLIsNullObject(self.conversationModel.avatarUrl)) {
+            messageModel.avatarImage = [UIImage imageNamed:@"default_doctor_avatar"];
+        } else {
+            messageModel.avatarURLPath = self.conversationModel.avatarUrl;
+        }
     }
     if (messageModel.message.ext[@"prescriptionId"]) {
         PrescriptionMessageCell *cell = [[PrescriptionMessageCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"Cell"];

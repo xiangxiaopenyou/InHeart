@@ -13,7 +13,6 @@
 
 #import "UserModel.h"
 #import "UserInfo.h"
-#import "PersonalInfo.h"
 #import <Masonry.h>
 #import <GJCFUitils.h>
 #import <OpenShareHeader.h>
@@ -151,28 +150,20 @@
         if (object) {
             UserModel *userModel = object;
             if ([[UserInfo sharedUserInfo] saveUserInfo:userModel]) {
-                PersonalInfo *tempInfo = [PersonalInfo new];
-                tempInfo.username = userModel.username;
-                tempInfo.password = self.passwordTextField.text;
-                if ([[UserInfo sharedUserInfo] savePersonalInfo:tempInfo]) {
-                    GJCFAsyncGlobalDefaultQueue(^{
-                        EMError *error = [[EMClient sharedClient] loginWithUsername:userModel.username password:userModel.encryptPw];
-                        GJCFAsyncMainQueue(^{
-                            if (!error) { //环信登录成功
-                                XLDismissHUD(self.view, NO, YES, nil);
-                                [self dismissViewControllerAnimated:YES completion:nil];
-                                [[NSNotificationCenter defaultCenter] postNotificationName:kLoginSuccess object:@YES];
-                                [[EMClient sharedClient].options setIsAutoLogin:YES];
-                                [[EMClient sharedClient] migrateDatabaseToLatestSDK];
-                            } else {
-                                XLDismissHUD(self.view, YES, NO, NSLocalizedString(@"login.loginFailed", nil));
-                            }
-                        });
+                GJCFAsyncGlobalDefaultQueue(^{
+                    EMError *error = [[EMClient sharedClient] loginWithUsername:userModel.username password:userModel.encryptPw];
+                    GJCFAsyncMainQueue(^{
+                        if (!error) { //环信登录成功
+                            XLDismissHUD(self.view, NO, YES, nil);
+                            [self dismissViewControllerAnimated:YES completion:nil];
+                            [[NSNotificationCenter defaultCenter] postNotificationName:kLoginSuccess object:@YES];
+                            [[EMClient sharedClient].options setIsAutoLogin:YES];
+                            [[EMClient sharedClient] migrateDatabaseToLatestSDK];
+                        } else {
+                            XLDismissHUD(self.view, YES, NO, NSLocalizedString(@"login.loginFailed", nil));
+                        }
                     });
-                    
-                } else {
-                    XLDismissHUD(self.view, YES, NO, NSLocalizedString(@"login.loginFailed", nil));
-                }
+                });
             } else {
                 XLDismissHUD(self.view, YES, NO, NSLocalizedString(@"login.loginFailed", nil));
             }

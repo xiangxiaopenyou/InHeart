@@ -143,8 +143,7 @@
                         [[EMClient sharedClient] logout:YES completion:^(EMError *aError) {
                             if (!aError) {
                                 [[UserInfo sharedUserInfo] removeUserInfo];
-                                [[UserInfo sharedUserInfo] removePersonalInfo];
-                                //[self.navigationController popToRootViewControllerAnimated:YES];
+                                XLDismissHUD(self.view, YES, YES, @"退出登录成功");
                                 [[NSNotificationCenter defaultCenter] postNotificationName:kLoginSuccess object:@NO];
                                 [self.tableView reloadData];
                             } else {

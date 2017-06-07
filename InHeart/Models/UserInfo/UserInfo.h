@@ -8,7 +8,6 @@
 
 #import <Foundation/Foundation.h>
 @class UserModel;
-@class PersonalInfo;
 
 @interface UserInfo : NSObject
 
@@ -18,9 +17,5 @@
 - (UserModel *)userInfo;
 - (void)removeUserInfo;
 - (BOOL)shouldLogin:(UIViewController *)viewController;
-
-- (BOOL)savePersonalInfo:(PersonalInfo *)personalInfo;
-- (PersonalInfo *)personalInfo;
-- (void)removePersonalInfo;
 
 @end
