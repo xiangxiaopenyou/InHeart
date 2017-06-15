@@ -23,6 +23,12 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    //取消tableview中按钮点击效果延迟效果
+    for (UIView *subView in self.tableView.subviews) {
+        if ([subView isKindOfClass:[UIScrollView class]]) {
+            ((UIScrollView *)subView).delaysContentTouches = NO;
+        }
+    }
     [self myDoctorsRequest];
 }
 

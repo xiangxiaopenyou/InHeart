@@ -141,7 +141,7 @@
 }
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     EaseConversationCell *cell = [[EaseConversationCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"cell"];
-    cell.avatarView.layer.masksToBounds = YES;
+    //cell.avatarView.layer.masksToBounds = YES;
     cell.avatarView.imageCornerRadius = 25.f;
     cell.avatarView.imageView.backgroundColor = [UIColor clearColor];
     cell.titleLabelFont = kSystemFont(15);

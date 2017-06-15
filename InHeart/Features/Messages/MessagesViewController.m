@@ -15,9 +15,6 @@
 #import "UserInfo.h"
 #import "ConversationModel.h"
 
-#import <Masonry.h>
-#import <GJCFUitils.h>
-
 @interface MessagesViewController ()<ConversationListViewDelegate>
 @property (strong, nonatomic) ConversationListView *conversationsView;
 

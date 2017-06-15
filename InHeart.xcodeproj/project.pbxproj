@@ -96,6 +96,7 @@
 		3D3F8D221ECAAA900040C0D5 /* libsqlite3.0.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 3D3F8D211ECAAA900040C0D5 /* libsqlite3.0.tbd */; };
 		3D3F8D241ECAAA9B0040C0D5 /* CoreTelephony.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3D3F8D231ECAAA9B0040C0D5 /* CoreTelephony.framework */; };
 		3D3F8D261ECAAAA50040C0D5 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3D3F8D251ECAAAA50040C0D5 /* QuartzCore.framework */; };
+		3D55BB3B1EE7D4A900863E00 /* HomepageNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D55BB3A1EE7D4A900863E00 /* HomepageNavigationController.m */; };
 		3D6282B51DCB3AF0001BC363 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 3D6282B71DCB3AF0001BC363 /* Localizable.strings */; };
 		3D7F7A3F1DC745B10009C668 /* UtoVRPlayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3D7F7A3D1DC745B10009C668 /* UtoVRPlayer.framework */; };
 		3D7F7A401DC745B10009C668 /* UtoVRPlayerResouces.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 3D7F7A3E1DC745B10009C668 /* UtoVRPlayerResouces.bundle */; };
@@ -154,6 +155,8 @@
 		3DCB12F61E6F9ADA00DCE94E /* XLModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DCB12F51E6F9ADA00DCE94E /* XLModel.m */; };
 		3DCE052E1D90E2E20017B2E6 /* DoctorCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DCE052D1D90E2E20017B2E6 /* DoctorCell.m */; };
 		3DCE05321D90E7BC0017B2E6 /* DoctorModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DCE05311D90E7BC0017B2E6 /* DoctorModel.m */; };
+		3DD924A41EE927CF00E32FF6 /* News.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3DD924A31EE927CF00E32FF6 /* News.storyboard */; };
+		3DD924A71EEE35CD00E32FF6 /* NewsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DD924A61EEE35CD00E32FF6 /* NewsViewController.m */; };
 		3DE4825B1EDFB2A4004E1110 /* PersonalCenterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DE4825A1EDFB2A4004E1110 /* PersonalCenterViewController.m */; };
 		3DE4825E1EDFECDE004E1110 /* PersonalNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DE4825D1EDFECDE004E1110 /* PersonalNavigationController.m */; };
 		3DE482611EE52C1F004E1110 /* MyDoctorsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DE482601EE52C1F004E1110 /* MyDoctorsViewController.m */; };
@@ -268,6 +271,7 @@
 		3DF089F71DD9AF3500D64EA6 /* UsersNameAndIdRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DF089F61DD9AF3500D64EA6 /* UsersNameAndIdRequest.m */; };
 		3DF089FA1DD9B05300D64EA6 /* UserMessageModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DF089F91DD9B05300D64EA6 /* UserMessageModel.m */; };
 		3DF089FE1DD9B1F600D64EA6 /* ConversationModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DF089FD1DD9B1F600D64EA6 /* ConversationModel.m */; };
+		3DFF70941EEE623F0005D4F1 /* NewsTopCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DFF70931EEE623F0005D4F1 /* NewsTopCell.m */; };
 		D94740F4C29F37CE1D824FB9 /* libPods-InHeart.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 06F5912AE434CD93226ED268 /* libPods-InHeart.a */; };
 /* End PBXBuildFile section */
 
@@ -410,6 +414,8 @@
 		3D3F8D211ECAAA900040C0D5 /* libsqlite3.0.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.0.tbd; path = usr/lib/libsqlite3.0.tbd; sourceTree = SDKROOT; };
 		3D3F8D231ECAAA9B0040C0D5 /* CoreTelephony.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreTelephony.framework; path = System/Library/Frameworks/CoreTelephony.framework; sourceTree = SDKROOT; };
 		3D3F8D251ECAAAA50040C0D5 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		3D55BB391EE7D4A900863E00 /* HomepageNavigationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HomepageNavigationController.h; sourceTree = "<group>"; };
+		3D55BB3A1EE7D4A900863E00 /* HomepageNavigationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HomepageNavigationController.m; sourceTree = "<group>"; };
 		3D6282B11DCB3ACB001BC363 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Main.strings"; sourceTree = "<group>"; };
 		3D6282B21DCB3ACC001BC363 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/LaunchScreen.strings"; sourceTree = "<group>"; };
 		3D6282B61DCB3AF0001BC363 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Localizable.strings"; sourceTree = "<group>"; };
@@ -524,6 +530,9 @@
 		3DCE052D1D90E2E20017B2E6 /* DoctorCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DoctorCell.m; sourceTree = "<group>"; };
 		3DCE05301D90E7BC0017B2E6 /* DoctorModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DoctorModel.h; sourceTree = "<group>"; };
 		3DCE05311D90E7BC0017B2E6 /* DoctorModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DoctorModel.m; sourceTree = "<group>"; };
+		3DD924A31EE927CF00E32FF6 /* News.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = News.storyboard; sourceTree = "<group>"; };
+		3DD924A51EEE35CD00E32FF6 /* NewsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewsViewController.h; sourceTree = "<group>"; };
+		3DD924A61EEE35CD00E32FF6 /* NewsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewsViewController.m; sourceTree = "<group>"; };
 		3DE482591EDFB2A4004E1110 /* PersonalCenterViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PersonalCenterViewController.h; sourceTree = "<group>"; };
 		3DE4825A1EDFB2A4004E1110 /* PersonalCenterViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PersonalCenterViewController.m; sourceTree = "<group>"; };
 		3DE4825C1EDFECDE004E1110 /* PersonalNavigationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PersonalNavigationController.h; sourceTree = "<group>"; };
@@ -765,6 +774,8 @@
 		3DF089F91DD9B05300D64EA6 /* UserMessageModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UserMessageModel.m; path = InHeart/Models/UserMessageModel.m; sourceTree = SOURCE_ROOT; };
 		3DF089FC1DD9B1F600D64EA6 /* ConversationModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ConversationModel.h; sourceTree = "<group>"; };
 		3DF089FD1DD9B1F600D64EA6 /* ConversationModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ConversationModel.m; sourceTree = "<group>"; };
+		3DFF70921EEE623F0005D4F1 /* NewsTopCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewsTopCell.h; sourceTree = "<group>"; };
+		3DFF70931EEE623F0005D4F1 /* NewsTopCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewsTopCell.m; sourceTree = "<group>"; };
 		5B64A29588BE29867AC11B6B /* Pods-InHeart.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-InHeart.release.xcconfig"; path = "Pods/Target Support Files/Pods-InHeart/Pods-InHeart.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -1078,6 +1089,7 @@
 			children = (
 				3D8485FA1D83EF300066E2E5 /* Main */,
 				3DA417DC1ED814B800613FBD /* Homepage */,
+				3DD924A21EE9273600E32FF6 /* News */,
 				3D84861C1D8793390066E2E5 /* Interrogation */,
 				3D84861D1D87945C0066E2E5 /* Messages */,
 				3D8485FF1D8405230066E2E5 /* Content */,
@@ -1308,6 +1320,8 @@
 			children = (
 				3DE482621EE52C69004E1110 /* Views */,
 				3DA417E31ED90F9C00613FBD /* Homepage.storyboard */,
+				3D55BB391EE7D4A900863E00 /* HomepageNavigationController.h */,
+				3D55BB3A1EE7D4A900863E00 /* HomepageNavigationController.m */,
 				3DA417E51ED91C3200613FBD /* HomepageViewController.h */,
 				3DA417E61ED91C3200613FBD /* HomepageViewController.m */,
 				3DE4825F1EE52C1F004E1110 /* MyDoctorsViewController.h */,
@@ -1366,6 +1380,17 @@
 				3DCE05311D90E7BC0017B2E6 /* DoctorModel.m */,
 			);
 			path = DoctorModel;
+			sourceTree = "<group>";
+		};
+		3DD924A21EE9273600E32FF6 /* News */ = {
+			isa = PBXGroup;
+			children = (
+				3DFF70911EEE62290005D4F1 /* Views */,
+				3DD924A31EE927CF00E32FF6 /* News.storyboard */,
+				3DD924A51EEE35CD00E32FF6 /* NewsViewController.h */,
+				3DD924A61EEE35CD00E32FF6 /* NewsViewController.m */,
+			);
+			path = News;
 			sourceTree = "<group>";
 		};
 		3DE482621EE52C69004E1110 /* Views */ = {
@@ -1911,6 +1936,15 @@
 			path = UserMessageModel;
 			sourceTree = "<group>";
 		};
+		3DFF70911EEE62290005D4F1 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				3DFF70921EEE623F0005D4F1 /* NewsTopCell.h */,
+				3DFF70931EEE623F0005D4F1 /* NewsTopCell.m */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
 		4AE5E1AC7716E251BCD7581B /* Pods */ = {
 			isa = PBXGroup;
 			children = (
@@ -2040,6 +2074,7 @@
 				3D32F4171E8B908A00353864 /* Button_Speaker active@3x.png in Resources */,
 				3D32F4231E8B908A00353864 /* Button_Stats@3x.png in Resources */,
 				3D32F4021E8B908A00353864 /* Button_Cancel Call@3x.png in Resources */,
+				3DD924A41EE927CF00E32FF6 /* News.storyboard in Resources */,
 				3D32F4081E8B908A00353864 /* Button_Minimize disabled@3x.png in Resources */,
 				3D32F3FE1E8B908A00353864 /* Button_Camera switch@2x.png in Resources */,
 				3D32F41B1E8B908A00353864 /* Button_Speaker.png in Resources */,
@@ -2162,6 +2197,7 @@
 				3DEED7C71E8374D800F96A5A /* AppDelegate.m in Sources */,
 				3D3F8D021ECA9C820040C0D5 /* PrescriptionModel.m in Sources */,
 				3DEED7B81E83730D00F96A5A /* EaseFaceView.m in Sources */,
+				3DFF70941EEE623F0005D4F1 /* NewsTopCell.m in Sources */,
 				3DE482611EE52C1F004E1110 /* MyDoctorsViewController.m in Sources */,
 				3DAB0F0A1DC88A2900908000 /* UserModel.m in Sources */,
 				3D894B261DE2F1D8004963C7 /* EditInformationsRequest.m in Sources */,
@@ -2262,6 +2298,7 @@
 				3DEED7A21E83730D00F96A5A /* EaseLocationViewController.m in Sources */,
 				3DEED7BC1E83730D00F96A5A /* EaseConversationCell.m in Sources */,
 				3DEED7AE1E83730D00F96A5A /* EaseBubbleView+Image.m in Sources */,
+				3DD924A71EEE35CD00E32FF6 /* NewsViewController.m in Sources */,
 				3D894B5A1DED7EE0004963C7 /* ConcernedDoctorCell.m in Sources */,
 				3D32F3F21E8B908A00353864 /* DemoCallManager.m in Sources */,
 				3D8787031DDD56DB005A8FE2 /* SystemSettingTableViewController.m in Sources */,
@@ -2299,6 +2336,7 @@
 				3D1CF77C1D93774C00A63F05 /* XLHyperLinkButton.m in Sources */,
 				3DEED7AA1E83730D00F96A5A /* EaseMessageCell.m in Sources */,
 				3DEED7B01E83730D00F96A5A /* EaseBubbleView+Text.m in Sources */,
+				3D55BB3B1EE7D4A900863E00 /* HomepageNavigationController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

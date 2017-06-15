@@ -10,6 +10,8 @@
 
 #import "DoctorModel.h"
 
+#import <UIImage-Helpers.h>
+
 @implementation DoctorInformationsCell
 - (void)fillContents:(DoctorModel *)model {
 }
@@ -22,6 +24,8 @@
 - (void)awakeFromNib {
     [super awakeFromNib];
     // Initialization code
+    [self.commonConsultButton setBackgroundImage:[UIImage imageWithColor:kRGBColor(180, 180, 180, 1)] forState:UIControlStateHighlighted];
+    [self.videoConsultButton setBackgroundImage:[UIImage imageWithColor:kRGBColor(180, 180, 180, 1)] forState:UIControlStateHighlighted];
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {

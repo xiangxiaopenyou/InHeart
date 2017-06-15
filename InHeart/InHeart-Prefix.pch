@@ -15,6 +15,7 @@
 #import "CommonsDefines.h"
 #import "EaseUI.h"
 #import <GJCFUitils.h>
+#import <Masonry.h>
 
 #import "MBProgressHUD+Add.h"
 

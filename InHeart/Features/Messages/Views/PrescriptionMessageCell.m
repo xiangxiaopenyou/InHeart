@@ -8,8 +8,6 @@
 
 #import "PrescriptionMessageCell.h"
 
-#import <Masonry.h>
-
 @interface PrescriptionMessageCell ()
 @property (strong, nonatomic) UIView *prescriptionBackgroundView;
 @property (strong, nonatomic) UIView *viewOfContents;

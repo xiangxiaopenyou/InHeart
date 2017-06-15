@@ -13,9 +13,6 @@
 
 #import "InformationModel.h"
 
-#import <Masonry.h>
-#import <GJCFUitils.h>
-
 @interface EditInformationsTableViewController ()<UITextFieldDelegate>
 @property (copy, nonatomic) NSArray *itemsArray;
 @property (copy, nonatomic) NSString *addressString;

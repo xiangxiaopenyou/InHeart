@@ -7,10 +7,13 @@
 //
 
 #import "MainTabBarController.h"
-#import "ContentViewController.h"
-#import "ContentNavigationController.h"
-#import "InterrogationViewController.h"
-#import "PersonalCenterTableViewController.h"
+//#import "ContentViewController.h"
+//#import "ContentNavigationController.h"
+//#import "InterrogationViewController.h"
+//#import "PersonalCenterTableViewController.h"
+#import "HomepageNavigationController.h"
+#import "HomepageViewController.h"
+#import "NewsViewController.h"
 #import "PersonalNavigationController.h"
 #import "PersonalCenterViewController.h"
 #import "MessagesViewController.h"
@@ -20,8 +23,8 @@
 #import "DemoCallManager.h"
 
 static CGFloat const kTipLabelHeight = 2.0;
-//#define kTipLabelWidth SCREEN_WIDTH / 4.0
-#define kTipLabelWidth SCREEN_WIDTH / 3.0
+#define kTipLabelWidth SCREEN_WIDTH / 4.0
+//#define kTipLabelWidth SCREEN_WIDTH / 3.0
 
 
 @interface MainTabBarController ()<EMChatManagerDelegate>
@@ -36,33 +39,49 @@ static CGFloat const kTipLabelHeight = 2.0;
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     [self addViewToTabBar];
-    UIImage *askUnSelectedImage = [UIImage imageNamed:@"ask_unselected"];
-    askUnSelectedImage = [askUnSelectedImage imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
-    UIImage *askSelectedImage = [UIImage imageNamed:@"ask_selected"];
-    askSelectedImage = [askSelectedImage imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
+//    UIImage *askUnSelectedImage = [UIImage imageNamed:@"ask_unselected"];
+//    askUnSelectedImage = [askUnSelectedImage imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
+//    UIImage *askSelectedImage = [UIImage imageNamed:@"ask_selected"];
+//    askSelectedImage = [askSelectedImage imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
+    UIImage *homepageUnselectedImage = [UIImage imageNamed:@"homepage_unselected"];
+    homepageUnselectedImage = [homepageUnselectedImage imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
+    UIImage *homepageSelectedImage = [UIImage imageNamed:@"homepage_selected"];
+    homepageSelectedImage = [homepageSelectedImage imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
+    
+    UIImage *newsUnselectedImage = [UIImage imageNamed:@"news_unselected"];
+    newsUnselectedImage = [newsUnselectedImage imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal]
+    ;
+    UIImage *newsSelectedImage = [UIImage imageNamed:@"news_selected"];
+    newsSelectedImage = [newsSelectedImage imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
     
     UIImage *messageUnSelectedImage = [UIImage imageNamed:@"message_unselected"];
     messageUnSelectedImage = [messageUnSelectedImage imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
     UIImage *messageSelectedImage = [UIImage imageNamed:@"message_selected"];
     messageSelectedImage = [messageSelectedImage imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
     
-    UIImage *contentUnSelectedImage = [UIImage imageNamed:@"content_unselected"];
-    contentUnSelectedImage = [contentUnSelectedImage imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
-    UIImage *contentSelectedImage = [UIImage imageNamed:@"content_selected"];
-    contentSelectedImage = [contentSelectedImage imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
-    
+//    UIImage *contentUnSelectedImage = [UIImage imageNamed:@"content_unselected"];
+//    contentUnSelectedImage = [contentUnSelectedImage imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
+//    UIImage *contentSelectedImage = [UIImage imageNamed:@"content_selected"];
+//    contentSelectedImage = [contentSelectedImage imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
     UIImage *personalUnSelectedImage = [UIImage imageNamed:@"personal_unselected"];
     personalUnSelectedImage = [personalUnSelectedImage imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
     UIImage *personalSelectedImage = [UIImage imageNamed:@"personal_selected"];
     personalSelectedImage = [personalSelectedImage imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
+    //首页
+    HomepageViewController *homepageController = [[UIStoryboard storyboardWithName:@"Homepage" bundle:nil] instantiateViewControllerWithIdentifier:@"HomepageView"];
+    [self setupChildControllerWith:homepageController normalImage:homepageUnselectedImage selectedImage:homepageSelectedImage title:@"首页" index:0];
+    
+    //心景头条
+    NewsViewController *newsController= [[UIStoryboard storyboardWithName:@"News" bundle:nil] instantiateViewControllerWithIdentifier:@"News"];
+    [self setupChildControllerWith:newsController normalImage:newsUnselectedImage selectedImage:newsSelectedImage title:@"心景头条" index:1];
     
     //问诊
-    InterrogationViewController *interrogationViewController = [[UIStoryboard storyboardWithName:@"Interrogation" bundle:nil] instantiateViewControllerWithIdentifier:@"InterrogationView"];
-    [self setupChildControllerWith:interrogationViewController normalImage:askUnSelectedImage selectedImage:askSelectedImage title:@"问诊" index:0];
+//    InterrogationViewController *interrogationViewController = [[UIStoryboard storyboardWithName:@"Interrogation" bundle:nil] instantiateViewControllerWithIdentifier:@"InterrogationView"];
+//    [self setupChildControllerWith:interrogationViewController normalImage:askUnSelectedImage selectedImage:askSelectedImage title:@"问诊" index:0];
     
     //消息
     MessagesViewController *messageController = [[UIStoryboard storyboardWithName:@"Message" bundle:nil] instantiateViewControllerWithIdentifier:@"Message"];
-    [self setupChildControllerWith:messageController normalImage:messageUnSelectedImage selectedImage:messageSelectedImage title:@"消息" index:1];
+    [self setupChildControllerWith:messageController normalImage:messageUnSelectedImage selectedImage:messageSelectedImage title:@"消息" index:2];
     
     //内容
 //    ContentViewController *contentViewController = [[UIStoryboard storyboardWithName:@"Content" bundle:nil] instantiateViewControllerWithIdentifier:@"ContentView"];
@@ -73,10 +92,25 @@ static CGFloat const kTipLabelHeight = 2.0;
     PersonalCenterViewController *personalViewController = [[UIStoryboard storyboardWithName:@"Personal" bundle:nil] instantiateViewControllerWithIdentifier:@"PersonalCenterView"];
     [self setupChildControllerWith:personalViewController normalImage:personalUnSelectedImage selectedImage:personalSelectedImage title:@"个人中心" index:3];
     
-    [self checkUserState:nil];
+    //环信
+    if (![[EMClient sharedClient] isLoggedIn]) {
+        UserModel *user = [[UserInfo sharedUserInfo] userInfo];
+        [[EMClient sharedClient] loginWithUsername:user.username password:user.encryptPw completion:^(NSString *aUsername, EMError *aError) {
+            if (!aError) {
+                [[EMClient sharedClient].chatManager addDelegate:self delegateQueue:nil];
+                [[DemoCallManager sharedManager] setMainController:self];
+                //[self setupUnreadMessagesCount];
+            } else {
+                XLShowThenDismissHUD(NO, kNetworkError, self.view);
+            }
+        }];
+    } else {
+        [[EMClient sharedClient].chatManager addDelegate:self delegateQueue:nil];
+        [[DemoCallManager sharedManager] setMainController:self];
+    }
+
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(setupUnreadMessagesCount) name:kSetupUnreadMessagesCount object:nil];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(checkUserState:) name:kLoginSuccess object:nil];
 
 }
 - (void)viewDidAppear:(BOOL)animated {
@@ -94,8 +128,8 @@ static CGFloat const kTipLabelHeight = 2.0;
 }
 
 - (void)setupChildControllerWith:(UIViewController *)childViewController normalImage:(UIImage *)normalImage selectedImage:(UIImage *)selectedImage title:(NSString *)title index:(NSInteger)index {
-    if (index == 2) {
-        ContentNavigationController *navigationController = [[ContentNavigationController alloc] initWithRootViewController:childViewController];
+    if (index == 0) {
+        HomepageNavigationController *navigationController = [[HomepageNavigationController alloc] initWithRootViewController:childViewController];
         childViewController.title = title;
         childViewController.tabBarItem.image = normalImage;
         childViewController.tabBarItem.selectedImage = selectedImage;
@@ -136,57 +170,57 @@ static CGFloat const kTipLabelHeight = 2.0;
     for (EMConversation *conversation in conversations) {
         unreadCount += conversation.unreadMessagesCount;
     }
-    UITabBarItem *item = self.tabBar.items[1];
+    UITabBarItem *item = self.tabBar.items[2];
     item.badgeValue = unreadCount > 0 ? [NSString stringWithFormat:@"%@", @(unreadCount)] : nil;
     UIApplication *application = [UIApplication sharedApplication];
     [application setApplicationIconBadgeNumber:unreadCount];
 }
-- (void)checkUserState:(NSNotification *)notification {
-    if (!notification) {
-        if ([[UserInfo sharedUserInfo] isLogined]) {
-            //环信
-            if (![[EMClient sharedClient] isLoggedIn]) {
-                UserModel *user = [[UserInfo sharedUserInfo] userInfo];
-                [[EMClient sharedClient] loginWithUsername:user.username password:user.encryptPw completion:^(NSString *aUsername, EMError *aError) {
-                    if (!aError) {
-                        [[EMClient sharedClient].chatManager addDelegate:self delegateQueue:nil];
-                        [[DemoCallManager sharedManager] setMainController:self];
-                    } else {
-                        XLShowThenDismissHUD(NO, kNetworkError, self.view);
-                    }
-                }];
-            } else {
-                [[EMClient sharedClient].chatManager addDelegate:self delegateQueue:nil];
-                [[DemoCallManager sharedManager] setMainController:self];
-            }
-        }
-    } else {
-        if ([notification.object boolValue]) {
-            if ([[UserInfo sharedUserInfo] isLogined]) {
-                //环信
-                if (![[EMClient sharedClient] isLoggedIn]) {
-                    UserModel *user = [[UserInfo sharedUserInfo] userInfo];
-                    [[EMClient sharedClient] loginWithUsername:user.username password:user.encryptPw completion:^(NSString *aUsername, EMError *aError) {
-                        if (!aError) {
-                            [[EMClient sharedClient].chatManager addDelegate:self delegateQueue:nil];
-                            [[DemoCallManager sharedManager] setMainController:self];
-                        } else {
-                            XLShowThenDismissHUD(NO, kNetworkError, self.view);
-                        }
-                    }];
-                } else {
-                    [[EMClient sharedClient].chatManager addDelegate:self delegateQueue:nil];
-                    [[DemoCallManager sharedManager] setMainController:self];
-                    
-                }
-            }
-        } else {
-            [[EMClient sharedClient].chatManager removeDelegate:self];
-            //[DemoCallManager dealloc];
-        }
-        
-    }
-}
+//- (void)checkUserState:(NSNotification *)notification {
+//    if (!notification) {
+//        if ([[UserInfo sharedUserInfo] isLogined]) {
+//            //环信
+//            if (![[EMClient sharedClient] isLoggedIn]) {
+//                UserModel *user = [[UserInfo sharedUserInfo] userInfo];
+//                [[EMClient sharedClient] loginWithUsername:user.username password:user.encryptPw completion:^(NSString *aUsername, EMError *aError) {
+//                    if (!aError) {
+//                        [[EMClient sharedClient].chatManager addDelegate:self delegateQueue:nil];
+//                        [[DemoCallManager sharedManager] setMainController:self];
+//                    } else {
+//                        XLShowThenDismissHUD(NO, kNetworkError, self.view);
+//                    }
+//                }];
+//            } else {
+//                [[EMClient sharedClient].chatManager addDelegate:self delegateQueue:nil];
+//                [[DemoCallManager sharedManager] setMainController:self];
+//            }
+//        }
+//    } else {
+//        if ([notification.object boolValue]) {
+//            if ([[UserInfo sharedUserInfo] isLogined]) {
+//                //环信
+//                if (![[EMClient sharedClient] isLoggedIn]) {
+//                    UserModel *user = [[UserInfo sharedUserInfo] userInfo];
+//                    [[EMClient sharedClient] loginWithUsername:user.username password:user.encryptPw completion:^(NSString *aUsername, EMError *aError) {
+//                        if (!aError) {
+//                            [[EMClient sharedClient].chatManager addDelegate:self delegateQueue:nil];
+//                            [[DemoCallManager sharedManager] setMainController:self];
+//                        } else {
+//                            XLShowThenDismissHUD(NO, kNetworkError, self.view);
+//                        }
+//                    }];
+//                } else {
+//                    [[EMClient sharedClient].chatManager addDelegate:self delegateQueue:nil];
+//                    [[DemoCallManager sharedManager] setMainController:self];
+//                    
+//                }
+//            }
+//        } else {
+//            [[EMClient sharedClient].chatManager removeDelegate:self];
+//            //[DemoCallManager dealloc];
+//        }
+//        
+//    }
+//}
 
 
 #pragma mark - UITabBarDelegate

@@ -15,9 +15,6 @@
 #import "UserModel.h"
 #import "UserInfo.h"
 
-#import <Masonry.h>
-#import <GJCFUitils.h>
-
 @interface RegisterViewController ()<UITableViewDelegate, UITableViewDataSource, UITextFieldDelegate>
 @property (weak, nonatomic) IBOutlet UIView *footerView;
 @property (strong, nonatomic) XLHyperLinkButton *linkButton;
@@ -271,7 +268,6 @@
                             GJCFAsyncMainQueue(^{
                                 if (!error) {
                                     XLDismissHUD(self.view, NO, YES, nil);
-                                    [self dismissViewControllerAnimated:YES completion:nil];
                                     [[NSNotificationCenter defaultCenter] postNotificationName:kLoginSuccess object:@YES];
                                     [[EMClient sharedClient].options setIsAutoLogin:YES];
                                     [[EMClient sharedClient] migrateDatabaseToLatestSDK];

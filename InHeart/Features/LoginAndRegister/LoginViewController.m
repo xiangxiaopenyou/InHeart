@@ -13,8 +13,6 @@
 
 #import "UserModel.h"
 #import "UserInfo.h"
-#import <Masonry.h>
-#import <GJCFUitils.h>
 #import <OpenShareHeader.h>
 
 @interface LoginViewController ()<UITableViewDelegate, UITableViewDataSource, UITextFieldDelegate>
@@ -28,7 +26,6 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"back_arrow"] style:UIBarButtonItemStylePlain target:self action:@selector(dismiss)];
     
 }
 - (void)viewWillDisappear:(BOOL)animated {
@@ -155,7 +152,6 @@
                     GJCFAsyncMainQueue(^{
                         if (!error) { //环信登录成功
                             XLDismissHUD(self.view, NO, YES, nil);
-                            [self dismissViewControllerAnimated:YES completion:nil];
                             [[NSNotificationCenter defaultCenter] postNotificationName:kLoginSuccess object:@YES];
                             [[EMClient sharedClient].options setIsAutoLogin:YES];
                             [[EMClient sharedClient] migrateDatabaseToLatestSDK];
@@ -171,9 +167,6 @@
             XLDismissHUD(self.view, YES, NO, msg);
         }
     }];
-}
-- (void)dismiss {
-    [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 @end

@@ -28,17 +28,20 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
-    //self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
-    [self initAppearance];
+    self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
+    
+    //键盘
     IQKeyboardManager *keyboardManager = [IQKeyboardManager sharedManager];
     keyboardManager.enable = YES;
     keyboardManager.enableAutoToolbar = NO;
     keyboardManager.shouldResignOnTouchOutside = YES;
     
-    //[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(checkUserState:) name:kLoginSuccess object:nil];
     [[EaseSDKHelper shareHelper] hyphenateApplication:application didFinishLaunchingWithOptions:launchOptions appkey:EMChatKey apnsCertName:APNSCertName otherConfig:@{@"httpsOnly":[NSNumber numberWithBool:YES], kSDKConfigEnableConsoleLogger:[NSNumber numberWithBool:YES],@"easeSandBox":[NSNumber numberWithBool:NO]}];
-    //[[UserInfo sharedUserInfo] removePersonalInfo];
+    
     //注册微信
+    [WXApi registerApp:WECHATAPPID];
+    
+    //OpenShare
     [OpenShare connectWeixinWithAppId:WECHATAPPID];
     [OpenShare setPaySuccessCallback:^(NSDictionary *message) {
         [[NSNotificationCenter defaultCenter] postNotificationName:kDidReceiveWechatPayResponse object:message];
@@ -46,8 +49,11 @@
     [OpenShare setPayFailCallback:^(NSDictionary *message, NSError *error) {
         [[NSNotificationCenter defaultCenter] postNotificationName:kDidReceiveWechatPayResponse object:message];
     }];
-    [WXApi registerApp:WECHATAPPID];
     
+    [self initAppearance];
+    [self checkUserState:nil];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(checkUserState:) name:kLoginSuccess object:nil];
     return YES;
 }
 - (BOOL)application:(UIApplication *)application handleOpenURL:(NSURL *)url {
@@ -123,6 +129,19 @@
     [[UINavigationBar appearance] setBackgroundImage:[UIImage imageWithColor:NAVIGATIONBAR_COLOR] forBarMetrics:UIBarMetricsDefault];
     [[UINavigationBar appearance] setShadowImage:[UIImage new]];
 }
+//登录状态变化
+- (void)checkUserState:(NSNotification *)notification {
+    if ([[UserInfo sharedUserInfo] isLogined]) {
+        MainTabBarController *tabBarController = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"MainTabBar"];
+        self.window.rootViewController = tabBarController;
+    } else {
+        LoginViewController *loginViewController = [[UIStoryboard storyboardWithName:@"Login" bundle:nil] instantiateViewControllerWithIdentifier:@"Login"];
+        UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:loginViewController];
+        self.window.rootViewController = navigationController;
+    }
+    [self.window makeKeyAndVisible];
+}
+
 - (void)onReq:(BaseReq *)req {
     
 }
