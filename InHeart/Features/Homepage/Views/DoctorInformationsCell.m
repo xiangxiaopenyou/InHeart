@@ -17,15 +17,15 @@
 }
 + (CGFloat)heightOfCell:(NSString *)specialityString {
     CGFloat height = 150.f;
-    CGSize textSize = XLSizeOfText(specialityString, SCREEN_WIDTH - 30, kSystemFont(14));
+    CGSize textSize = XLSizeOfText(specialityString, SCREEN_WIDTH - 30, XJSystemFont(14));
     return height + textSize.height;
 }
 
 - (void)awakeFromNib {
     [super awakeFromNib];
     // Initialization code
-    [self.commonConsultButton setBackgroundImage:[UIImage imageWithColor:kRGBColor(180, 180, 180, 1)] forState:UIControlStateHighlighted];
-    [self.videoConsultButton setBackgroundImage:[UIImage imageWithColor:kRGBColor(180, 180, 180, 1)] forState:UIControlStateHighlighted];
+    [self.commonConsultButton setBackgroundImage:[UIImage imageWithColor:XJRGBColor(180, 180, 180, 1)] forState:UIControlStateHighlighted];
+    [self.videoConsultButton setBackgroundImage:[UIImage imageWithColor:XJRGBColor(180, 180, 180, 1)] forState:UIControlStateHighlighted];
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {

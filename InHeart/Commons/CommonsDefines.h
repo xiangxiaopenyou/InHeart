@@ -6,6 +6,11 @@
 //  Copyright © 2016年 项小盆友. All rights reserved.
 //
 #import <UIKit/UIKit.h>
+typedef NS_ENUM(NSInteger, XJInformationType) {
+    XJInformationTypeName,
+    XJInformationTypeSex,
+    XJInformationTypeAge
+};
 
 //key & secret
 extern NSString * const EMChatKey;
@@ -28,64 +33,64 @@ extern CGFloat const TABBARHEIGHT;
 extern CGFloat const NAVIGATIONBARHEIGHT;
 
 //内容
-extern NSString * const kSearchPlaceholder;
-extern NSString * const kNetworkError;
+extern NSString * const XJSearchPlaceholder;
+extern NSString * const XJNetworkError;
 
 //消息
-extern NSString * const kClickToLogin;
-extern NSString * const kCommonTip;
-extern NSString * const kCommonCancel;
-extern NSString * const kCommonEnsure;
-extern NSString * const kIsMakePhoneCall;
+extern NSString * const XJClickToLogin;
+extern NSString * const XJCommonTip;
+extern NSString * const XJCommonCancel;
+extern NSString * const XJCommonEnsure;
+extern NSString * const XJIsMakePhoneCall;
 
 //个人中心
-extern NSString * const kMyInterrogation;
-extern NSString * const kMyDoctors;
-extern NSString * const kMyCollections;
-extern NSString * const kMyAccount;
-extern NSString * const kMyPrescriptions;
-extern NSString * const kMyAttention;
-extern NSString * const kMyBills;
-extern NSString * const kHelpAndFeedback;
-extern NSString * const kPersonalSetting;
-extern NSString * const kClearCache;
-extern NSString * const kAboutUs;
-extern NSString * const kName;
-extern NSString * const kIdCardNumber;
-extern NSString * const kAge;
-extern NSString * const kEmergencyContactPerson;
-extern NSString * const kEmergencyContactPhone;
-extern NSString * const kHomeAddress;
-extern NSString * const kInputRealname;
-extern NSString * const kInputEmergencyContactPhone;
-extern NSString * const kInputSomeInformations;
+extern NSString * const XJMyInterrogation;
+extern NSString * const XJMyDoctors;
+extern NSString * const XJMyCollections;
+extern NSString * const XJMyAccount;
+extern NSString * const XJMyPrescriptions;
+extern NSString * const XJMyAttention;
+extern NSString * const XJMyBills;
+extern NSString * const XJHelpAndFeedback;
+extern NSString * const XJPersonalSetting;
+extern NSString * const XJClearCache;
+extern NSString * const XJAboutUs;
+extern NSString * const XJName;
+extern NSString * const XJIdCardNumber;
+extern NSString * const XJAge;
+extern NSString * const XJEmergencyContactPerson;
+extern NSString * const XJEmergencyContactPhone;
+extern NSString * const XJHomeAddress;
+extern NSString * const XJInputRealname;
+extern NSString * const XJInputEmergencyContactPhone;
+extern NSString * const XJInputSomeInformations;
 
 
 //登录注册
-extern NSString * const kInputPhoneNumber;
-extern NSString * const kInputPassword;
-extern NSString * const kInputVerificationCode;
-extern NSString * const kInputPasswordAgain;
-extern NSString * const kUserAgreement;
-extern NSString * const kFetchVerificationCode;
-extern NSString * const kInputCorrectPhoneNumberTip;
-extern NSString * const kInputPasswordTip;
-extern NSString * const kPasswordFormatTip;
-extern NSString * const kDifferentPasswordTip;
-extern NSString * const kInputVerificationCodeTip;
-extern NSString * const kCameraNotAvailable;
-extern NSString * const kAppCameraAccessNotAuthorized;
-extern NSString * const kAppPhotoLibraryAccessNotAuthorized;
-extern NSString * const kPleaseUploadAuthenticationPicture;
-extern NSString * const kPleaseInputCorrectIDCardNumber;
-extern NSString * const kFindPassword;
-extern NSString * const kChangePassword;
+extern NSString * const XJInputPhoneNumber;
+extern NSString * const XJInputPassword;
+extern NSString * const XJInputVerificationCode;
+extern NSString * const XJInputPasswordAgain;
+extern NSString * const XJUserAgreement;
+extern NSString * const XJFetchVerificationCode;
+extern NSString * const XJInputCorrectPhoneNumberTip;
+extern NSString * const XJInputPasswordTip;
+extern NSString * const XJPasswordFormatTip;
+extern NSString * const XJDifferentPasswordTip;
+extern NSString * const XJInputVerificationCodeTip;
+extern NSString * const XJCameraNotAvailable;
+extern NSString * const XJAppCameraAccessNotAuthorized;
+extern NSString * const XJAppPhotoLibraryAccessNotAuthorized;
+extern NSString * const XJPleaseUploadAuthenticationPicture;
+extern NSString * const XJPleaseInputCorrectIDCardNumber;
+extern NSString * const XJFindPassword;
+extern NSString * const XJChangePassword;
 
 //NotificationName
-extern NSString * const kLoginSuccess;
-extern NSString * const kSetupUnreadMessagesCount;
-extern NSString * const kConversationsDidChange;
-extern NSString * const kDidReceiveWechatPayResponse;
+extern NSString * const XJLoginSuccess;
+extern NSString * const XJSetupUnreadMessagesCount;
+extern NSString * const XJConversationsDidChange;
+extern NSString * const XJDidReceiveWechatPayResponse;
 
 /**
  *  接口

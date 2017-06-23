@@ -31,7 +31,7 @@
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
     self.tableView.tableFooterView = [UIView new];
     
-    _itemsArray = @[kName, kIdCardNumber, kAge, kEmergencyContactPerson, kEmergencyContactPhone];
+    _itemsArray = @[XJName, XJIdCardNumber, XJAge, XJEmergencyContactPerson, XJEmergencyContactPhone];
     //_addressString = @"浙江";
 }
 - (void)viewDidAppear:(BOOL)animated {
@@ -87,7 +87,7 @@
         if (XLIsNullObject(_addressString)) {
             return 46.0;
         } else {
-            CGSize size = XLSizeOfText(_addressString, SCREEN_WIDTH - 140, kSystemFont(14));
+            CGSize size = XLSizeOfText(_addressString, SCREEN_WIDTH - 140, XJSystemFont(14));
             return size.height + 38.0;
         }
     } else {
@@ -108,11 +108,11 @@
     } else {
         UITableViewCell *cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:nil];
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
-        cell.textLabel.font = kSystemFont(15);
+        cell.textLabel.font = XJSystemFont(15);
         cell.textLabel.textColor = MAIN_TEXT_COLOR;
         cell.textLabel.text = [NSString stringWithFormat:@"%@", _itemsArray[indexPath.row]];
         UITextField *textField = [[UITextField alloc] init];
-        textField.font = kSystemFont(14);
+        textField.font = XJSystemFont(14);
         textField.textColor = TABBAR_TITLE_COLOR;
         textField.tag = 100 + indexPath.row;
         textField.delegate = self;
@@ -193,24 +193,24 @@
     UITextField *textField4 = (UITextField *)[self.tableView viewWithTag:103];
     UITextField *textField5 = (UITextField *)[self.tableView viewWithTag:104];
     if (XLIsNullObject(textField1.text) && XLIsNullObject(textField2.text) && XLIsNullObject(textField3.text) && XLIsNullObject(textField4.text) && XLIsNullObject(textField5.text) && XLIsNullObject(_addressString)) {
-        XLShowThenDismissHUD(NO, kInputSomeInformations, self.view);
+        XLShowThenDismissHUD(NO, XJInputSomeInformations, self.view);
         return;
     }
     if (!XLIsNullObject(textField2.text) && !GJCFStringIsPersonCardNumber(textField2.text)) {
-        XLShowThenDismissHUD(NO, kPleaseInputCorrectIDCardNumber, self.view);
+        XLShowThenDismissHUD(NO, XJPleaseInputCorrectIDCardNumber, self.view);
         return;
     } else if (!XLIsNullObject(textField2.text)) {
         if (XLIsNullObject(textField1.text)) {
-            XLShowThenDismissHUD(NO, kInputRealname, self.view);
+            XLShowThenDismissHUD(NO, XJInputRealname, self.view);
             return;
         }
     }
     if (!XLIsNullObject(textField4.text) && XLIsNullObject(textField5.text)) {
-        XLShowThenDismissHUD(NO, kInputEmergencyContactPhone, self.view);
+        XLShowThenDismissHUD(NO, XJInputEmergencyContactPhone, self.view);
         return;
     }
     if (!XLIsNullObject(textField5.text) && !GJCFStringIsMobilePhone(textField5.text)) {
-        XLShowThenDismissHUD(NO, kInputCorrectPhoneNumberTip, self.view);
+        XLShowThenDismissHUD(NO, XJInputCorrectPhoneNumberTip, self.view);
         return;
     }
     [self hideKeyboard];

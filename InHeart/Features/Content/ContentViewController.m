@@ -40,7 +40,7 @@
         _searchView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH - 60, 30)];
         _searchView.layer.masksToBounds = YES;
         _searchView.layer.cornerRadius = 4.0;
-        _searchView.backgroundColor = kRGBColor(255, 255, 255, 0.5);
+        _searchView.backgroundColor = XJRGBColor(255, 255, 255, 0.5);
         UIImageView *searchImage = [[UIImageView alloc] initWithFrame:CGRectMake(20, 6, 18, 18)];
         searchImage.image = [UIImage imageNamed:@"content_search"];
         [_searchView addSubview:searchImage];
@@ -53,8 +53,8 @@
     if (!_searchTextField) {
         _searchTextField = [[UITextField alloc] initWithFrame:CGRectMake(44, 0, SCREEN_WIDTH - 104, 30)];
         _searchTextField.backgroundColor = [UIColor clearColor];
-        _searchTextField.placeholder = kSearchPlaceholder;
-        _searchTextField.font = kSystemFont(13);
+        _searchTextField.placeholder = XJSearchPlaceholder;
+        _searchTextField.font = XJSystemFont(13);
         _searchTextField.returnKeyType = UIReturnKeySearch;
         _searchTextField.clearButtonMode = UITextFieldViewModeWhileEditing;
         [_searchTextField setValue:[UIColor whiteColor] forKeyPath:@"_placeholderLabel.textColor"];
@@ -93,7 +93,7 @@
     CGFloat y = self.tableView.contentOffset.y;
     if (y > 10 && y <= 30) {
         CGFloat difference = (y - 10.0) / 20.0;
-        [self.navigationController.navigationBar setBackgroundImage:[UIImage imageWithColor:kRGBColor(82, 184, 255, difference)] forBarMetrics:UIBarMetricsDefault];
+        [self.navigationController.navigationBar setBackgroundImage:[UIImage imageWithColor:XJRGBColor(82, 184, 255, difference)] forBarMetrics:UIBarMetricsDefault];
     } else if (y > 30) {
         [self.navigationController.navigationBar setBackgroundImage:[UIImage imageWithColor:NAVIGATIONBAR_COLOR] forBarMetrics:UIBarMetricsDefault];
     } else {

@@ -53,7 +53,7 @@
                 self.tipLabel.hidden = NO;
             }
         } else {
-            XLDismissHUD(self.view, YES, NO, kNetworkError);
+            XLDismissHUD(self.view, YES, NO, XJNetworkError);
         }
     }];
 }

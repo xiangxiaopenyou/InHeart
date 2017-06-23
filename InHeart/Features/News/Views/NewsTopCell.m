@@ -35,10 +35,10 @@
 }
 - (void)setIsSelected:(BOOL)isSelected {
     if (isSelected) {
-        _titleLabel.font = kSystemFont(16);
+        _titleLabel.font = XJSystemFont(16);
         _titleLabel.textColor = NAVIGATIONBAR_COLOR;
     } else {
-        _titleLabel.font = kSystemFont(14);
+        _titleLabel.font = XJSystemFont(14);
         _titleLabel.textColor = MAIN_TEXT_COLOR;
     }
 }
@@ -46,7 +46,7 @@
 - (UILabel *)titleLabel {
     if (!_titleLabel) {
         _titleLabel = [[UILabel alloc] initWithFrame:CGRectZero];
-        _titleLabel.font = kSystemFont(14);
+        _titleLabel.font = XJSystemFont(14);
         _titleLabel.textColor = MAIN_TEXT_COLOR;
     }
     return _titleLabel;

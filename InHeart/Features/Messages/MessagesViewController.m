@@ -40,7 +40,7 @@
             [strongSelf.navigationController pushViewController:chatViewController animated:YES];
         }
     };
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(conversationsDidChange) name:kConversationsDidChange object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(conversationsDidChange) name:XJConversationsDidChange object:nil];
 }
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
@@ -51,7 +51,7 @@
                 if (!aError) {
                     [self.conversationsView fetchConversations];
                 } else {
-                    XLShowThenDismissHUD(NO, kNetworkError, self.view);
+                    XLShowThenDismissHUD(NO, XJNetworkError, self.view);
                 }
             }];
         } else {

@@ -49,7 +49,7 @@
         tableView.delegate = self;
         tableView.dataSource = self;
         tableView.separatorInset = UIEdgeInsetsZero;
-        tableView.separatorColor = kHexRGBColorWithAlpha(0xe5e5e5, 1);
+        tableView.separatorColor = XJHexRGBColorWithAlpha(0xe5e5e5, 1);
         [self.contentScrollView addSubview:tableView];
     }
     self.contentScrollView.contentSize = CGSizeMake(self.topArray.count * SCREEN_WIDTH, 0);
@@ -60,9 +60,9 @@
         NSString *temp = self.topArray[i];
         CGSize size;
         if (i == _selectedIndex) {
-            size = [temp sizeWithAttributes:@{NSFontAttributeName : kSystemFont(16)}];
+            size = [temp sizeWithAttributes:@{NSFontAttributeName : XJSystemFont(16)}];
         } else {
-            size = [temp sizeWithAttributes:@{NSFontAttributeName : kSystemFont(14)}];
+            size = [temp sizeWithAttributes:@{NSFontAttributeName : XJSystemFont(14)}];
         }
         posionX += size.width + 20.f;
     }
@@ -88,9 +88,9 @@
         NSString *titleString = self.topArray[indexPath.row];
         CGSize size;
         if (indexPath.row == _selectedIndex) {
-            size = [titleString sizeWithAttributes:@{NSFontAttributeName : kSystemFont(16)}];
+            size = [titleString sizeWithAttributes:@{NSFontAttributeName : XJSystemFont(16)}];
         } else {
-            size = [titleString sizeWithAttributes:@{NSFontAttributeName : kSystemFont(14)}];
+            size = [titleString sizeWithAttributes:@{NSFontAttributeName : XJSystemFont(14)}];
         }
         return size.width + 20.f;
     } else {

@@ -208,8 +208,8 @@
         NSArray *tempArray = [provinceModel.array copy];
         CityModel *tempModel = [CityModel yy_modelWithDictionary:tempArray[indexPath.row]];
         cell.textLabel.text = [NSString stringWithFormat:@"%@", tempModel.name];
-        cell.textLabel.font = kSystemFont(13);
-        cell.textLabel.textColor = kHexRGBColorWithAlpha(0x323232, 1.0);
+        cell.textLabel.font = XJSystemFont(13);
+        cell.textLabel.textColor = XJHexRGBColorWithAlpha(0x323232, 1.0);
         return cell;
     } else if (tableView == self.diseaseTableView) {
         static NSString *identifier = @"DiseaseCell";
@@ -217,8 +217,8 @@
         NSArray *tempArray = [self.diseaseArray[indexPath.section] copy];
         ContentTypeModel *tempModel = tempArray[indexPath.row];
         cell.textLabel.text = [NSString stringWithFormat:@"%@", tempModel.name];
-        cell.textLabel.font = kSystemFont(13);
-        cell.textLabel.textColor = kHexRGBColorWithAlpha(0x323232, 1.0);
+        cell.textLabel.font = XJSystemFont(13);
+        cell.textLabel.textColor = XJHexRGBColorWithAlpha(0x323232, 1.0);
         return cell;
     } else {
         static NSString *identifier = @"DoctorCell";
@@ -261,7 +261,7 @@
         if (XLIsNullObject(tempModel.signature)) {
             height += 15;
         } else {
-            CGSize mottoSize = XLSizeOfText(tempModel.signature, SCREEN_WIDTH - 155, kSystemFont(12));
+            CGSize mottoSize = XLSizeOfText(tempModel.signature, SCREEN_WIDTH - 155, XJSystemFont(12));
             height += mottoSize.height;
         }
         return height;
@@ -278,7 +278,7 @@
 }
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
     UIView *headerView = [UIView new];
-    headerView.backgroundColor = kRGBColor(240, 240, 240, 1.0);
+    headerView.backgroundColor = XJRGBColor(240, 240, 240, 1.0);
     UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(15, 0, 100, 21)];
     if (tableView == self.areaTableView) {
          ProvinceModel *provinceModel = self.provincesArray[section];
@@ -286,8 +286,8 @@
     } else {
         label.text = self.diseaseIndexArray[section];
     }
-    label.textColor = kHexRGBColorWithAlpha(0xAAAAAA, 1.0);
-    label.font = kSystemFont(12);
+    label.textColor = XJHexRGBColorWithAlpha(0xAAAAAA, 1.0);
+    label.font = XJSystemFont(12);
     [headerView addSubview:label];
     return headerView;
 }

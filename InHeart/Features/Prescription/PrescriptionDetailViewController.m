@@ -36,7 +36,7 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     [self fetchDetail];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(wechatPayResult:) name:kDidReceiveWechatPayResponse object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(wechatPayResult:) name:XJDidReceiveWechatPayResponse object:nil];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -44,7 +44,7 @@
     // Dispose of any resources that can be recreated.
 }
 - (void)dealloc {
-    [[NSNotificationCenter defaultCenter] removeObserver:self name:kDidReceiveWechatPayResponse object:nil];
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:XJDidReceiveWechatPayResponse object:nil];
 }
 
 #pragma mark - Request
@@ -82,8 +82,8 @@
         if (object) {
             //XLDismissHUD(self.view, NO, YES, nil);
             WechatPayModel *model = (WechatPayModel *)object;
-            //[self goWechatPay:model];
-            [self wechatSign:model];
+            [self goWechatPay:model];
+            //[self wechatSign:model];
         } else {
             XLDismissHUD(self.view, YES, NO, msg);
         }
@@ -151,6 +151,9 @@
 }
 - (IBAction)payAction:(id)sender {
     [self wechatPayRequest];
+}
+- (IBAction)callAction:(id)sender {
+    [[UIApplication sharedApplication] openURL:XLURLFromString([NSString stringWithFormat:@"tel://4001667866"])];
 }
 
 - (void)wechatSign:(WechatPayModel *)model {
@@ -237,20 +240,20 @@
     PayReq *request = [[PayReq alloc] init];
     //request.openID = WECHATAPPID;
     // 商家id，在注册的时候给的
-    request.partnerId = model.partnerId;
+    request.partnerId = model.partnerid;
     
     // 预支付订单这个是后台跟微信服务器交互后，微信服务器传给你们服务器的，你们服务器再传给你
-    request.prepayId  = model.prepayId;
+    request.prepayId  = model.prepayid;
     
     // 根据财付通文档填写的数据和签名
     //这个比较特殊，是固定的，只能是即req.package = Sign=WXPay
     request.package   = @"Sign=WXPay";
     
     // 随机编码，为了防止重复的，在后台生成
-    request.nonceStr  = model.nonceStr;
+    request.nonceStr  = model.noncestr;
     
     // 这个是时间戳，也是在后台生成的，为了验证支付的
-    request.timeStamp = model.timeStamp.intValue;
+    request.timeStamp = model.timestamp.intValue;
     
     // 这个签名也是后台做的
     request.sign = model.sign;
@@ -270,10 +273,10 @@
     CGFloat height = 0;
     switch (indexPath.section) {
         case 0:
-            height = 20 + XLSizeOfText(self.model.disease, SCREEN_WIDTH - 30, kSystemFont(14)).height;
+            height = 20 + XLSizeOfText(self.model.disease, SCREEN_WIDTH - 30, XJSystemFont(14)).height;
             break;
         case 1:
-            height = 20 + XLSizeOfText(self.model.suggestion, SCREEN_WIDTH - 30, kSystemFont(14)).height;
+            height = 20 + XLSizeOfText(self.model.suggestion, SCREEN_WIDTH - 30, XJSystemFont(14)).height;
             break;
         case 2:
             height = 90.f * self.model.prescriptionContentList.count;
@@ -338,7 +341,7 @@
     UIView *headerView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 30)];
     headerView.backgroundColor = MAIN_BACKGROUND_COLOR;
     UILabel *headerLabel = [[UILabel alloc] initWithFrame:CGRectMake(15, 0, 100, 40)];
-    headerLabel.font = kSystemFont(14);
+    headerLabel.font = XJSystemFont(14);
     headerLabel.textColor = [UIColor blackColor];
     NSString *title;
     switch (section) {

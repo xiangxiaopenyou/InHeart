@@ -103,7 +103,7 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     if (indexPath.section == 0) {
         UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"SettingCell" forIndexPath:indexPath];
-        cell.textLabel.text = indexPath.row == 0 ? kClearCache : kAboutUs;
+        cell.textLabel.text = indexPath.row == 0 ? XJClearCache : XJAboutUs;
         CGFloat cacheSize = [self folderSizeAtPath];
         NSString *cacheString = cacheSize >= 0.1? [NSString stringWithFormat:@"%.1fM", cacheSize] : @"0M";
         cell.detailTextLabel.text = indexPath.row == 0 ? cacheString : nil;
@@ -144,10 +144,10 @@
                             if (!aError) {
                                 [[UserInfo sharedUserInfo] removeUserInfo];
                                 XLDismissHUD(self.view, YES, YES, @"退出登录成功");
-                                [[NSNotificationCenter defaultCenter] postNotificationName:kLoginSuccess object:@NO];
+                                [[NSNotificationCenter defaultCenter] postNotificationName:XJLoginSuccess object:@NO];
                                 [self.tableView reloadData];
                             } else {
-                                XLDismissHUD(self.view, YES, NO, kNetworkError);
+                                XLDismissHUD(self.view, YES, NO, XJNetworkError);
                             }
                         }];
                         

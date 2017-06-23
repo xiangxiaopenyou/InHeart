@@ -32,7 +32,7 @@
             !resultHandler ?: resultHandler(responseObject,nil);
         }
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
-        !resultHandler ?: resultHandler(nil, kNetworkError);
+        !resultHandler ?: resultHandler(nil, XJNetworkError);
     }];
 }
 @end

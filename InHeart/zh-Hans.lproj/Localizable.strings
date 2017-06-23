@@ -372,3 +372,10 @@
 "personal.setting" = "设置";
 "personal.feedback" = "意见反馈";
 "personal.recommend" = "推荐有礼";
+"personal.avatar" = "头像";
+"personal.name" = "姓名";
+"personal.sex" = "性别";
+"personal.age" = "年龄";
+"personal.phoneNumber" = "手机号";
+"personal.wechat" = "微信账号";
+"personal.changePassword" = "修改密码";

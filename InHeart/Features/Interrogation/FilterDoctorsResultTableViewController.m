@@ -85,7 +85,7 @@
         _searchView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH - 60, 30)];
         _searchView.layer.masksToBounds = YES;
         _searchView.layer.cornerRadius = 4.0;
-        _searchView.backgroundColor = kRGBColor(255, 255, 255, 0.5);
+        _searchView.backgroundColor = XJRGBColor(255, 255, 255, 0.5);
         UIImageView *searchImage = [[UIImageView alloc] initWithFrame:CGRectMake(20, 6, 18, 18)];
         searchImage.image = [UIImage imageNamed:@"content_search"];
         [_searchView addSubview:searchImage];
@@ -98,8 +98,8 @@
     if (!_searchTextField) {
         _searchTextField = [[UITextField alloc] initWithFrame:CGRectMake(44, 0, SCREEN_WIDTH - 104, 30)];
         _searchTextField.backgroundColor = [UIColor clearColor];
-        _searchTextField.placeholder = kSearchPlaceholder;
-        _searchTextField.font = kSystemFont(13);
+        _searchTextField.placeholder = XJSearchPlaceholder;
+        _searchTextField.font = XJSystemFont(13);
         _searchTextField.returnKeyType = UIReturnKeySearch;
         _searchTextField.clearButtonMode = UITextFieldViewModeWhileEditing;
         [_searchTextField setValue:[UIColor whiteColor] forKeyPath:@"_placeholderLabel.textColor"];
@@ -176,7 +176,7 @@
     if (XLIsNullObject(tempModel.signature)) {
         height += 15;
     } else {
-        CGSize mottoSize = XLSizeOfText(tempModel.signature, SCREEN_WIDTH - 155, kSystemFont(12));
+        CGSize mottoSize = XLSizeOfText(tempModel.signature, SCREEN_WIDTH - 155, XJSystemFont(12));
         height += mottoSize.height;
     }
     return height;

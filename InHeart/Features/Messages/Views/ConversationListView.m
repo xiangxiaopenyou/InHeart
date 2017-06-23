@@ -112,7 +112,7 @@
         [self.tableView reloadData];
     }
     
-    [[NSNotificationCenter defaultCenter] postNotificationName:kSetupUnreadMessagesCount object:nil];
+    [[NSNotificationCenter defaultCenter] postNotificationName:XJSetupUnreadMessagesCount object:nil];
 }
 
 - (void)removeEmptyConversationsFromDB {
@@ -144,11 +144,11 @@
     //cell.avatarView.layer.masksToBounds = YES;
     cell.avatarView.imageCornerRadius = 25.f;
     cell.avatarView.imageView.backgroundColor = [UIColor clearColor];
-    cell.titleLabelFont = kSystemFont(15);
+    cell.titleLabelFont = XJSystemFont(15);
     cell.titleLabelColor = MAIN_TEXT_COLOR;
-    cell.detailLabelFont = kSystemFont(14);
+    cell.detailLabelFont = XJSystemFont(14);
     cell.detailLabelColor = TABBAR_TITLE_COLOR;
-    cell.timeLabelFont = kSystemFont(13);
+    cell.timeLabelFont = XJSystemFont(13);
     cell.timeLabelColor = TABBAR_TITLE_COLOR;
     ConversationModel *tempModel = self.conversationArray[indexPath.row];
     EMMessage *lastMessage = tempModel.conversation.latestMessage;
@@ -176,9 +176,9 @@
 }
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
     UIButton *turnToLoginButton = [UIButton buttonWithType:UIButtonTypeCustom];
-    turnToLoginButton.titleLabel.font = kSystemFont(18);
+    turnToLoginButton.titleLabel.font = XJSystemFont(18);
     [turnToLoginButton setTitleColor:NAVIGATIONBAR_COLOR forState:UIControlStateNormal];
-    [turnToLoginButton setTitle:kClickToLogin forState:UIControlStateNormal];
+    [turnToLoginButton setTitle:XJClickToLogin forState:UIControlStateNormal];
     [turnToLoginButton addTarget:self action:@selector(loginAction) forControlEvents:UIControlEventTouchUpInside];
     return turnToLoginButton;
 }

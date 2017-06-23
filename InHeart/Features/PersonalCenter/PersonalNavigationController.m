@@ -27,6 +27,7 @@
 }
 
 - (void)navigationController:(UINavigationController *)navigationController willShowViewController:(UIViewController *)viewController animated:(BOOL)animated {
+    self.interactivePopGestureRecognizer.delegate = (id)viewController;
     if ([viewController isKindOfClass:[PersonalCenterViewController class]]) {
         [navigationController setNavigationBarHidden:YES animated:YES];
     } else {

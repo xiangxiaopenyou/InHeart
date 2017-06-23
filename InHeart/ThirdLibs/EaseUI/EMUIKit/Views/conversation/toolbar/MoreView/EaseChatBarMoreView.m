@@ -93,7 +93,7 @@
 //    [_photoButton setImage:[UIImage imageNamed:@"EaseUIResource.bundle/chatBar_colorMore_photo"] forState:UIControlStateNormal];
 //    [_photoButton setImage:[UIImage imageNamed:@"EaseUIResource.bundle/chatBar_colorMore_photoSelected"] forState:UIControlStateHighlighted];
     [_photoButton setImage:[UIImage imageNamed:@"send_picture"] forState:UIControlStateNormal];
-    _photoButton.titleLabel.font = kSystemFont(14);
+    _photoButton.titleLabel.font = XJSystemFont(14);
     [_photoButton setTitle:@"图片" forState:UIControlStateNormal];
     [_photoButton setTitleColor:TABBAR_TITLE_COLOR forState:UIControlStateNormal];
     [_photoButton setImageEdgeInsets:UIEdgeInsetsMake(- 30, 0, 0, 0)];
@@ -144,7 +144,7 @@
             _phoneCallButton.frame = CGRectMake(insets * 3 + CHAT_BUTTON_SIZE * 2, 10, CHAT_BUTTON_SIZE, 90);
             [_phoneCallButton setImage:[UIImage imageNamed:@"phone_call"] forState:UIControlStateNormal];
             [_phoneCallButton setTitle:@"拨打电话" forState:UIControlStateNormal];
-            _phoneCallButton.titleLabel.font = kSystemFont(14);
+            _phoneCallButton.titleLabel.font = XJSystemFont(14);
             [_phoneCallButton setTitleColor:TABBAR_TITLE_COLOR forState:UIControlStateNormal];
             [_phoneCallButton setImageEdgeInsets:UIEdgeInsetsMake(-30, 0, 0, 0)];
             [_phoneCallButton setTitleEdgeInsets:UIEdgeInsetsMake(0, -60, -70, 0)];

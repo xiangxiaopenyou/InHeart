@@ -101,7 +101,7 @@ static CGFloat const kTipLabelHeight = 2.0;
                 [[DemoCallManager sharedManager] setMainController:self];
                 //[self setupUnreadMessagesCount];
             } else {
-                XLShowThenDismissHUD(NO, kNetworkError, self.view);
+                XLShowThenDismissHUD(NO, XJNetworkError, self.view);
             }
         }];
     } else {
@@ -110,7 +110,7 @@ static CGFloat const kTipLabelHeight = 2.0;
     }
 
     
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(setupUnreadMessagesCount) name:kSetupUnreadMessagesCount object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(setupUnreadMessagesCount) name:XJSetupUnreadMessagesCount object:nil];
 
 }
 - (void)viewDidAppear:(BOOL)animated {
@@ -243,11 +243,11 @@ static CGFloat const kTipLabelHeight = 2.0;
                 break;
         }
     }
-    [[NSNotificationCenter defaultCenter] postNotificationName:kConversationsDidChange object:nil];
+    [[NSNotificationCenter defaultCenter] postNotificationName:XJConversationsDidChange object:nil];
     [self setupUnreadMessagesCount];
 }
 - (void)conversationListDidUpdate:(NSArray *)aConversationList {
-    [[NSNotificationCenter defaultCenter] postNotificationName:kConversationsDidChange object:nil];
+    [[NSNotificationCenter defaultCenter] postNotificationName:XJConversationsDidChange object:nil];
     [self setupUnreadMessagesCount];
 }
 

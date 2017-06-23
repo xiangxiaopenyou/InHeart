@@ -42,10 +42,10 @@
 - (UITextField *)phoneTextField {
     if (!_phoneTextField) {
         _phoneTextField = [[UITextField alloc] init];
-        [_phoneTextField setValue:kHexRGBColorWithAlpha(0xd0d0d0, 1.0) forKeyPath:@"_placeholderLabel.textColor"];
-        _phoneTextField.font = kSystemFont(14);
+        [_phoneTextField setValue:XJHexRGBColorWithAlpha(0xd0d0d0, 1.0) forKeyPath:@"_placeholderLabel.textColor"];
+        _phoneTextField.font = XJSystemFont(14);
         _phoneTextField.textColor = MAIN_TEXT_COLOR;
-        _phoneTextField.placeholder = kInputPhoneNumber;
+        _phoneTextField.placeholder = XJInputPhoneNumber;
         _phoneTextField.clearButtonMode =  UITextFieldViewModeWhileEditing;
         _phoneTextField.keyboardType = UIKeyboardTypeNumberPad;
         _phoneTextField.delegate = self;
@@ -55,11 +55,11 @@
 - (UITextField *)passwordTextField {
     if (!_passwordTextField) {
         _passwordTextField = [[UITextField alloc] init];
-        [_passwordTextField setValue:kHexRGBColorWithAlpha(0xd0d0d0, 1.0) forKeyPath:@"_placeholderLabel.textColor"];
-        _passwordTextField.font = kSystemFont(14);
+        [_passwordTextField setValue:XJHexRGBColorWithAlpha(0xd0d0d0, 1.0) forKeyPath:@"_placeholderLabel.textColor"];
+        _passwordTextField.font = XJSystemFont(14);
         _passwordTextField.textColor = MAIN_TEXT_COLOR;
         _passwordTextField.secureTextEntry = YES;
-        _passwordTextField.placeholder = kInputPassword;
+        _passwordTextField.placeholder = XJInputPassword;
         _passwordTextField.clearButtonMode = UITextFieldViewModeWhileEditing;
         _passwordTextField.returnKeyType = UIReturnKeyDone;
         _passwordTextField.delegate = self;
@@ -134,11 +134,11 @@
 }
 - (IBAction)loginClick:(id)sender {
     if (!GJCFStringIsMobilePhone(self.phoneTextField.text)) {
-        XLShowThenDismissHUD(NO, kInputCorrectPhoneNumberTip, self.view);
+        XLShowThenDismissHUD(NO, XJInputCorrectPhoneNumberTip, self.view);
         return;
     }
     if (XLIsNullObject(self.passwordTextField.text)) {
-        XLShowThenDismissHUD(NO, kInputPasswordTip, self.view);
+        XLShowThenDismissHUD(NO, XJInputPasswordTip, self.view);
         return;
     }
     [self resignTextField];
@@ -152,7 +152,7 @@
                     GJCFAsyncMainQueue(^{
                         if (!error) { //环信登录成功
                             XLDismissHUD(self.view, NO, YES, nil);
-                            [[NSNotificationCenter defaultCenter] postNotificationName:kLoginSuccess object:@YES];
+                            [[NSNotificationCenter defaultCenter] postNotificationName:XJLoginSuccess object:@YES];
                             [[EMClient sharedClient].options setIsAutoLogin:YES];
                             [[EMClient sharedClient] migrateDatabaseToLatestSDK];
                         } else {

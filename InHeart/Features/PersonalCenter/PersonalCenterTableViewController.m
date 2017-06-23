@@ -96,9 +96,9 @@
         case 1:{
             CommonFunctionCell *cell = [tableView dequeueReusableCellWithIdentifier:@"CommonFunction" forIndexPath:indexPath];
             NSArray *tempIconArray = @[@"my_prescriptions", @"my_collections", @"my_account"];
-            NSArray *tempTitleArray = @[kMyPrescriptions, kMyAttention, kMyAccount];
+            NSArray *tempTitleArray = @[XJMyPrescriptions, XJMyAttention, XJMyAccount];
             cell.imageView.image = [UIImage imageNamed:tempIconArray[indexPath.row]];
-            cell.textLabel.font = kSystemFont(15);
+            cell.textLabel.font = XJSystemFont(15);
             cell.textLabel.textColor = MAIN_TEXT_COLOR;
             cell.textLabel.text = tempTitleArray[indexPath.row];
             
@@ -111,13 +111,13 @@
             NSString *titleString;
             if (indexPath.row == 0) {
                 iconString = @"help_feedback";
-                titleString = kHelpAndFeedback;
+                titleString = XJHelpAndFeedback;
             } else {
                 iconString = @"setting";
-                titleString = kPersonalSetting;
+                titleString = XJPersonalSetting;
             }
             cell.imageView.image = [UIImage imageNamed:iconString];
-            cell.textLabel.font = kSystemFont(15);
+            cell.textLabel.font = XJSystemFont(15);
             cell.textLabel.textColor = MAIN_TEXT_COLOR;
             cell.textLabel.text = titleString;
             return cell;

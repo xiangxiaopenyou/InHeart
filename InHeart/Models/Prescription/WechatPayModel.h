@@ -9,15 +9,15 @@
 #import "XLModel.h"
 
 @interface WechatPayModel : XLModel
-@property (copy, nonatomic) NSString *appId;
-@property (copy, nonatomic) NSString *nonceStr;
+@property (copy, nonatomic) NSString *appid;
+@property (copy, nonatomic) NSString *noncestr;
 @property (copy, nonatomic) NSString *orderId;
 @property (copy, nonatomic) NSString *out_trade_no;
-@property (copy, nonatomic) NSString *packageValue;
-@property (copy, nonatomic) NSString *partnerId;
-@property (copy, nonatomic) NSString *prepayId;
+@property (copy, nonatomic) NSString *package;
+@property (copy, nonatomic) NSString *partnerid;
+@property (copy, nonatomic) NSString *prepayid;
 @property (copy, nonatomic) NSString *sign;
-@property (copy, nonatomic) NSString *timeStamp;
+@property (copy, nonatomic) NSString *timestamp;
 
 + (void)wechatPay:(NSString *)prescriptionId handler:(RequestResultHandler)handler;
 

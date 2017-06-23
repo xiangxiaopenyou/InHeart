@@ -9,6 +9,7 @@
 #import "PersonalCenterViewController.h"
 #import "SystemSettingTableViewController.h"
 #import "MyDoctorsViewController.h"
+#import "PersonalInformationsTableViewController.h"
 
 @interface PersonalCenterViewController ()<UITableViewDelegate, UITableViewDataSource>
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
@@ -30,6 +31,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    self.view.backgroundColor = MAIN_BACKGROUND_COLOR;
     self.tableView.tableHeaderView = self.headerView;
     self.tableView.tableFooterView = [UIView new];
 }
@@ -44,6 +46,7 @@
 }
 - (IBAction)pointsAction:(id)sender {
 }
+
 
 #pragma mark - tableView DataSource
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
@@ -74,7 +77,7 @@
 }
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     UITableViewCell *cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"cell"];
-    cell.textLabel.font = kSystemFont(15);
+    cell.textLabel.font = XJSystemFont(15);
     cell.textLabel.textColor = MAIN_TEXT_COLOR;
     switch (indexPath.section) {
         case 0: {
@@ -139,6 +142,9 @@
     UIView *headerView = [UIView new];
     headerView.backgroundColor = MAIN_BACKGROUND_COLOR;
     return headerView;
+}
+- (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section {
+    return .1f;
 }
 
 #pragma mark - scrollView Delegate

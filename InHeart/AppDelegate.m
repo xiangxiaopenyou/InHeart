@@ -44,16 +44,16 @@
     //OpenShare
     [OpenShare connectWeixinWithAppId:WECHATAPPID];
     [OpenShare setPaySuccessCallback:^(NSDictionary *message) {
-        [[NSNotificationCenter defaultCenter] postNotificationName:kDidReceiveWechatPayResponse object:message];
+        [[NSNotificationCenter defaultCenter] postNotificationName:XJDidReceiveWechatPayResponse object:message];
     }];
     [OpenShare setPayFailCallback:^(NSDictionary *message, NSError *error) {
-        [[NSNotificationCenter defaultCenter] postNotificationName:kDidReceiveWechatPayResponse object:message];
+        [[NSNotificationCenter defaultCenter] postNotificationName:XJDidReceiveWechatPayResponse object:message];
     }];
     
     [self initAppearance];
     [self checkUserState:nil];
     
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(checkUserState:) name:kLoginSuccess object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(checkUserState:) name:XJLoginSuccess object:nil];
     return YES;
 }
 - (BOOL)application:(UIApplication *)application handleOpenURL:(NSURL *)url {
@@ -82,7 +82,7 @@
 }
 //注册deviceToken失败
 - (void)application:(UIApplication *)application didFailToRegisterForRemoteNotificationsWithError:(nonnull NSError *)error {
-    //XLShowThenDismissHUD(NO, kNetworkError);
+    //XLShowThenDismissHUD(NO, XJNetworkError);
 }
 
 //接收到远程推送通知
@@ -125,7 +125,7 @@
     
     [[UINavigationBar appearance] setTintColor:[UIColor whiteColor]];
     [[UINavigationBar appearance] setTitleTextAttributes:@{NSForegroundColorAttributeName : [UIColor whiteColor],
-                                                 NSFontAttributeName : kBoldSystemFont(18)}];
+                                                 NSFontAttributeName : XJBoldSystemFont(18)}];
     [[UINavigationBar appearance] setBackgroundImage:[UIImage imageWithColor:NAVIGATIONBAR_COLOR] forBarMetrics:UIBarMetricsDefault];
     [[UINavigationBar appearance] setShadowImage:[UIImage new]];
 }
@@ -150,7 +150,7 @@
     //启动微信支付的response
 //    NSString *payResoult = [NSString stringWithFormat:@"%@", @(resp.errCode)];
     if([resp isKindOfClass:[PayResp class]]){
-        [[NSNotificationCenter defaultCenter] postNotificationName:kDidReceiveWechatPayResponse object:resp];
+        [[NSNotificationCenter defaultCenter] postNotificationName:XJDidReceiveWechatPayResponse object:resp];
     }
 }
 

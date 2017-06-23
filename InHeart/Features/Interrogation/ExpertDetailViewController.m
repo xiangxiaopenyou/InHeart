@@ -92,7 +92,7 @@
         if (XLIsNullObject(introductionString)) {
             introductionString = @"暂无介绍";
         }
-        CGSize introductionSize = XLSizeOfText(introductionString, SCREEN_WIDTH - 30.0, kSystemFont(13));
+        CGSize introductionSize = XLSizeOfText(introductionString, SCREEN_WIDTH - 30.0, XJSystemFont(13));
         height = 112 + introductionSize.height;
     }
     return height;

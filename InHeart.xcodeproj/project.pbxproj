@@ -19,6 +19,10 @@
 		3D1CF7791D93696000A63F05 /* RegisterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D1CF7781D93696000A63F05 /* RegisterViewController.m */; };
 		3D1CF77C1D93774C00A63F05 /* XLHyperLinkButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D1CF77B1D93774C00A63F05 /* XLHyperLinkButton.m */; };
 		3D1CF77F1D93A9D100A63F05 /* ExpertDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D1CF77E1D93A9D100A63F05 /* ExpertDetailViewController.m */; };
+		3D28988B1EF2577600664687 /* UserAvatarCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D28988A1EF2577600664687 /* UserAvatarCell.m */; };
+		3D28988E1EF258D400664687 /* PersonalInformationsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D28988D1EF258D400664687 /* PersonalInformationsTableViewController.m */; };
+		3D2898941EF7A71000664687 /* InformationEditingCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D2898931EF7A71000664687 /* InformationEditingCell.m */; };
+		3D2898961EF8DB1B00664687 /* InformationEditingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D2898901EF7A6BE00664687 /* InformationEditingViewController.m */; };
 		3D289F671DC9B39600957421 /* RegisterPhoneCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D289F661DC9B39600957421 /* RegisterPhoneCell.m */; };
 		3D32F3EC1E8B908A00353864 /* EMCallViewController.mm in Sources */ = {isa = PBXBuildFile; fileRef = 3D32F3AD1E8B908A00353864 /* EMCallViewController.mm */; };
 		3D32F3ED1E8B908A00353864 /* EMCallViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3D32F3AE1E8B908A00353864 /* EMCallViewController.xib */; };
@@ -315,6 +319,14 @@
 		3D1CF77B1D93774C00A63F05 /* XLHyperLinkButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XLHyperLinkButton.m; sourceTree = "<group>"; };
 		3D1CF77D1D93A9D100A63F05 /* ExpertDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ExpertDetailViewController.h; sourceTree = "<group>"; };
 		3D1CF77E1D93A9D100A63F05 /* ExpertDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ExpertDetailViewController.m; sourceTree = "<group>"; };
+		3D2898891EF2577600664687 /* UserAvatarCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserAvatarCell.h; sourceTree = "<group>"; };
+		3D28988A1EF2577600664687 /* UserAvatarCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserAvatarCell.m; sourceTree = "<group>"; };
+		3D28988C1EF258D400664687 /* PersonalInformationsTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PersonalInformationsTableViewController.h; sourceTree = "<group>"; };
+		3D28988D1EF258D400664687 /* PersonalInformationsTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PersonalInformationsTableViewController.m; sourceTree = "<group>"; };
+		3D28988F1EF7A6BE00664687 /* InformationEditingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InformationEditingViewController.h; sourceTree = "<group>"; };
+		3D2898901EF7A6BE00664687 /* InformationEditingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InformationEditingViewController.m; sourceTree = "<group>"; };
+		3D2898921EF7A71000664687 /* InformationEditingCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InformationEditingCell.h; sourceTree = "<group>"; };
+		3D2898931EF7A71000664687 /* InformationEditingCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InformationEditingCell.m; sourceTree = "<group>"; };
 		3D289F651DC9B39600957421 /* RegisterPhoneCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RegisterPhoneCell.h; sourceTree = "<group>"; };
 		3D289F661DC9B39600957421 /* RegisterPhoneCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RegisterPhoneCell.m; sourceTree = "<group>"; };
 		3D32F3AC1E8B908A00353864 /* EMCallViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EMCallViewController.h; sourceTree = "<group>"; };
@@ -825,6 +837,10 @@
 				3D894B1F1DDECE08004963C7 /* UserAddressCell.m */,
 				3D894B581DED7EE0004963C7 /* ConcernedDoctorCell.h */,
 				3D894B591DED7EE0004963C7 /* ConcernedDoctorCell.m */,
+				3D2898891EF2577600664687 /* UserAvatarCell.h */,
+				3D28988A1EF2577600664687 /* UserAvatarCell.m */,
+				3D2898921EF7A71000664687 /* InformationEditingCell.h */,
+				3D2898931EF7A71000664687 /* InformationEditingCell.m */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -1257,6 +1273,10 @@
 				3D1CF7611D91338200A63F05 /* PersonalCenterTableViewController.m */,
 				3DE482591EDFB2A4004E1110 /* PersonalCenterViewController.h */,
 				3DE4825A1EDFB2A4004E1110 /* PersonalCenterViewController.m */,
+				3D28988C1EF258D400664687 /* PersonalInformationsTableViewController.h */,
+				3D28988D1EF258D400664687 /* PersonalInformationsTableViewController.m */,
+				3D28988F1EF7A6BE00664687 /* InformationEditingViewController.h */,
+				3D2898901EF7A6BE00664687 /* InformationEditingViewController.m */,
 				3D8787011DDD56DB005A8FE2 /* SystemSettingTableViewController.h */,
 				3D8787021DDD56DB005A8FE2 /* SystemSettingTableViewController.m */,
 				3D894B1B1DDEC7BF004963C7 /* EditInformationsTableViewController.h */,
@@ -2179,6 +2199,7 @@
 				3DF089FA1DD9B05300D64EA6 /* UserMessageModel.m in Sources */,
 				3DEED75C1E83730D00F96A5A /* EMAudioRecorderUtil.m in Sources */,
 				3DEED77C1E83730D00F96A5A /* UIImage+EMGIF.m in Sources */,
+				3D2898961EF8DB1B00664687 /* InformationEditingViewController.m in Sources */,
 				3DAB0F091DC88A2900908000 /* UserInfo.m in Sources */,
 				3DEED77A1E83730D00F96A5A /* NSData+EMImageContentType.m in Sources */,
 				3D8486191D8562620066E2E5 /* BaseRequest.m in Sources */,
@@ -2223,6 +2244,7 @@
 				3D90F0FA1DCADB5800D5B93A /* MessagesViewController.m in Sources */,
 				3D1CF7691D921DA300A63F05 /* PersonalInformationCell.m in Sources */,
 				3DEED7A81E83730D00F96A5A /* EaseBaseMessageCell.m in Sources */,
+				3D28988B1EF2577600664687 /* UserAvatarCell.m in Sources */,
 				3DEED76E1E83730D00F96A5A /* MWTapDetectingImageView.m in Sources */,
 				3DF089ED1DD98C2F00D64EA6 /* FilterDoctorsResultTableViewController.m in Sources */,
 				3D8486081D8409630066E2E5 /* ContentViewController.m in Sources */,
@@ -2322,6 +2344,7 @@
 				3DEED7771E83730D00F96A5A /* EMSDWebImageManager.m in Sources */,
 				3D32F3EC1E8B908A00353864 /* EMCallViewController.mm in Sources */,
 				3DE482651EE52C87004E1110 /* DoctorInformationsCell.m in Sources */,
+				3D28988E1EF258D400664687 /* PersonalInformationsTableViewController.m in Sources */,
 				3DAB0F161DC893F200908000 /* RegisterRequest.m in Sources */,
 				3D1CF7721D92845200A63F05 /* LoginViewController.m in Sources */,
 				3DF025971DD30C55008F6467 /* FetchDoctorsListRequest.m in Sources */,
@@ -2335,6 +2358,7 @@
 				3DAB0F181DC893F200908000 /* LogoutRequest.m in Sources */,
 				3D1CF77C1D93774C00A63F05 /* XLHyperLinkButton.m in Sources */,
 				3DEED7AA1E83730D00F96A5A /* EaseMessageCell.m in Sources */,
+				3D2898941EF7A71000664687 /* InformationEditingCell.m in Sources */,
 				3DEED7B01E83730D00F96A5A /* EaseBubbleView+Text.m in Sources */,
 				3D55BB3B1EE7D4A900863E00 /* HomepageNavigationController.m in Sources */,
 			);
