@@ -138,6 +138,7 @@
     } else {
         [[[XLBlockAlertView alloc] initWithTitle:@"提示" message:@"确定要退出登录吗？" block:^(NSInteger buttonIndex) {
             if (buttonIndex == 1) {
+                XLShowHUDWithMessage(nil, self.view);
                 [UserModel userLogout:^(id object, NSString *msg) {
                     if (object) {
                         [[EMClient sharedClient] logout:YES completion:^(EMError *aError) {

@@ -29,7 +29,8 @@
             ((UIScrollView *)subView).delaysContentTouches = NO;
         }
     }
-    [self myDoctorsRequest];
+    //[self myDoctorsRequest];
+    self.doctorsArray = @[@"1", @"2"];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -66,25 +67,26 @@
     return 1;
 }
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-    DoctorModel *tempModel = self.doctorsArray[indexPath.row];
-    return [DoctorInformationsCell heightOfCell:tempModel.expertise];
+//    DoctorModel *tempModel = self.doctorsArray[indexPath.row];
+//    return [DoctorInformationsCell heightOfCell:tempModel.expertise];
+    return 165.f;
 }
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     static NSString *identifier = @"DoctorInformationsCell";
     DoctorInformationsCell *cell = [tableView dequeueReusableCellWithIdentifier:identifier forIndexPath:indexPath];
-    DoctorModel *tempModel = self.doctorsArray[indexPath.row];
-    [cell fillContents:tempModel];
+    //DoctorModel *tempModel = self.doctorsArray[indexPath.row];
+    //[cell fillContents:tempModel];
     return cell;
 }
 
 #pragma mark - Table view delegate
-- (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section {
+- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
     return 5.f;
 }
-- (UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section {
-    UIView *footerView = [UIView new];
-    footerView.backgroundColor = [UIColor clearColor];
-    return footerView;
+- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
+    UIView *headerView = [UIView new];
+    headerView.backgroundColor = [UIColor clearColor];
+    return headerView;
 }
 
 /*

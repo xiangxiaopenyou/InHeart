@@ -120,13 +120,13 @@
         priceString = [NSString stringWithFormat:@"%.2f", [tempDictionary[@"price"] floatValue]];
     }
     if ([tempDictionary[@"status"] integerValue] == 1) {
-        self.prescriptionStateLabel.text = [NSString stringWithFormat:@"￥%@  未付款", priceString];
+        self.prescriptionStateLabel.text = [NSString stringWithFormat:@"￥%@", priceString];
         self.prescriptionStateLabel.textColor = XJHexRGBColorWithAlpha(0xec0202, 1);
         self.prescriptionTitleLabel.text = @"处方内容";
     } else if ([tempDictionary[@"status"] integerValue] == 2) {
         self.prescriptionStateLabel.text = [NSString stringWithFormat:@"￥%@  已付款", priceString];
         self.prescriptionStateLabel.textColor = NAVIGATIONBAR_COLOR;
-        self.prescriptionTitleLabel.text = @"处方支付";
+        self.prescriptionTitleLabel.text = @"处方支付成功";
     }
 
 }

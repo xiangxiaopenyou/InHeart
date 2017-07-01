@@ -12,6 +12,7 @@
 
 #import "XLBlockAlertView.h"
 #import "PrescriptionMessageCell.h"
+#import "XJConsultationChargeCell.h"
 
 #import "ConversationModel.h"
 #import "DoctorModel.h"
@@ -72,7 +73,7 @@
                               @"prescriptionId" : model.id,
                                        @"price" : model.price,
                                       @"status" : @(2)};
-    EMMessage *prescriptionMessage = [EaseSDKHelper sendTextMessage:@"[处方支付]" to:self.conversation.conversationId messageType:EMChatTypeChat messageExt:param];
+    EMMessage *prescriptionMessage = [EaseSDKHelper sendTextMessage:@"[处方支付成功]" to:self.conversation.conversationId messageType:EMChatTypeChat messageExt:param];
     [self addMessageToDataSource:prescriptionMessage progress:nil];
     [self.conversation insertMessage:prescriptionMessage error:nil];
     [[EMClient sharedClient].chatManager sendMessage:prescriptionMessage progress:nil completion:nil];
@@ -87,7 +88,7 @@
     id object = [self.dataArray objectAtIndex:indexPath.row];
     if (![object isKindOfClass:[NSString class]]) {
         EaseMessageModel *tempModel = object;
-        if (!tempModel.message.ext[@"prescriptionId"]) {
+        if (!tempModel.message.ext[@"prescriptionId"] && !tempModel.message.ext[@"consultationId"]) {
             EaseMessageCell *cell = (EaseMessageCell *)[self.tableView cellForRowAtIndexPath:indexPath];
             [cell becomeFirstResponder];
             self.menuIndexPath = indexPath;
@@ -98,7 +99,16 @@
 }
 - (UITableViewCell *)messageViewController:(UITableView *)tableView cellForMessageModel:(id<IMessageModel>)messageModel {
     if (messageModel.isSender) {
-        messageModel.avatarImage = [UIImage imageNamed:@"personal_avatar"];
+        if ([[NSUserDefaults standardUserDefaults] dataForKey:USERAVATARDATA]) {
+            NSData *avatarData = [[NSUserDefaults standardUserDefaults] dataForKey:USERAVATARDATA];
+            UIImage *avatar = [UIImage imageWithData:avatarData];
+            messageModel.avatarImage = avatar;
+        } else if ([[NSUserDefaults standardUserDefaults] stringForKey:USERAVATARSTRING]) {
+            NSString *urlString = [[NSUserDefaults standardUserDefaults] stringForKey:USERAVATARSTRING];
+            messageModel.avatarURLPath = urlString;
+        } else {
+            messageModel.avatarImage = [UIImage imageNamed:@"personal_avatar"];
+        }
     } else {
         if (XLIsNullObject(self.conversationModel.avatarUrl)) {
             messageModel.avatarImage = [UIImage imageNamed:@"default_doctor_avatar"];
@@ -120,11 +130,18 @@
             }
         };
         return cell;
+    } else if (messageModel.message.ext[@"consultationId"]) {
+        XJConsultationChargeCell *cell = [[XJConsultationChargeCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"Cell"];
+        cell.selectionStyle = UITableViewCellSelectionStyleNone;
+        [cell setupContents:messageModel];
+        cell.selectBlock = ^(){
+        };
+        return cell;
     }
     return nil;
 }
 - (CGFloat)messageViewController:(EaseMessageViewController *)viewController heightForMessageModel:(id<IMessageModel>)messageModel withCellWidth:(CGFloat)cellWidth {
-    if (messageModel.message.ext[@"prescriptionId"]) {
+    if (messageModel.message.ext[@"prescriptionId"] || messageModel.message.ext[@"consultationId"]) {
         return 120;
     } else {
         return [EaseMessageCell cellHeightWithModel:messageModel];

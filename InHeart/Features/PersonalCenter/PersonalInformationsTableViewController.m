@@ -56,7 +56,7 @@
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return section == 0 ? 4 : 2;
+    return section == 0 ? 4 : 1;
 }
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     return indexPath.section == 0 && indexPath.row == 0 ? 90.f : 45.f;
@@ -80,8 +80,10 @@
         }
     } else {
         UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"UserInformationCell" forIndexPath:indexPath];
+        cell.selectionStyle = UITableViewCellSelectionStyleNone;
         cell.textLabel.text = self.titleArray[indexPath.row + 4];
-        cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+        NSString *phoneString = [[NSUserDefaults standardUserDefaults] stringForKey:USERNAME];
+        cell.detailTextLabel.text = [NSString stringWithFormat:@"%@", phoneString];
         return cell;
     }
 }

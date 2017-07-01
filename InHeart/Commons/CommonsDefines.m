@@ -18,6 +18,8 @@ NSString * const USERTOKEN = @"UserToken";
 NSString * const USERNAME = @"Username";
 NSString * const USERREALNAME = @"UserRealname";
 NSString * const USERENCRYPTEDPASSWORD = @"EncryptedPassword";
+NSString * const USERAVATARDATA = @"UserAvatarData";
+NSString * const USERAVATARSTRING = @"UserAvatarString";
 NSString * const KEYCHAINSERVICE = @"com.midvision.vruser";
 
 CGFloat const TABBARHEIGHT = 49.0;

@@ -46,6 +46,9 @@
     if (userModel.userId) {
         [[NSUserDefaults standardUserDefaults] setObject:userModel.userId forKey:USERID];
     }
+    if (userModel.headPictureUrl) {
+        [[NSUserDefaults standardUserDefaults] setObject:userModel.headPictureUrl forKey:USERAVATARSTRING];
+    }
     [[NSUserDefaults standardUserDefaults] synchronize];
     return YES;
 }
@@ -66,6 +69,9 @@
     if ([[NSUserDefaults standardUserDefaults] objectForKey:USERID]) {
         model.userId = [[NSUserDefaults standardUserDefaults] objectForKey:USERID];
     }
+    if ([[NSUserDefaults standardUserDefaults] objectForKey:USERAVATARSTRING]) {
+        model.headPictureUrl = [[NSUserDefaults standardUserDefaults] objectForKey:USERAVATARSTRING];
+    }
     return model;
 }
 - (void)removeUserInfo {
@@ -74,6 +80,7 @@
     [[NSUserDefaults standardUserDefaults] removeObjectForKey:USERREALNAME];
     [[NSUserDefaults standardUserDefaults] removeObjectForKey:USERENCRYPTEDPASSWORD];
     [[NSUserDefaults standardUserDefaults] removeObjectForKey:USERID];
+    [[NSUserDefaults standardUserDefaults] removeObjectForKey:USERAVATARSTRING];
     [[NSUserDefaults standardUserDefaults] synchronize];
 }
 - (BOOL)shouldLogin:(UIViewController *)viewController {

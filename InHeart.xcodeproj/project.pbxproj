@@ -24,6 +24,7 @@
 		3D2898941EF7A71000664687 /* InformationEditingCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D2898931EF7A71000664687 /* InformationEditingCell.m */; };
 		3D2898961EF8DB1B00664687 /* InformationEditingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D2898901EF7A6BE00664687 /* InformationEditingViewController.m */; };
 		3D289F671DC9B39600957421 /* RegisterPhoneCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D289F661DC9B39600957421 /* RegisterPhoneCell.m */; };
+		3D2D779C1F06204300A7E6DC /* XJConsultationChargeCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D2D779B1F06204300A7E6DC /* XJConsultationChargeCell.m */; };
 		3D32F3EC1E8B908A00353864 /* EMCallViewController.mm in Sources */ = {isa = PBXBuildFile; fileRef = 3D32F3AD1E8B908A00353864 /* EMCallViewController.mm */; };
 		3D32F3ED1E8B908A00353864 /* EMCallViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3D32F3AE1E8B908A00353864 /* EMCallViewController.xib */; };
 		3D32F3EE1E8B908A00353864 /* EMVideoInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D32F3B01E8B908A00353864 /* EMVideoInfoViewController.m */; };
@@ -329,6 +330,8 @@
 		3D2898931EF7A71000664687 /* InformationEditingCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InformationEditingCell.m; sourceTree = "<group>"; };
 		3D289F651DC9B39600957421 /* RegisterPhoneCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RegisterPhoneCell.h; sourceTree = "<group>"; };
 		3D289F661DC9B39600957421 /* RegisterPhoneCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RegisterPhoneCell.m; sourceTree = "<group>"; };
+		3D2D779A1F06204300A7E6DC /* XJConsultationChargeCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XJConsultationChargeCell.h; sourceTree = "<group>"; };
+		3D2D779B1F06204300A7E6DC /* XJConsultationChargeCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XJConsultationChargeCell.m; sourceTree = "<group>"; };
 		3D32F3AC1E8B908A00353864 /* EMCallViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EMCallViewController.h; sourceTree = "<group>"; };
 		3D32F3AD1E8B908A00353864 /* EMCallViewController.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = EMCallViewController.mm; sourceTree = "<group>"; };
 		3D32F3AE1E8B908A00353864 /* EMCallViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = EMCallViewController.xib; sourceTree = "<group>"; };
@@ -1331,6 +1334,8 @@
 				3D8786E81DDC3F20005A8FE2 /* PrescriptionContentCell.m */,
 				3D8786FE1DDC50ED005A8FE2 /* ContentCollectionCell.h */,
 				3D8786FF1DDC50ED005A8FE2 /* ContentCollectionCell.m */,
+				3D2D779A1F06204300A7E6DC /* XJConsultationChargeCell.h */,
+				3D2D779B1F06204300A7E6DC /* XJConsultationChargeCell.m */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -2360,6 +2365,7 @@
 				3DEED7AA1E83730D00F96A5A /* EaseMessageCell.m in Sources */,
 				3D2898941EF7A71000664687 /* InformationEditingCell.m in Sources */,
 				3DEED7B01E83730D00F96A5A /* EaseBubbleView+Text.m in Sources */,
+				3D2D779C1F06204300A7E6DC /* XJConsultationChargeCell.m in Sources */,
 				3D55BB3B1EE7D4A900863E00 /* HomepageNavigationController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

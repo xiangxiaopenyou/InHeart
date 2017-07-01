@@ -25,7 +25,7 @@
     [super awakeFromNib];
     // Initialization code
     [self.commonConsultButton setBackgroundImage:[UIImage imageWithColor:XJRGBColor(180, 180, 180, 1)] forState:UIControlStateHighlighted];
-    [self.videoConsultButton setBackgroundImage:[UIImage imageWithColor:XJRGBColor(180, 180, 180, 1)] forState:UIControlStateHighlighted];
+    //[self.videoConsultButton setBackgroundImage:[UIImage imageWithColor:XJRGBColor(180, 180, 180, 1)] forState:UIControlStateHighlighted];
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {

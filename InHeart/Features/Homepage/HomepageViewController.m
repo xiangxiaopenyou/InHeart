@@ -7,6 +7,8 @@
 //
 
 #import "HomepageViewController.h"
+#import "MyDoctorsViewController.h"
+
 #import <UIImage-Helpers.h>
 #import <SDCycleScrollView.h>
 
@@ -47,6 +49,11 @@
 
 #pragma mark - IBAction
 - (IBAction)itemsAction:(id)sender {
+    UIButton *button = (UIButton *)sender;
+    if (button.tag == 100) {
+        MyDoctorsViewController *doctorListViewController = [[UIStoryboard storyboardWithName:@"Homepage" bundle:nil] instantiateViewControllerWithIdentifier:@"MyDoctors"];
+        [self.navigationController pushViewController:doctorListViewController animated:YES];
+    }
 }
 
 #pragma mark - table view data source

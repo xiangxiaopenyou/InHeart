@@ -25,6 +25,8 @@ extern NSString * const USERTOKEN;
 extern NSString * const USERNAME;
 extern NSString * const USERREALNAME;
 extern NSString * const USERENCRYPTEDPASSWORD;
+extern NSString * const USERAVATARDATA;
+extern NSString * const USERAVATARSTRING;
 extern NSString * const KEYCHAINSERVICE;
 /**
  *  常用数值

@@ -50,23 +50,23 @@
 
 #pragma mark - tableView DataSource
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    return 4;
+    return 2;
 }
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     NSInteger number = 0;
     switch (section) {
         case 0:
-            number = 1;
+            number = 3;
             break;
         case 1:
-            number = 3;
+            number = 1;
             break;
-        case 2:
-            number = 2;
-            break;
-        case 3:
-            number = 3;
-            break;
+//        case 2:
+//            number = 2;
+//            break;
+//        case 3:
+//            number = 3;
+//            break;
         default:
             break;
     }
@@ -82,24 +82,30 @@
     switch (indexPath.section) {
         case 0: {
             cell.textLabel.text = self.itemTitlesArray[indexPath.row];
-            cell.imageView.image = [UIImage imageNamed:@"personal_center_icon0"];
+            if (indexPath.row == 0) {
+                cell.imageView.image = [UIImage imageNamed:@"personal_center_icon0"];
+            } else if (indexPath.row == 1) {
+                cell.imageView.image = [UIImage imageNamed:@"personal_center_icon1"];
+            } else {
+                cell.imageView.image = [UIImage imageNamed:@"personal_center_icon4"];
+            }
         }
             break;
         case 1: {
-            cell.textLabel.text = self.itemTitlesArray[indexPath.row + 1];
-            cell.imageView.image = [UIImage imageNamed:[NSString stringWithFormat:@"personal_center_icon%@", @(indexPath.row + 1)]];
+            cell.textLabel.text = self.itemTitlesArray[indexPath.row + 3];
+            cell.imageView.image = [UIImage imageNamed:@"personal_center_icon6"];
         }
             break;
-        case 2: {
-            cell.textLabel.text = self.itemTitlesArray[indexPath.row + 4];
-            cell.imageView.image = [UIImage imageNamed:[NSString stringWithFormat:@"personal_center_icon%@", @(indexPath.row + 4)]];
-        }
-            break;
-        case 3: {
-            cell.textLabel.text = self.itemTitlesArray[indexPath.row + 6];
-            cell.imageView.image = [UIImage imageNamed:[NSString stringWithFormat:@"personal_center_icon%@", @(indexPath.row + 6)]];
-        }
-            break;
+//        case 2: {
+//            cell.textLabel.text = self.itemTitlesArray[indexPath.row + 4];
+//            cell.imageView.image = [UIImage imageNamed:[NSString stringWithFormat:@"personal_center_icon%@", @(indexPath.row + 4)]];
+//        }
+//            break;
+//        case 3: {
+//            cell.textLabel.text = self.itemTitlesArray[indexPath.row + 6];
+//            cell.imageView.image = [UIImage imageNamed:[NSString stringWithFormat:@"personal_center_icon%@", @(indexPath.row + 6)]];
+//        }
+//            break;
         default:
             break;
     }
@@ -110,26 +116,31 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     switch (indexPath.section) {
-        case 0:
-            
-            break;
-        case 1:{
+        case 0: {
             if (indexPath.row == 0) {
+                
+            } else if (indexPath.row == 1) {
                 MyDoctorsViewController *doctorListViewController = [[UIStoryboard storyboardWithName:@"Homepage" bundle:nil] instantiateViewControllerWithIdentifier:@"MyDoctors"];
                 [self.navigationController pushViewController:doctorListViewController animated:YES];
+            } else {
             }
         }
             break;
-        case 2:{
+        case 1:{
+            SystemSettingTableViewController *settingViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"SystemSetting"];
+            [self.navigationController pushViewController:settingViewController animated:YES];
         }
             break;
-        case 3:{
-            if (indexPath.row == 0) {
-                SystemSettingTableViewController *settingViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"SystemSetting"];
-                [self.navigationController pushViewController:settingViewController animated:YES];
-            }
-        }
-            break;
+//        case 2:{
+//        }
+//            break;
+//        case 3:{
+//            if (indexPath.row == 0) {
+//                SystemSettingTableViewController *settingViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"SystemSetting"];
+//                [self.navigationController pushViewController:settingViewController animated:YES];
+//            }
+//        }
+//            break;
             
         default:
             break;
@@ -173,7 +184,7 @@
 #pragma mark - getters
 - (NSArray *)itemTitlesArray {
     if (!_itemTitlesArray) {
-        _itemTitlesArray = [NSArray arrayWithObjects:NSLocalizedString(@"personal.myOrder", nil), NSLocalizedString(@"personal.myDoctors", nil), NSLocalizedString(@"personal.myAppointments", nil), NSLocalizedString(@"personal.consultionRecord", nil), NSLocalizedString(@"personal.myCollections", nil), NSLocalizedString(@"personal.myEvaluation", nil), NSLocalizedString(@"personal.setting", nil), NSLocalizedString(@"personal.feedback", nil), NSLocalizedString(@"personal.recommend", nil), nil];
+        _itemTitlesArray = [NSArray arrayWithObjects:XJMyPrescriptions, NSLocalizedString(@"personal.myDoctors", nil), /*NSLocalizedString(@"personal.myAppointments", nil), NSLocalizedString(@"personal.consultionRecord", nil),*/ NSLocalizedString(@"personal.myCollections", nil), /*NSLocalizedString(@"personal.myEvaluation", nil),*/ NSLocalizedString(@"personal.setting", nil), /*NSLocalizedString(@"personal.feedback", nil), NSLocalizedString(@"personal.recommend", nil),*/ nil];
     }
     return _itemTitlesArray;
 }

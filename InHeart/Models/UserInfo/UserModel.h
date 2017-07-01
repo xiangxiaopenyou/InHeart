@@ -15,11 +15,11 @@
 @property (strong, nonatomic) NSNumber *code;
 @property (copy, nonatomic) NSString *encryptPw;
 @property (copy, nonatomic) NSString *userId;
+@property (copy, nonatomic) NSString *headPictureUrl;
 
 + (void)userLogin:(NSString *)username password:(NSString *)password handler:(RequestResultHandler)handler;
 + (void)fetchCode:(NSString *)phoneNumber handler:(RequestResultHandler)handler;
 + (void)userRegister:(NSString *)username password:(NSString *)password code:(NSString *)verificationCode handler:(RequestResultHandler)handler;
-
 + (void)findPassword:(NSString *)username password:(NSString *)password code:(NSString *)verificationCode handler:(RequestResultHandler)handler;
 + (void)userLogout:(RequestResultHandler)handler;
 @end
