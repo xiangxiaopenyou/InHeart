@@ -69,7 +69,7 @@
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
 //    DoctorModel *tempModel = self.doctorsArray[indexPath.row];
 //    return [DoctorInformationsCell heightOfCell:tempModel.expertise];
-    return 165.f;
+    return 140.f;
 }
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     static NSString *identifier = @"DoctorInformationsCell";

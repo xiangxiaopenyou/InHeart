@@ -29,6 +29,7 @@
 
 #pragma mark - navigation controller delegate
 - (void)navigationController:(UINavigationController *)navigationController willShowViewController:(UIViewController *)viewController animated:(BOOL)animated {
+    self.interactivePopGestureRecognizer.delegate = (id)viewController;
     if ([viewController isKindOfClass:[HomepageViewController class]]) {
         [navigationController setNavigationBarHidden:YES animated:YES];
     } else {

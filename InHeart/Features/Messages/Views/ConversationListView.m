@@ -10,6 +10,8 @@
 #import "UserInfo.h"
 #import "UserMessageModel.h"
 #import "ConversationModel.h"
+#import "XJDataBase.h"
+#import "CommonUser+CoreDataClass.h"
 
 #import <GJCFUitils.h>
 
@@ -75,21 +77,21 @@
     }
     __block NSInteger count = 0;
     if (self.conversationArray.count > 0) {
-        if (self.userInformations.count >= self.conversationArray.count) {
-            for (ConversationModel *tempModel in self.conversationArray) {
-                //NSString *conversationId = tempModel.conversation.conversationId;
-                for (UserMessageModel *messageModel in self.userInformations) {
-                    if ([tempModel.conversation.conversationId isEqualToString:messageModel.phone]) {
-                        tempModel.userId = messageModel.userId;
-                        tempModel.realname = messageModel.realname;
-                        tempModel.avatarUrl = messageModel.headpictureurl;
-                    }
+        for (ConversationModel *tempModel in self.conversationArray) {
+            NSArray *users = [[XJDataBase sharedDataBase] selectUser:tempModel.conversation.conversationId];
+            if (users.count > 0) {
+                UserMessageModel *userModel = users[0];
+                [self.userInformations addObject:userModel];
+                tempModel.userId = userModel.userId;
+                tempModel.realname = userModel.realname;
+                tempModel.avatarUrl = userModel.headpictureurl;
+                count += 1;
+                if (count == self.conversationArray.count) {
+                    dispatch_async(dispatch_get_main_queue(), ^{
+                        [self.tableView reloadData];
+                    });
                 }
-            }
-            [self.tableView reloadData];
-        } else {
-            [self.userInformations removeAllObjects];
-            for (ConversationModel *tempModel in self.conversationArray) {
+            } else {
                 [UserMessageModel fetchUsersIdAndName:tempModel.conversation.conversationId handler:^(id object, NSString *msg) {
                     if (object) {
                         UserMessageModel *userModel = object;
@@ -98,6 +100,7 @@
                         tempModel.userId = userModel.userId;
                         tempModel.realname = userModel.realname;
                         tempModel.avatarUrl = userModel.headpictureurl;
+                        [[XJDataBase sharedDataBase] insertUser:userModel];
                         count += 1;
                         if (count == self.conversationArray.count) {
                             dispatch_async(dispatch_get_main_queue(), ^{
@@ -107,7 +110,41 @@
                     }
                 }];
             }
+            
         }
+//        if (self.userInformations.count >= self.conversationArray.count) {
+//            for (ConversationModel *tempModel in self.conversationArray) {
+//                //NSString *conversationId = tempModel.conversation.conversationId;
+//                for (UserMessageModel *messageModel in self.userInformations) {
+//                    if ([tempModel.conversation.conversationId isEqualToString:messageModel.phone]) {
+//                        tempModel.userId = messageModel.userId;
+//                        tempModel.realname = messageModel.realname;
+//                        tempModel.avatarUrl = messageModel.headpictureurl;
+//                    }
+//                }
+//            }
+//            [self.tableView reloadData];
+//        } else {
+//            [self.userInformations removeAllObjects];
+//            for (ConversationModel *tempModel in self.conversationArray) {
+//                [UserMessageModel fetchUsersIdAndName:tempModel.conversation.conversationId handler:^(id object, NSString *msg) {
+//                    if (object) {
+//                        UserMessageModel *userModel = object;
+//                        userModel.phone = tempModel.conversation.conversationId;
+//                        [self.userInformations addObject:userModel];
+//                        tempModel.userId = userModel.userId;
+//                        tempModel.realname = userModel.realname;
+//                        tempModel.avatarUrl = userModel.headpictureurl;
+//                        count += 1;
+//                        if (count == self.conversationArray.count) {
+//                            dispatch_async(dispatch_get_main_queue(), ^{
+//                                [self.tableView reloadData];
+//                            });
+//                        }
+//                    }
+//                }];
+//            }
+//        }
     } else {
         [self.tableView reloadData];
     }

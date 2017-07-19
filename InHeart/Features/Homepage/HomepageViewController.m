@@ -8,6 +8,8 @@
 
 #import "HomepageViewController.h"
 #import "MyDoctorsViewController.h"
+#import "XJDoctorsListViewController.h"
+#import "XJVRCenterViewController.h"
 
 #import <UIImage-Helpers.h>
 #import <SDCycleScrollView.h>
@@ -18,6 +20,8 @@
 @property (weak, nonatomic) IBOutlet UIView *topContentView;
 
 @property (strong, nonatomic) SDCycleScrollView *cycleView;
+@property (strong, nonatomic) UILabel *moreDoctorsLabel;
+@property (strong, nonatomic) UIButton *moreDoctorsButton;
 
 
 @end
@@ -53,7 +57,14 @@
     if (button.tag == 100) {
         MyDoctorsViewController *doctorListViewController = [[UIStoryboard storyboardWithName:@"Homepage" bundle:nil] instantiateViewControllerWithIdentifier:@"MyDoctors"];
         [self.navigationController pushViewController:doctorListViewController animated:YES];
+    } else if (button.tag == 103) {
+        XJVRCenterViewController *vrCenterController = [self.storyboard instantiateViewControllerWithIdentifier:@"VRCenter"];
+        [self.navigationController pushViewController:vrCenterController animated:YES];
     }
+}
+- (void)moreDoctorsAction {
+    XJDoctorsListViewController *doctorsListController = [self.storyboard instantiateViewControllerWithIdentifier:@"DoctorsList"];
+    [self.navigationController pushViewController:doctorsListController animated:YES];
 }
 
 #pragma mark - table view data source
@@ -68,6 +79,19 @@
         static NSString *identifier = @"MoreDoctorsCell";
         UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:identifier forIndexPath:indexPath];
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
+        cell.textLabel.font = XJSystemFont(15);
+        cell.textLabel.textColor = MAIN_TEXT_COLOR;
+        cell.textLabel.text = @"推荐医生";
+        [cell.contentView addSubview:self.moreDoctorsLabel];
+        [self.moreDoctorsLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.trailing.equalTo(cell.contentView.mas_trailing).with.mas_offset(0);
+            make.centerY.equalTo(cell.contentView);
+        }];
+        [cell.contentView addSubview:self.moreDoctorsButton];
+        [self.moreDoctorsButton mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.top.bottom.trailing.equalTo(cell.contentView);
+            make.width.equalTo(cell.contentView.mas_width).with.multipliedBy(0.3);
+        }];
         return cell;
     } else {
         UITableViewCell *cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"cell"];
@@ -87,7 +111,22 @@
     }
     return _cycleView;
 }
-
+- (UILabel *)moreDoctorsLabel {
+    if (!_moreDoctorsLabel) {
+        _moreDoctorsLabel = [[UILabel alloc] init];
+        _moreDoctorsLabel.text = @"更多";
+        _moreDoctorsLabel.textColor = XJHexRGBColorWithAlpha(0x999999, 1);
+        _moreDoctorsLabel.font = XJSystemFont(12);
+    }
+    return _moreDoctorsLabel;
+}
+- (UIButton *)moreDoctorsButton {
+    if (!_moreDoctorsButton) {
+        _moreDoctorsButton = [UIButton buttonWithType:UIButtonTypeCustom];
+        [_moreDoctorsButton addTarget:self action:@selector(moreDoctorsAction) forControlEvents:UIControlEventTouchUpInside];
+    }
+    return _moreDoctorsButton;
+}
 
 
 /*

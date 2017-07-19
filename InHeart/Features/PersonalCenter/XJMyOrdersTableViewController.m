@@ -1,27 +1,20 @@
 //
-//  MyConcernedDoctorsTableViewController.m
+//  XJMyOrdersTableViewController.m
 //  InHeart
 //
-//  Created by 项小盆友 on 16/11/29.
-//  Copyright © 2016年 项小盆友. All rights reserved.
+//  Created by 项小盆友 on 2017/7/4.
+//  Copyright © 2017年 项小盆友. All rights reserved.
 //
 
-#import "MyConcernedDoctorsTableViewController.h"
+#import "XJMyOrdersTableViewController.h"
+#import "XJMyOrderCell.h"
 
-#import "ConcernedDoctorCell.h"
-
-#import "DoctorModel.h"
-
-#import <UIImageView+WebCache.h>
-
-@interface MyConcernedDoctorsTableViewController ()
-
-@property (copy, nonatomic) NSArray *doctorsArray;
-@property (assign, nonatomic) NSInteger paging;
+@interface XJMyOrdersTableViewController ()
+@property (strong, nonatomic) NSMutableArray *ordersArray;
 
 @end
 
-@implementation MyConcernedDoctorsTableViewController
+@implementation XJMyOrdersTableViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -31,9 +24,7 @@
     
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
-    self.tableView.tableFooterView = [UIView new];
-    
-    [self fetchConcernedDoctors];
+    self.ordersArray = [@[@"1", @"2", @"3"] mutableCopy];
     
 }
 
@@ -42,38 +33,36 @@
     // Dispose of any resources that can be recreated.
 }
 
-#pragma mark - Getters
-
-#pragma mark - Requests
-- (void)fetchConcernedDoctors {
-    XLShowHUDWithMessage(nil, self.view);
-    [DoctorModel fetchConcernedDoctors:^(id object, NSString *msg) {
-        if (object) {
-            XLDismissHUD(self.view, NO, YES, nil);
-            _doctorsArray = [object copy];
-            [self.tableView reloadData];
-        } else {
-            XLDismissHUD(self.view, YES, NO, msg);
-        }
-    }];
-}
-
 #pragma mark - Table view data source
 
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
+    return self.ordersArray.count;
+}
+
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return _doctorsArray.count;
+    return 1;
 }
 
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    ConcernedDoctorCell *cell = [tableView dequeueReusableCellWithIdentifier:@"ConcernedCell" forIndexPath:indexPath];
-    DoctorModel *tempModel = _doctorsArray[indexPath.row];
-    [cell.avatarImageView sd_setImageWithURL:XLURLFromString(tempModel.headPictureUrl) placeholderImage:[UIImage imageNamed:@"default_doctor_avatar"]];
-    cell.nameLabel.text = XLIsNullObject(tempModel.realname) ? nil : [NSString stringWithFormat:@"%@", tempModel.realname];
-    cell.nameLabelTopConstraint.constant = XLIsNullObject(tempModel.region) ? 30 : 15;
-    cell.cityLabel.text = XLIsNullObject(tempModel.region) ? nil : [NSString stringWithFormat:@"%@", tempModel.region];
+    static NSString *identifier = @"MyOrderCell";
+    XJMyOrderCell *cell = [tableView dequeueReusableCellWithIdentifier:identifier forIndexPath:indexPath];
+    cell.selectionStyle = UITableViewCellSelectionStyleNone;
+    // Configure the cell...
+    
     return cell;
 }
+
+#pragma mark - Table view delegate
+- (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section {
+    return 15.f;
+}
+- (UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section {
+    UIView *footerView = [UIView new];
+    footerView.backgroundColor = [UIColor clearColor];
+    return footerView;
+}
+
 
 /*
 // Override to support conditional editing of the table view.
@@ -108,6 +97,14 @@
     return YES;
 }
 */
+
+#pragma mark - getters
+- (NSMutableArray *)ordersArray {
+    if (!_ordersArray) {
+        _ordersArray = [[NSMutableArray alloc] init];
+    }
+    return _ordersArray;
+}
 
 /*
 #pragma mark - Navigation

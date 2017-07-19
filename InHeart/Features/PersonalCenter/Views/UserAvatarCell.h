@@ -10,5 +10,6 @@
 
 @interface UserAvatarCell : UITableViewCell
 @property (weak, nonatomic) IBOutlet UIImageView *avatarImageView;
+@property (weak, nonatomic) IBOutlet UILabel *avatarLabel;
 
 @end

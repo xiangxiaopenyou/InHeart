@@ -14,6 +14,7 @@
 
 @interface PersonalInformationsTableViewController ()<UIImagePickerControllerDelegate, UINavigationControllerDelegate>
 @property (copy, nonatomic) NSArray *titleArray;
+@property (strong, nonatomic) UIImage *resultImage;
 
 @end
 
@@ -49,6 +50,13 @@
     [self.navigationController pushViewController:editingViewController animated:YES];
 }
 
+#pragma mark - Image picker controller delegate
+- (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary<NSString *,id> *)info {
+    [picker dismissViewControllerAnimated:YES completion:nil];
+    _resultImage = info[@"UIImagePickerControllerEditedImage"];
+    [self.tableView reloadData];
+}
+
 #pragma mark - Table view data source
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
@@ -68,9 +76,13 @@
         if (indexPath.row == 0) {
              static NSString *identifier = @"AvatarCell";
             UserAvatarCell *cell = [tableView dequeueReusableCellWithIdentifier:identifier forIndexPath:indexPath];
-            cell.textLabel.text = self.titleArray[indexPath.row];
-            cell.textLabel.font = XJSystemFont(15);
-            cell.textLabel.textColor = MAIN_TEXT_COLOR;
+            cell.avatarLabel.text = self.titleArray[indexPath.row];
+            if (_resultImage) {
+                cell.avatarImageView.image = _resultImage;
+            } else if ([[NSUserDefaults standardUserDefaults] stringForKey:USERAVATARSTRING]) {
+                NSString *avatarUrlString = [[NSUserDefaults standardUserDefaults] stringForKey:USERAVATARSTRING];
+                [cell.avatarImageView sd_setImageWithURL:XLURLFromString(avatarUrlString) placeholderImage:nil];
+            }
             return cell;
         } else {
             UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"UserInformationCell" forIndexPath:indexPath];

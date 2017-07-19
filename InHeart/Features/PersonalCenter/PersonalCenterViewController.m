@@ -10,6 +10,7 @@
 #import "SystemSettingTableViewController.h"
 #import "MyDoctorsViewController.h"
 #import "PersonalInformationsTableViewController.h"
+#import "XJMyOrdersTableViewController.h"
 
 @interface PersonalCenterViewController ()<UITableViewDelegate, UITableViewDataSource>
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
@@ -118,7 +119,8 @@
     switch (indexPath.section) {
         case 0: {
             if (indexPath.row == 0) {
-                
+                XJMyOrdersTableViewController *myOrdersController = [self.storyboard instantiateViewControllerWithIdentifier:@"MyOrders"];
+                [self.navigationController pushViewController:myOrdersController animated:YES];
             } else if (indexPath.row == 1) {
                 MyDoctorsViewController *doctorListViewController = [[UIStoryboard storyboardWithName:@"Homepage" bundle:nil] instantiateViewControllerWithIdentifier:@"MyDoctors"];
                 [self.navigationController pushViewController:doctorListViewController animated:YES];
@@ -184,7 +186,7 @@
 #pragma mark - getters
 - (NSArray *)itemTitlesArray {
     if (!_itemTitlesArray) {
-        _itemTitlesArray = [NSArray arrayWithObjects:XJMyPrescriptions, NSLocalizedString(@"personal.myDoctors", nil), /*NSLocalizedString(@"personal.myAppointments", nil), NSLocalizedString(@"personal.consultionRecord", nil),*/ NSLocalizedString(@"personal.myCollections", nil), /*NSLocalizedString(@"personal.myEvaluation", nil),*/ NSLocalizedString(@"personal.setting", nil), /*NSLocalizedString(@"personal.feedback", nil), NSLocalizedString(@"personal.recommend", nil),*/ nil];
+        _itemTitlesArray = @[/*XJMyPrescriptions*/ NSLocalizedString(@"personal.myOrder", nil), NSLocalizedString(@"personal.myDoctors", nil), /*NSLocalizedString(@"personal.myAppointments", nil), NSLocalizedString(@"personal.consultionRecord", nil),*/ NSLocalizedString(@"personal.myCollections", nil), /*NSLocalizedString(@"personal.myEvaluation", nil),*/ NSLocalizedString(@"personal.setting", nil), /*NSLocalizedString(@"personal.feedback", nil), NSLocalizedString(@"personal.recommend", nil),*/];
     }
     return _itemTitlesArray;
 }
