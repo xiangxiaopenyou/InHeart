@@ -124,10 +124,10 @@
     }];
 }
 - (IBAction)loginClick:(id)sender {
-    if (!GJCFStringIsMobilePhone(self.phoneTextField.text)) {
-        XLShowThenDismissHUD(NO, XJInputCorrectPhoneNumberTip, self.view);
-        return;
-    }
+//    if (!GJCFStringIsMobilePhone(self.phoneTextField.text)) {
+//        XLShowThenDismissHUD(NO, XJInputCorrectPhoneNumberTip, self.view);
+//        return;
+//    }
 //    if (XLIsNullObject(self.passwordTextField.text)) {
 //        XLShowThenDismissHUD(NO, XJInputPasswordTip, self.view);
 //        return;
