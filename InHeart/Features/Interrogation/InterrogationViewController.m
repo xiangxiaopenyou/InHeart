@@ -20,7 +20,6 @@
 
 #import <ChineseString.h>
 #import <MJRefresh.h>
-#import <GJCFUitils.h>
 
 @interface InterrogationViewController ()<UIScrollViewDelegate, UITableViewDelegate, UITableViewDataSource>
 @property (weak, nonatomic) IBOutlet UIView *viewOfTopTab;

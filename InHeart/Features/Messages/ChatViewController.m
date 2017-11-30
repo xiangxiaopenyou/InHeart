@@ -37,6 +37,11 @@
     //[EaseBaseMessageCell appearance].hasRead.hidden = YES;
     self.delegate = self;
     self.dataSource = self;
+    if (@available(iOS 11.0, *)) {
+        self.tableView.contentInsetAdjustmentBehavior = UIScrollViewContentInsetAdjustmentNever;
+    } else {
+        
+    }
 }
 
 - (void)didReceiveMemoryWarning {

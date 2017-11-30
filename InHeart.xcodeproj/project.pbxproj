@@ -168,6 +168,8 @@
 		3DCE05321D90E7BC0017B2E6 /* DoctorModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DCE05311D90E7BC0017B2E6 /* DoctorModel.m */; };
 		3DD924A41EE927CF00E32FF6 /* News.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3DD924A31EE927CF00E32FF6 /* News.storyboard */; };
 		3DD924A71EEE35CD00E32FF6 /* NewsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DD924A61EEE35CD00E32FF6 /* NewsViewController.m */; };
+		3DD9F8EA1FCE5782001509D5 /* Hyphenate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3DD9F8E91FCE5782001509D5 /* Hyphenate.framework */; };
+		3DD9F8ED1FCE94F5001509D5 /* XJRecommendedDoctorCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DD9F8EC1FCE94F5001509D5 /* XJRecommendedDoctorCell.m */; };
 		3DE4825B1EDFB2A4004E1110 /* PersonalCenterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DE4825A1EDFB2A4004E1110 /* PersonalCenterViewController.m */; };
 		3DE4825E1EDFECDE004E1110 /* PersonalNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DE4825D1EDFECDE004E1110 /* PersonalNavigationController.m */; };
 		3DE482611EE52C1F004E1110 /* MyDoctorsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DE482601EE52C1F004E1110 /* MyDoctorsViewController.m */; };
@@ -274,7 +276,6 @@
 		3DEED7BD1E83730D00F96A5A /* EaseUIResource.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 3DEED7591E83730D00F96A5A /* EaseUIResource.bundle */; };
 		3DEED7C41E83747A00F96A5A /* Hyphenate.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 3DEED7C11E83746800F96A5A /* Hyphenate.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		3DEED7C71E8374D800F96A5A /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DEED7C61E8374D800F96A5A /* AppDelegate.m */; };
-		3DEED7C91E83898B00F96A5A /* Hyphenate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3DEED7C81E83898B00F96A5A /* Hyphenate.framework */; };
 		3DF025971DD30C55008F6467 /* FetchDoctorsListRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DF025961DD30C55008F6467 /* FetchDoctorsListRequest.m */; };
 		3DF089EA1DD9855000D64EA6 /* ContentTypeModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DF089E91DD9855000D64EA6 /* ContentTypeModel.m */; };
 		3DF089ED1DD98C2F00D64EA6 /* FilterDoctorsResultTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DF089EC1DD98C2F00D64EA6 /* FilterDoctorsResultTableViewController.m */; };
@@ -565,6 +566,9 @@
 		3DD924A31EE927CF00E32FF6 /* News.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = News.storyboard; sourceTree = "<group>"; };
 		3DD924A51EEE35CD00E32FF6 /* NewsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewsViewController.h; sourceTree = "<group>"; };
 		3DD924A61EEE35CD00E32FF6 /* NewsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewsViewController.m; sourceTree = "<group>"; };
+		3DD9F8E91FCE5782001509D5 /* Hyphenate.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Hyphenate.framework; sourceTree = "<group>"; };
+		3DD9F8EB1FCE94F5001509D5 /* XJRecommendedDoctorCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XJRecommendedDoctorCell.h; sourceTree = "<group>"; };
+		3DD9F8EC1FCE94F5001509D5 /* XJRecommendedDoctorCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = XJRecommendedDoctorCell.m; sourceTree = "<group>"; };
 		3DE482591EDFB2A4004E1110 /* PersonalCenterViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PersonalCenterViewController.h; sourceTree = "<group>"; };
 		3DE4825A1EDFB2A4004E1110 /* PersonalCenterViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PersonalCenterViewController.m; sourceTree = "<group>"; };
 		3DE4825C1EDFECDE004E1110 /* PersonalNavigationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PersonalNavigationController.h; sourceTree = "<group>"; };
@@ -791,7 +795,6 @@
 		3DEED7591E83730D00F96A5A /* EaseUIResource.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = EaseUIResource.bundle; sourceTree = "<group>"; };
 		3DEED7C11E83746800F96A5A /* Hyphenate.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Hyphenate.framework; path = /Users/xiangxiaopenyou/Desktop/InHeart/InHeart/ThirdLibs/HyphenateFullSDK/Hyphenate.framework; sourceTree = "<absolute>"; };
 		3DEED7C61E8374D800F96A5A /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		3DEED7C81E83898B00F96A5A /* Hyphenate.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Hyphenate.framework; sourceTree = "<group>"; };
 		3DF025951DD30C55008F6467 /* FetchDoctorsListRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FetchDoctorsListRequest.h; sourceTree = "<group>"; };
 		3DF025961DD30C55008F6467 /* FetchDoctorsListRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FetchDoctorsListRequest.m; sourceTree = "<group>"; };
 		3DF089E81DD9855000D64EA6 /* ContentTypeModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ContentTypeModel.h; sourceTree = "<group>"; };
@@ -822,7 +825,7 @@
 				3D3F8D201ECAAA820040C0D5 /* libz.tbd in Frameworks */,
 				3D3F8D1E1ECAAA730040C0D5 /* SystemConfiguration.framework in Frameworks */,
 				3D7F7A3F1DC745B10009C668 /* UtoVRPlayer.framework in Frameworks */,
-				3DEED7C91E83898B00F96A5A /* Hyphenate.framework in Frameworks */,
+				3DD9F8EA1FCE5782001509D5 /* Hyphenate.framework in Frameworks */,
 				3D3F8D1C1ECAAA490040C0D5 /* libWeChatSDK.a in Frameworks */,
 				3DEED7651E83730D00F96A5A /* libopencore-amrnb.a in Frameworks */,
 				3DEED7661E83730D00F96A5A /* libopencore-amrwb.a in Frameworks */,
@@ -1093,6 +1096,7 @@
 				3D80D40C1D827CCB005B8FD0 /* Products */,
 				0084AA091818A375ED241B1F /* Frameworks */,
 				4AE5E1AC7716E251BCD7581B /* Pods */,
+				3DD9F8E81FCE56BB001509D5 /* Recovered References */,
 			);
 			sourceTree = "<group>";
 		};
@@ -1452,6 +1456,14 @@
 			path = News;
 			sourceTree = "<group>";
 		};
+		3DD9F8E81FCE56BB001509D5 /* Recovered References */ = {
+			isa = PBXGroup;
+			children = (
+				3DEED7C11E83746800F96A5A /* Hyphenate.framework */,
+			);
+			name = "Recovered References";
+			sourceTree = "<group>";
+		};
 		3DE482621EE52C69004E1110 /* Views */ = {
 			isa = PBXGroup;
 			children = (
@@ -1459,6 +1471,8 @@
 				3DE482641EE52C87004E1110 /* DoctorInformationsCell.m */,
 				3D25F07C1F0F335A00B31571 /* XJVRRoomCell.h */,
 				3D25F07D1F0F335A00B31571 /* XJVRRoomCell.m */,
+				3DD9F8EB1FCE94F5001509D5 /* XJRecommendedDoctorCell.h */,
+				3DD9F8EC1FCE94F5001509D5 /* XJRecommendedDoctorCell.m */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -1953,7 +1967,7 @@
 		3DEED7C01E83746800F96A5A /* HyphenateFullSDK */ = {
 			isa = PBXGroup;
 			children = (
-				3DEED7C81E83898B00F96A5A /* Hyphenate.framework */,
+				3DD9F8E91FCE5782001509D5 /* Hyphenate.framework */,
 			);
 			path = HyphenateFullSDK;
 			sourceTree = "<group>";
@@ -2050,8 +2064,8 @@
 				TargetAttributes = {
 					3D80D40A1D827CCB005B8FD0 = {
 						CreatedOnToolsVersion = 7.3;
-						DevelopmentTeam = TC6ARYK6RK;
-						ProvisioningStyle = Automatic;
+						DevelopmentTeam = NU4X48R8LQ;
+						ProvisioningStyle = Manual;
 						SystemCapabilities = {
 							com.apple.BackgroundModes = {
 								enabled = 1;
@@ -2262,6 +2276,7 @@
 				3DFF70941EEE623F0005D4F1 /* NewsTopCell.m in Sources */,
 				3DE482611EE52C1F004E1110 /* MyDoctorsViewController.m in Sources */,
 				3DAB0F0A1DC88A2900908000 /* UserModel.m in Sources */,
+				3DD9F8ED1FCE94F5001509D5 /* XJRecommendedDoctorCell.m in Sources */,
 				3D894B261DE2F1D8004963C7 /* EditInformationsRequest.m in Sources */,
 				3D3F8CFC1ECA9A280040C0D5 /* PrescriptionDetailInformationCell.m in Sources */,
 				3DAB0F171DC893F200908000 /* FindPasswordRequest.m in Sources */,
@@ -2544,7 +2559,8 @@
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_ENTITLEMENTS = InHeart/InHeart.entitlements;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				DEVELOPMENT_TEAM = TC6ARYK6RK;
+				CODE_SIGN_STYLE = Manual;
+				DEVELOPMENT_TEAM = NU4X48R8LQ;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -2562,8 +2578,10 @@
 					"$(PROJECT_DIR)/InHeart/ThirdLibs/EaseUI/EMUIKit/3rdparty/DeviceHelper/VoiceConvert/opencore-amrwb",
 					"$(PROJECT_DIR)/InHeart/ThirdLibs/WechatPay",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.medvision.vruser;
+				PRODUCT_BUNDLE_IDENTIFIER = com.medvision.vrpatient;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "08b44221-741f-4135-ab65-f0ab054c0df4";
+				PROVISIONING_PROFILE_SPECIFIER = "VRPatient-development";
 				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
@@ -2575,8 +2593,9 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_ENTITLEMENTS = InHeart/InHeart.entitlements;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				DEVELOPMENT_TEAM = TC6ARYK6RK;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
+				CODE_SIGN_STYLE = Manual;
+				DEVELOPMENT_TEAM = NU4X48R8LQ;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -2594,8 +2613,10 @@
 					"$(PROJECT_DIR)/InHeart/ThirdLibs/EaseUI/EMUIKit/3rdparty/DeviceHelper/VoiceConvert/opencore-amrwb",
 					"$(PROJECT_DIR)/InHeart/ThirdLibs/WechatPay",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.medvision.vruser;
+				PRODUCT_BUNDLE_IDENTIFIER = com.medvision.vrpatient;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "64f3e1f1-7a0c-4fdf-b09e-247cc7fae469";
+				PROVISIONING_PROFILE_SPECIFIER = "VRPatient-distribution";
 				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;

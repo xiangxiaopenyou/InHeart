@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12121" systemVersion="16F73" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="8Iq-Qy-BBr">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="8Iq-Qy-BBr">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12089"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13527"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -14,7 +14,7 @@
             <objects>
                 <navigationController id="8Iq-Qy-BBr" sceneMemberID="viewController">
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="DaT-xK-D4c">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <rect key="frame" x="0.0" y="20" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <connections>
@@ -62,26 +62,8 @@
                                     <rect key="frame" x="0.0" y="256" width="375" height="134"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     <subviews>
-                                        <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wwe-rU-CV8">
-                                            <rect key="frame" x="22" y="5" width="62" height="30"/>
-                                            <state key="normal" title="立即注册">
-                                                <color key="titleColor" red="0.32156862749999998" green="0.72156862749999995" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                            </state>
-                                            <connections>
-                                                <action selector="registerNowClick:" destination="cNQ-Ny-ykk" eventType="touchUpInside" id="g0p-dq-0le"/>
-                                            </connections>
-                                        </button>
-                                        <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1Wd-Ly-HgS">
-                                            <rect key="frame" x="291" y="5" width="62" height="30"/>
-                                            <state key="normal" title="忘记密码">
-                                                <color key="titleColor" red="0.66666666666666663" green="0.66666666666666663" blue="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                            </state>
-                                            <connections>
-                                                <action selector="forgetPasswordClick:" destination="cNQ-Ny-ykk" eventType="touchUpInside" id="EaR-sa-8ZZ"/>
-                                            </connections>
-                                        </button>
                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DIX-BG-ge1">
-                                            <rect key="frame" x="22" y="70" width="331" height="45"/>
+                                            <rect key="frame" x="22" y="25" width="331" height="45"/>
                                             <color key="backgroundColor" red="0.32156862749999998" green="0.72156862749999995" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="45" id="kNT-eU-0lU"/>
@@ -103,13 +85,9 @@
                                     </subviews>
                                     <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     <constraints>
-                                        <constraint firstAttribute="trailing" secondItem="1Wd-Ly-HgS" secondAttribute="trailing" constant="22" id="Aea-XZ-ygq"/>
-                                        <constraint firstItem="1Wd-Ly-HgS" firstAttribute="top" secondItem="fhH-l9-hVp" secondAttribute="top" constant="5" id="KYS-bZ-koP"/>
-                                        <constraint firstItem="wwe-rU-CV8" firstAttribute="leading" secondItem="fhH-l9-hVp" secondAttribute="leading" constant="22" id="RPr-KH-QyF"/>
+                                        <constraint firstItem="DIX-BG-ge1" firstAttribute="top" secondItem="fhH-l9-hVp" secondAttribute="top" constant="25" id="T67-pl-PHv"/>
                                         <constraint firstItem="DIX-BG-ge1" firstAttribute="leading" secondItem="fhH-l9-hVp" secondAttribute="leading" constant="22" id="j3Q-0C-bbs"/>
-                                        <constraint firstItem="wwe-rU-CV8" firstAttribute="top" secondItem="fhH-l9-hVp" secondAttribute="top" constant="5" id="oRw-B1-3eo"/>
                                         <constraint firstAttribute="trailing" secondItem="DIX-BG-ge1" secondAttribute="trailing" constant="22" id="wfG-uq-VvT"/>
-                                        <constraint firstItem="DIX-BG-ge1" firstAttribute="top" secondItem="wwe-rU-CV8" secondAttribute="bottom" constant="35" id="yl6-R6-96s"/>
                                     </constraints>
                                 </view>
                                 <prototypes>

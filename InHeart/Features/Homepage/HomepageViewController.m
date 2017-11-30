@@ -10,6 +10,12 @@
 #import "MyDoctorsViewController.h"
 #import "XJDoctorsListViewController.h"
 #import "XJVRCenterViewController.h"
+#import "ChatViewController.h"
+
+#import "XJRecommendedDoctorCell.h"
+
+#import "DoctorModel.h"
+#import "ConversationModel.h"
 
 #import <UIImage-Helpers.h>
 #import <SDCycleScrollView.h>
@@ -22,6 +28,8 @@
 @property (strong, nonatomic) SDCycleScrollView *cycleView;
 @property (strong, nonatomic) UILabel *moreDoctorsLabel;
 @property (strong, nonatomic) UIButton *moreDoctorsButton;
+
+@property (copy, nonatomic) NSArray *doctorsArray;
 
 
 @end
@@ -42,6 +50,7 @@
                                                    @"http://img1.3lian.com/img013/v4/57/d/8.jpg",
                                                    @"http://img1.3lian.com/img013/v4/57/d/2.jpg"
                                                    ];
+    [self recommendedDoctorsListRequest];
 }
 - (void)viewWillAppear:(BOOL)animated {
     [self.cycleView adjustWhenControllerViewWillAppera];
@@ -67,36 +76,72 @@
     [self.navigationController pushViewController:doctorsListController animated:YES];
 }
 
+#pragma mark - request
+- (void)recommendedDoctorsListRequest {
+    [DoctorModel fetchDoctorsList:nil region:nil disease:nil paging:@0 handler:^(id object, NSString *msg) {
+        if (object) {
+            self.doctorsArray = [object copy];
+            GJCFAsyncMainQueue(^{
+                [self.tableView reloadData];
+            });
+        } else {
+            XLDismissHUD(self.view, YES, NO, msg);
+        }
+    }];
+}
+
 #pragma mark - table view data source
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return 3;
+    return self.doctorsArray.count;
 }
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-    return indexPath.row == 0 ? 40.f : 70.f;
+    return 80.f;
 }
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    if (indexPath.row == 0) {
-        static NSString *identifier = @"MoreDoctorsCell";
-        UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:identifier forIndexPath:indexPath];
-        cell.selectionStyle = UITableViewCellSelectionStyleNone;
-        cell.textLabel.font = XJSystemFont(15);
-        cell.textLabel.textColor = MAIN_TEXT_COLOR;
-        cell.textLabel.text = @"推荐医生";
-        [cell.contentView addSubview:self.moreDoctorsLabel];
-        [self.moreDoctorsLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.trailing.equalTo(cell.contentView.mas_trailing).with.mas_offset(0);
-            make.centerY.equalTo(cell.contentView);
-        }];
-        [cell.contentView addSubview:self.moreDoctorsButton];
-        [self.moreDoctorsButton mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.top.bottom.trailing.equalTo(cell.contentView);
-            make.width.equalTo(cell.contentView.mas_width).with.multipliedBy(0.3);
-        }];
-        return cell;
-    } else {
-        UITableViewCell *cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"cell"];
-        return cell;
-    }
+    XJRecommendedDoctorCell *cell = [tableView dequeueReusableCellWithIdentifier:@"RecommendedDoctorCell" forIndexPath:indexPath];
+    DoctorModel *tempModel = self.doctorsArray[indexPath.row];
+    [cell.avatarImageView sd_setImageWithURL:XLURLFromString(tempModel.headPictureUrl) placeholderImage:[UIImage imageNamed:@"default_doctor_avatar"]];
+    cell.nameLabel.text = tempModel.realname;
+    cell.titleLabel.text = tempModel.title ? tempModel.title : nil;
+    cell.hospitalLabel.text = tempModel.hospital ? tempModel.hospital : @"未知医院";
+    cell.expertiseLabel.text = tempModel.expertise ? [NSString stringWithFormat:@"擅长：%@", tempModel.expertise] : @"擅长：未知";
+    return cell;
+}
+
+#pragma mark - table view delegate
+- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
+    return 40.f;
+}
+- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
+    UIView *headerView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 40.f)];
+    headerView.backgroundColor = MAIN_BACKGROUND_COLOR;
+    UILabel *headerLabel = [[UILabel alloc] init];
+    headerLabel.text = @"推荐医生";
+    headerLabel.font = XJSystemFont(15);
+    headerLabel.textColor = MAIN_TEXT_COLOR;
+    [headerView addSubview:headerLabel];
+    [headerLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.leading.equalTo(headerView.mas_leading).with.mas_offset(15);
+        make.centerY.equalTo(headerView);
+    }];
+    [headerView addSubview:self.moreDoctorsButton];
+    [self.moreDoctorsButton mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.bottom.trailing.equalTo(headerView);
+        make.width.mas_offset(100);
+    }];
+    return headerView;
+}
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    ConversationModel *tempModel = [[ConversationModel alloc] init];
+    DoctorModel *doctorModel = self.doctorsArray[indexPath.row];
+    tempModel.userId = doctorModel.id;
+    tempModel.realname = doctorModel.realname;
+    tempModel.avatarUrl = doctorModel.headPictureUrl;
+    ChatViewController *chatViewController = [[ChatViewController alloc] initWithConversationChatter:doctorModel.mobile conversationType:EMConversationTypeChat];
+    chatViewController.hidesBottomBarWhenPushed = YES;
+    chatViewController.conversationModel = tempModel;
+    [self.navigationController pushViewController:chatViewController animated:YES];
 }
 
 #pragma mark - Getters
@@ -111,19 +156,16 @@
     }
     return _cycleView;
 }
-- (UILabel *)moreDoctorsLabel {
-    if (!_moreDoctorsLabel) {
-        _moreDoctorsLabel = [[UILabel alloc] init];
-        _moreDoctorsLabel.text = @"更多";
-        _moreDoctorsLabel.textColor = XJHexRGBColorWithAlpha(0x999999, 1);
-        _moreDoctorsLabel.font = XJSystemFont(12);
-    }
-    return _moreDoctorsLabel;
-}
 - (UIButton *)moreDoctorsButton {
     if (!_moreDoctorsButton) {
         _moreDoctorsButton = [UIButton buttonWithType:UIButtonTypeCustom];
+        [_moreDoctorsButton setTitle:@"更多" forState:UIControlStateNormal];
+        [_moreDoctorsButton setTitleColor:MAIN_TEXT_COLOR forState:UIControlStateNormal];
+        _moreDoctorsButton.titleLabel.font = XJSystemFont(15);
+        [_moreDoctorsButton setImage:[UIImage imageNamed:@"more_news"] forState:UIControlStateNormal];
         [_moreDoctorsButton addTarget:self action:@selector(moreDoctorsAction) forControlEvents:UIControlEventTouchUpInside];
+        [_moreDoctorsButton setImageEdgeInsets:UIEdgeInsetsMake(0, 0, 0, - 90)];
+        [_moreDoctorsButton setTitleEdgeInsets:UIEdgeInsetsMake(0, - 20, 0, 0)];
     }
     return _moreDoctorsButton;
 }

@@ -14,17 +14,15 @@
     if (!paramsBlock(self)) {
         return;
     }
-    NSMutableDictionary *param = [@{@"username" : self.username,
-                                    @"password" : self.password,
-                                    @"deviceId" : XLMobileModel,
-                                    @"appVersion" : @(XLAppVersion),
-                                    @"deviceSystem" : @"iOS",
-                                    @"deviceVersion" : XLSystemVersion,
-                                    @"appId" : XLIDFVString,
-                                    @"channel" : @"AppStore"} mutableCopy];
 //    NSMutableDictionary *param = [@{@"username" : self.username,
-//                                    @"password" : self.password
-//                                    } mutableCopy];
+//                                    @"password" : self.password,
+//                                    @"deviceId" : XLMobileModel,
+//                                    @"appVersion" : @(XLAppVersion),
+//                                    @"deviceSystem" : @"iOS",
+//                                    @"deviceVersion" : XLSystemVersion,
+//                                    @"appId" : XLIDFVString,
+//                                    @"channel" : @"AppStore"} mutableCopy];
+    NSDictionary *param = @{ @"username" : self.username, @"captcha" : self.captcha };
     [[RequestManager sharedInstance] POST:USER_LOGIN parameters:param progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nonnull responseObject) {
         if (![responseObject[@"success"] boolValue]) {
             !resultHandler ?: resultHandler(nil, responseObject[@"message"]);

@@ -13,7 +13,7 @@
     if (!paramsBlock(self)) {
         return;
     }
-    NSDictionary *param = @{@"mobile" : self.phoneNumber};
+    NSDictionary *param = @{ @"mobile" : self.phoneNumber, @"type" : @3 };
     [[RequestManager sharedInstance] POST:FETCH_VERIFICATION_CODE parameters:param progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nonnull responseObject) {
         if ([responseObject[@"success"] boolValue]) {
             !resultHandler ?: resultHandler(responseObject, nil);

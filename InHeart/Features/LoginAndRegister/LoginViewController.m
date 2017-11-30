@@ -7,20 +7,19 @@
 //
 
 #import "LoginViewController.h"
-#import "RegisterViewController.h"
 
 #import "LoginContentCell.h"
 #import "RegisterPhoneCell.h"
 
 #import "UserModel.h"
 #import "UserInfo.h"
-#import <OpenShareHeader.h>
 
 @interface LoginViewController ()<UITableViewDelegate, UITableViewDataSource, UITextFieldDelegate>
 @property (strong, nonatomic) UITextField *phoneTextField;
 @property (strong, nonatomic) UITextField *codeTextField;
 @property (strong, nonatomic) UIButton *fetchCodeButton;
-//@property (strong, nonatomic) UITextField *passwordTextField;
+@property (strong, nonatomic) NSTimer *timer;
+@property (assign, nonatomic) NSInteger countInt;
 
 @end
 
@@ -34,6 +33,8 @@
 - (void)viewWillDisappear:(BOOL)animated {
     [super viewWillDisappear:animated];
     [self resignFirstResponder];
+    [self.timer invalidate];
+    self.timer = nil;
 }
 
 - (void)didReceiveMemoryWarning {
@@ -47,15 +48,45 @@
 }
 
 - (void)fetchCodeClick {
+    if (!GJCFStringIsMobilePhone(self.phoneTextField.text)) {
+        XLShowThenDismissHUD(NO, XJInputCorrectPhoneNumberTip, self.view);
+        return;
+    }
+    XLShowHUDWithMessage(nil, self.view);
+    self.fetchCodeButton.enabled = NO;
+    [UserModel fetchCode:self.phoneTextField.text handler:^(id object, NSString *msg) {
+        if (msg) {
+            XLDismissHUD(self.view, YES, NO, msg);
+            [self.timer invalidate];
+            self.timer = nil;
+            self.fetchCodeButton.enabled = YES;
+            [self.fetchCodeButton setTitle:XJFetchVerificationCode forState:UIControlStateNormal];
+            [self.fetchCodeButton setTitleColor:NAVIGATIONBAR_COLOR forState:UIControlStateNormal];
+        } else {
+            XLDismissHUD(self.view, YES, YES, @"验证码已发送");
+            self.countInt = 60;
+            [self.fetchCodeButton setTitle:[NSString stringWithFormat:@"%@", @(self.countInt)] forState:UIControlStateNormal];
+            [self.fetchCodeButton setTitleColor:BREAK_LINE_COLOR forState:UIControlStateNormal];
+            if (!self.timer) {
+                self.timer = [NSTimer scheduledTimerWithTimeInterval:1.0 target:self selector:@selector(countNumber) userInfo:nil repeats:YES];
+                [[NSRunLoop currentRunLoop] addTimer:self.timer forMode:NSRunLoopCommonModes];
+            }
+        }
+    }];
 }
-
-//#pragma mark - UITextFieldDelegate
-//- (BOOL)textFieldShouldReturn:(UITextField *)textField {
-//    if (textField == self.passwordTextField) {
-//        [self.passwordTextField resignFirstResponder];
-//    }
-//    return YES;
-//}
+- (void)countNumber {
+    if (self.countInt == 0) {
+        [self.timer invalidate];
+        self.timer = nil;
+        self.fetchCodeButton.enabled = YES;
+        [self.fetchCodeButton setTitle:XJFetchVerificationCode forState:UIControlStateNormal];
+        [self.fetchCodeButton setTitleColor:NAVIGATIONBAR_COLOR forState:UIControlStateNormal];
+        
+    } else {
+        self.countInt -= 1;
+        [self.fetchCodeButton setTitle:[NSString stringWithFormat:@"%@", @(self.countInt)] forState:UIControlStateNormal];
+    }
+}
 
 #pragma mark - UITableView Delegate DataSource
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
@@ -110,31 +141,14 @@
 */
 
 #pragma mark - Action & Selector
-- (IBAction)registerNowClick:(id)sender {
-    RegisterViewController *registerViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"Register"];
-    [self.navigationController pushViewController:registerViewController animated:YES];
-}
-- (IBAction)forgetPasswordClick:(id)sender {
-}
-- (IBAction)wechatLoginAction:(id)sender {
-    [OpenShare WeixinAuth:@"snsapi_userinfo" Success:^(NSDictionary *message) {
-        
-    } Fail:^(NSDictionary *message, NSError *error) {
-        
-    }];
-}
 - (IBAction)loginClick:(id)sender {
-//    if (!GJCFStringIsMobilePhone(self.phoneTextField.text)) {
-//        XLShowThenDismissHUD(NO, XJInputCorrectPhoneNumberTip, self.view);
-//        return;
-//    }
-//    if (XLIsNullObject(self.passwordTextField.text)) {
-//        XLShowThenDismissHUD(NO, XJInputPasswordTip, self.view);
-//        return;
-//    }
     [self resignTextField];
+    if (XLIsNullObject(self.codeTextField.text)) {
+        XLDismissHUD(self.view, YES, NO, @"请输入验证码");
+        return;
+    }
     XLShowHUDWithMessage(nil, self.view);
-    [UserModel userLogin:@"15658888800" password:@"qaz123" handler:^(id object, NSString *msg) {
+    [UserModel userLogin:self.phoneTextField.text password:self.codeTextField.text handler:^(id object, NSString *msg) {
         if (object) {
             UserModel *userModel = object;
             if ([[UserInfo sharedUserInfo] saveUserInfo:userModel]) {
