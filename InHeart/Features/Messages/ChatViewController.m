@@ -31,6 +31,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    self.hidesBottomBarWhenPushed = YES;
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"chat_person"] style:UIBarButtonItemStylePlain target:self action:@selector(rightButtonAction)];
     self.title = XLIsNullObject(self.conversationModel.realname) ? self.conversationModel.conversation.conversationId : self.conversationModel.realname;
     [[EaseBaseMessageCell appearance] setMessageNameIsHidden:YES];
@@ -78,7 +79,7 @@
                               @"prescriptionId" : model.id,
                                        @"price" : model.price,
                                       @"status" : @(2)};
-    EMMessage *prescriptionMessage = [EaseSDKHelper sendTextMessage:@"[处方支付成功]" to:self.conversation.conversationId messageType:EMChatTypeChat messageExt:param];
+    EMMessage *prescriptionMessage = [EaseSDKHelper getTextMessage:@"[处方支付成功]" to:self.conversation.conversationId messageType:EMChatTypeChat messageExt:param];
     [self addMessageToDataSource:prescriptionMessage progress:nil];
     [self.conversation insertMessage:prescriptionMessage error:nil];
     [[EMClient sharedClient].chatManager sendMessage:prescriptionMessage progress:nil completion:nil];

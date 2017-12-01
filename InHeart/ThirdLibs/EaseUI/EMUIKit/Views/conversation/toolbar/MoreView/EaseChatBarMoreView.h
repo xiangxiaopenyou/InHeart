@@ -92,15 +92,6 @@ typedef enum{
 
 /*!
  @method
- @brief 打电话
- @discussion
- @param moreView 功能view
- @result
- */
-- (void)moreViewPhoneCallAction:(EaseChatBarMoreView *)moreView;
-
-/*!
- @method
  @brief 发送位置
  @discussion
  @param moreView 功能view
