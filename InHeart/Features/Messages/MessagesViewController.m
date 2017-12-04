@@ -34,8 +34,8 @@
         GJCFStrongSelf strongSelf = weakSelf;
         if (model) {
             ChatViewController *chatViewController = [[ChatViewController alloc] initWithConversationChatter:model.conversation.conversationId conversationType:EMConversationTypeChat];
-            chatViewController.hidesBottomBarWhenPushed = YES;
             //chatViewController.title = model.conversation.conversationId;
+            chatViewController.hidesBottomBarWhenPushed = YES;
             chatViewController.conversationModel = model;
             [strongSelf.navigationController pushViewController:chatViewController animated:YES];
         }

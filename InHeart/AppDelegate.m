@@ -131,7 +131,7 @@
 }
 //登录状态变化
 - (void)checkUserState:(NSNotification *)notification {
-    if ([[UserInfo sharedUserInfo] isLogined]) {
+    if ([[UserInfo sharedUserInfo] isLogined] && [[EMClient sharedClient] isLoggedIn]) {
         MainTabBarController *tabBarController = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"MainTabBar"];
         self.window.rootViewController = tabBarController;
     } else {

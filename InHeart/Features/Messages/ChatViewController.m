@@ -31,23 +31,21 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    self.hidesBottomBarWhenPushed = YES;
+    self.showRefreshHeader = YES;
+    self.delegate = self;
+    self.dataSource = self;
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"chat_person"] style:UIBarButtonItemStylePlain target:self action:@selector(rightButtonAction)];
     self.title = XLIsNullObject(self.conversationModel.realname) ? self.conversationModel.conversation.conversationId : self.conversationModel.realname;
     [[EaseBaseMessageCell appearance] setMessageNameIsHidden:YES];
     //[EaseBaseMessageCell appearance].hasRead.hidden = YES;
-    self.delegate = self;
-    self.dataSource = self;
-    if (@available(iOS 11.0, *)) {
-        self.tableView.contentInsetAdjustmentBehavior = UIScrollViewContentInsetAdjustmentNever;
-    } else {
-        
-    }
 }
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
 }
 
 #pragma mark - Private Methods

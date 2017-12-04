@@ -117,39 +117,6 @@
             }
             
         }
-//        if (self.userInformations.count >= self.conversationArray.count) {
-//            for (ConversationModel *tempModel in self.conversationArray) {
-//                //NSString *conversationId = tempModel.conversation.conversationId;
-//                for (UserMessageModel *messageModel in self.userInformations) {
-//                    if ([tempModel.conversation.conversationId isEqualToString:messageModel.phone]) {
-//                        tempModel.userId = messageModel.userId;
-//                        tempModel.realname = messageModel.realname;
-//                        tempModel.avatarUrl = messageModel.headpictureurl;
-//                    }
-//                }
-//            }
-//            [self.tableView reloadData];
-//        } else {
-//            [self.userInformations removeAllObjects];
-//            for (ConversationModel *tempModel in self.conversationArray) {
-//                [UserMessageModel fetchUsersIdAndName:tempModel.conversation.conversationId handler:^(id object, NSString *msg) {
-//                    if (object) {
-//                        UserMessageModel *userModel = object;
-//                        userModel.phone = tempModel.conversation.conversationId;
-//                        [self.userInformations addObject:userModel];
-//                        tempModel.userId = userModel.userId;
-//                        tempModel.realname = userModel.realname;
-//                        tempModel.avatarUrl = userModel.headpictureurl;
-//                        count += 1;
-//                        if (count == self.conversationArray.count) {
-//                            dispatch_async(dispatch_get_main_queue(), ^{
-//                                [self.tableView reloadData];
-//                            });
-//                        }
-//                    }
-//                }];
-//            }
-//        }
     } else {
         [self.tableView reloadData];
     }
