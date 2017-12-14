@@ -152,19 +152,18 @@
         if (object) {
             UserModel *userModel = object;
             if ([[UserInfo sharedUserInfo] saveUserInfo:userModel]) {
-                GJCFAsyncGlobalDefaultQueue(^{
-                    EMError *error = [[EMClient sharedClient] loginWithUsername:userModel.username password:userModel.encryptPw];
+                //连接融云
+                [[RCIM sharedRCIM] connectWithToken:userModel.rytoken success:^(NSString *userId) {
+                    RCUserInfo *userInfo = [[RCUserInfo alloc] initWithUserId:userId name:userModel.realname portrait:userModel.headPictureUrl];
+                    [[RCIM sharedRCIM] refreshUserInfoCache:userInfo withUserId:userId];
                     GJCFAsyncMainQueue(^{
-                        if (!error) { //环信登录成功
-                            XLDismissHUD(self.view, NO, YES, nil);
-                            [[NSNotificationCenter defaultCenter] postNotificationName:XJLoginSuccess object:@YES];
-                            [[EMClient sharedClient].options setIsAutoLogin:YES];
-                            [[EMClient sharedClient] migrateDatabaseToLatestSDK];
-                        } else {
-                            XLDismissHUD(self.view, YES, NO, NSLocalizedString(@"login.loginFailed", nil));
-                        }
+                        [[NSNotificationCenter defaultCenter] postNotificationName:XJLoginSuccess object:@YES];
                     });
-                });
+                } error:^(RCConnectErrorCode status) {
+                    XLDismissHUD(self.view, YES, NO, NSLocalizedString(@"login.loginFailed", nil));
+                } tokenIncorrect:^{
+                    XLDismissHUD(self.view, YES, NO, NSLocalizedString(@"login.loginFailed", nil));
+                }];
             } else {
                 XLDismissHUD(self.view, YES, NO, NSLocalizedString(@"login.loginFailed", nil));
             }

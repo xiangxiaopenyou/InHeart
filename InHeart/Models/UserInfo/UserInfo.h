@@ -9,7 +9,7 @@
 #import <Foundation/Foundation.h>
 @class UserModel;
 
-@interface UserInfo : NSObject
+@interface UserInfo : NSObject <RCIMUserInfoDataSource>
 
 + (UserInfo *)sharedUserInfo;
 - (BOOL)isLogined;

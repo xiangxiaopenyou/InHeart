@@ -11,6 +11,13 @@ typedef NS_ENUM(NSInteger, XJInformationType) {
     XJInformationTypeSex,
     XJInformationTypeAge
 };
+typedef NS_ENUM(NSInteger, XJPlanOrderStatus) {
+    XJPlanOrderStatusWaitingPay = 1,
+    XJPlanOrderStatusPaid,
+    XJPlanOrderStatusCanceled,
+    XJPlanOrderStatusFinished,
+    XJPlanOrderStatusOngoing
+};
 
 //key & secret
 extern NSString * const EMChatKey;
@@ -24,7 +31,7 @@ extern NSString * const USERID;
 extern NSString * const USERTOKEN;
 extern NSString * const USERNAME;
 extern NSString * const USERREALNAME;
-extern NSString * const USERENCRYPTEDPASSWORD;
+extern NSString * const RYTOKEN;
 extern NSString * const USERAVATARDATA;
 extern NSString * const USERAVATARSTRING;
 extern NSString * const KEYCHAINSERVICE;

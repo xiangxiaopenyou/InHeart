@@ -8,14 +8,12 @@
 //
 
 #import "ExpertDetailViewController.h"
-#import "ChatViewController.h"
 
 #import "ExpertNameCell.h"
 #import "ExpertIntroductionCell.h"
 
 #import "DoctorModel.h"
 #import "UserInfo.h"
-#import "ConversationModel.h"
 
 #import <UIImageView+AFNetworking.h>
 #import <GJCFUitils.h>
@@ -135,13 +133,13 @@
 */
 - (IBAction)consultAction:(id)sender {
     if (![[UserInfo sharedUserInfo] shouldLogin:self]) {
-        ConversationModel *tempModel = [ConversationModel new];
-        tempModel.userId = self.doctorModel.id;
-        tempModel.realname = self.doctorModel.realname;
-        ChatViewController *chatViewController = [[ChatViewController alloc] initWithConversationChatter:self.doctorModel.mobile conversationType:EMConversationTypeChat];
-        chatViewController.hidesBottomBarWhenPushed = YES;
-        chatViewController.conversationModel = tempModel;
-        [self.navigationController pushViewController:chatViewController animated:YES];
+//        ConversationModel *tempModel = [ConversationModel new];
+//        tempModel.userId = self.doctorModel.id;
+//        tempModel.realname = self.doctorModel.realname;
+//        ChatViewController *chatViewController = [[ChatViewController alloc] initWithConversationChatter:self.doctorModel.mobile conversationType:EMConversationTypeChat];
+//        chatViewController.hidesBottomBarWhenPushed = YES;
+//        chatViewController.conversationModel = tempModel;
+//        [self.navigationController pushViewController:chatViewController animated:YES];
     }
 }
 

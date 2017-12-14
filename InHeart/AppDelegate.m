@@ -13,11 +13,10 @@
 #import "UserInfo.h"
 
 #import "WXApi.h"
-
+#import "AppDelegate+RongCloud.h"
 #import <UIImage-Helpers.h>
-#import <IQKeyboardManager.h>
-#import <IQKeyboardReturnKeyHandler.h>
 #import <OpenShareHeader.h>
+#import <IQKeyboardManager.h>
 
 @interface AppDelegate ()<WXApiDelegate>
 
@@ -29,14 +28,12 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
-    
-    //键盘
-    IQKeyboardManager *keyboardManager = [IQKeyboardManager sharedManager];
-    keyboardManager.enable = YES;
-    keyboardManager.enableAutoToolbar = NO;
-    keyboardManager.shouldResignOnTouchOutside = YES;
-    
-    [[EaseSDKHelper shareHelper] hyphenateApplication:application didFinishLaunchingWithOptions:launchOptions appkey:EMChatKey apnsCertName:APNSCertName otherConfig:@{@"httpsOnly":[NSNumber numberWithBool:YES], kSDKConfigEnableConsoleLogger:[NSNumber numberWithBool:YES],@"easeSandBox":[NSNumber numberWithBool:NO]}];
+    [IQKeyboardManager sharedManager].enable = YES;
+    [IQKeyboardManager sharedManager].enableAutoToolbar = NO;
+    [IQKeyboardManager sharedManager].shouldResignOnTouchOutside = YES;
+    //融云
+    [self initRongCloudService:application option:launchOptions];
+    //NSString *ryToken = [[NSUserDefaults standardUserDefaults] stringForKey:RYTOKEN];
     
     //注册微信
     [WXApi registerApp:WECHATAPPID];
@@ -49,10 +46,8 @@
     [OpenShare setPayFailCallback:^(NSDictionary *message, NSError *error) {
         [[NSNotificationCenter defaultCenter] postNotificationName:XJDidReceiveWechatPayResponse object:message];
     }];
-    
     [self initAppearance];
     [self checkUserState:nil];
-    
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(checkUserState:) name:XJLoginSuccess object:nil];
     return YES;
 }
@@ -74,28 +69,14 @@
     }
     return [WXApi handleOpenURL:url delegate:self];
 }
-//将deviceToken传给SDK
 - (void)application:(UIApplication *)application didRegisterForRemoteNotificationsWithDeviceToken:(nonnull NSData *)deviceToken {
-    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-        [[EMClient sharedClient] bindDeviceToken:deviceToken];
-    });
 }
 //注册deviceToken失败
 - (void)application:(UIApplication *)application didFailToRegisterForRemoteNotificationsWithError:(nonnull NSError *)error {
-    //XLShowThenDismissHUD(NO, XJNetworkError);
 }
 
 //接收到远程推送通知
 - (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo fetchCompletionHandler:(void (^)(UIBackgroundFetchResult))completionHandler {
-    //    NSError *error = nil;
-    //    NSData *jsonData = [NSJSONSerialization dataWithJSONObject:userInfo options:NSJSONWritingPrettyPrinted error:&error];
-    //    NSString *tempString = [[NSString alloc] initWithData:jsonData encoding:NSUTF8StringEncoding];
-    //    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:NSEaseLocalizedString(@"apns.content", @"Apns content")
-    //                                                    message:tempString
-    //                                                   delegate:nil
-    //                                          cancelButtonTitle:NSEaseLocalizedString(@"ok", @"OK")
-    //                                          otherButtonTitles:nil];
-    //    [alert show];
 }
 
 - (void)applicationWillResignActive:(UIApplication *)application {
@@ -131,9 +112,14 @@
 }
 //登录状态变化
 - (void)checkUserState:(NSNotification *)notification {
-    if ([[UserInfo sharedUserInfo] isLogined] && [[EMClient sharedClient] isLoggedIn]) {
+    if ([[UserInfo sharedUserInfo] isLogined]) {
         MainTabBarController *tabBarController = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"MainTabBar"];
         self.window.rootViewController = tabBarController;
+        NSString *tokenString = [[NSUserDefaults standardUserDefaults] stringForKey:RYTOKEN];
+        [[RCIM sharedRCIM] connectWithToken:tokenString success:^(NSString *userId) {
+        } error:^(RCConnectErrorCode status) {
+        } tokenIncorrect:^{
+        }];
     } else {
         LoginViewController *loginViewController = [[UIStoryboard storyboardWithName:@"Login" bundle:nil] instantiateViewControllerWithIdentifier:@"Login"];
         UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:loginViewController];

@@ -13,13 +13,13 @@ NSString * const APNSCertName = @"InHeart-User-Dev";
 NSString * const WECHATAPPID = @"wxc8cffdde73682f6b";
 NSString * const WECHATAPPSECRET = @"fea4338269d6675af018200ed59f7dc7";
 
-NSString * const USERID = @"UserId";
-NSString * const USERTOKEN = @"UserToken";
-NSString * const USERNAME = @"Username";
-NSString * const USERREALNAME = @"UserRealname";
-NSString * const USERENCRYPTEDPASSWORD = @"EncryptedPassword";
-NSString * const USERAVATARDATA = @"UserAvatarData";
-NSString * const USERAVATARSTRING = @"UserAvatarString";
+NSString * const USERID = @"XJPatientUserId";
+NSString * const USERTOKEN = @"XJPatientUserToken";
+NSString * const USERNAME = @"XJPatientUsername";
+NSString * const USERREALNAME = @"XJPatientUserRealname";
+NSString * const RYTOKEN = @"XJPatientRyToken";
+NSString * const USERAVATARDATA = @"XJPatientUserAvatarData";
+NSString * const USERAVATARSTRING = @"XJPatientUserAvatarString";
 NSString * const KEYCHAINSERVICE = @"com.midvision.vruser";
 
 CGFloat const TABBARHEIGHT = 49.0;

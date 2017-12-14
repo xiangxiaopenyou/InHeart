@@ -10,12 +10,11 @@
 #import "MyDoctorsViewController.h"
 #import "XJDoctorsListViewController.h"
 #import "XJVRCenterViewController.h"
-#import "ChatViewController.h"
+#import "XJChatViewController.h"
 
 #import "XJRecommendedDoctorCell.h"
 
 #import "DoctorModel.h"
-#import "ConversationModel.h"
 
 #import <UIImage-Helpers.h>
 #import <SDCycleScrollView.h>
@@ -133,14 +132,16 @@
 }
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
-    ConversationModel *tempModel = [[ConversationModel alloc] init];
+//    ConversationModel *tempModel = [[ConversationModel alloc] init];
     DoctorModel *doctorModel = self.doctorsArray[indexPath.row];
-    tempModel.userId = doctorModel.id;
-    tempModel.realname = doctorModel.realname;
-    tempModel.avatarUrl = doctorModel.headPictureUrl;
-    ChatViewController *chatViewController = [[ChatViewController alloc] initWithConversationChatter:doctorModel.mobile conversationType:EMConversationTypeChat];
+//    tempModel.userId = doctorModel.id;
+//    tempModel.realname = doctorModel.realname;
+//    tempModel.avatarUrl = doctorModel.headPictureUrl;
+    XJChatViewController *chatViewController = [[XJChatViewController alloc] initWithConversationType:ConversationType_PRIVATE targetId:doctorModel.id];
+    chatViewController.conversationType = ConversationType_PRIVATE;
+    chatViewController.targetId = doctorModel.id;
+    chatViewController.title = doctorModel.realname;
     chatViewController.hidesBottomBarWhenPushed = YES;
-    chatViewController.conversationModel = tempModel;
     [self.navigationController pushViewController:chatViewController animated:YES];
 }
 

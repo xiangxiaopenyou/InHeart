@@ -13,9 +13,9 @@
 @property (copy, nonatomic) NSString *realname;
 @property (copy, nonatomic) NSString *username;
 @property (strong, nonatomic) NSNumber *code;
-@property (copy, nonatomic) NSString *encryptPw;
 @property (copy, nonatomic) NSString *userId;
 @property (copy, nonatomic) NSString *headPictureUrl;
+@property (copy, nonatomic) NSString *rytoken;
 
 + (void)userLogin:(NSString *)username password:(NSString *)password handler:(RequestResultHandler)handler;
 + (void)fetchCode:(NSString *)phoneNumber handler:(RequestResultHandler)handler;

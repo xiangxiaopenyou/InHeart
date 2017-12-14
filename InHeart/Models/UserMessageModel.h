@@ -15,5 +15,5 @@
 @property (copy, nonatomic) NSString *phone;
 
 + (void)fetchUsersIdAndName:(NSString *)phone handler:(RequestResultHandler)handler;
-
++ (void)fetchUserInfoByUserId:(NSString *)userId handler:(RequestResultHandler)handler;
 @end

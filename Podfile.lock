@@ -16,10 +16,14 @@ PODS:
     - AFNetworking/NSURLSession
   - GJCFUitils (1.0)
   - GTSDK (1.5.0)
-  - IQKeyboardManager (4.0.7)
+  - IQKeyboardManager (4.0.8)
   - Masonry (1.0.2)
+  - MBProgressHUD (1.0.0)
   - MJRefresh (3.1.12)
   - OpenShare (0.0.1)
+  - RongCloudIM/IMKit (2.8.6):
+    - RongCloudIM/IMLib
+  - RongCloudIM/IMLib (2.8.6)
   - SDCycleScrollView (1.65):
     - SDWebImage (~> 3.7)
   - SDWebImage (3.8.2):
@@ -35,8 +39,11 @@ DEPENDENCIES:
   - GTSDK
   - IQKeyboardManager
   - Masonry
+  - MBProgressHUD
   - MJRefresh
   - OpenShare
+  - RongCloudIM/IMKit
+  - RongCloudIM/IMLib
   - SDCycleScrollView
   - UIImage-Helpers
   - YUChineseSorting
@@ -46,16 +53,18 @@ SPEC CHECKSUMS:
   AFNetworking: 5e0e199f73d8626b11e79750991f5d173d1f8b67
   GJCFUitils: ad4f8373eb10edb94299594d348d1ee6f21dbe5e
   GTSDK: 4380de452178d8ba2a67189f10c6743d0f9536b9
-  IQKeyboardManager: 69002bb4fea60596b710e57d426abc00e5063630
+  IQKeyboardManager: 1a8189fa153bf09044355ee0ad36826f6767e7f7
   Masonry: 7c429b56da9d4ee0bbb3ed77a5ea710d6a5df39e
+  MBProgressHUD: 4890f671c94e8a0f3cf959aa731e9de2f036d71a
   MJRefresh: b96cdb21c4aa75a7b07654311ab2f315c497e806
   OpenShare: a560580dbb729d5c0c3cc1ee84cd6aa4a07e94c6
+  RongCloudIM: f35630e60f7d393ea93b04d4cd6152c9191b8d05
   SDCycleScrollView: f72904c77698a7f93a41bcbbc2d78b073bf7326c
   SDWebImage: '098e97e6176540799c27e804c96653ee0833d13c'
   UIImage-Helpers: 06b04a42bdd222844035602e87e936765c80f620
   YUChineseSorting: 46bbd4fa0344e21b169a537bb17aafec0980c560
   YYModel: 2a7fdd96aaa4b86a824e26d0c517de8928c04b30
 
-PODFILE CHECKSUM: 383a774f151db1fc3cf1bcb2f0a617ae84133291
+PODFILE CHECKSUM: ce4b8dabe28ab9f37c28623a8b1e70ea06e83caa
 
 COCOAPODS: 1.2.0

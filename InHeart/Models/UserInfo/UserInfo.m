@@ -8,6 +8,8 @@
 
 #import "UserInfo.h"
 #import "UserModel.h"
+#import "UserMessageModel.h"
+#import "XJDataBase.h"
 
 #import "LoginViewController.h"
 
@@ -40,8 +42,8 @@
     if (userModel.realname) {
         [[NSUserDefaults standardUserDefaults] setObject:userModel.realname forKey:USERREALNAME];
     }
-    if (userModel.encryptPw) {
-        [[NSUserDefaults standardUserDefaults] setObject:userModel.encryptPw forKey:USERENCRYPTEDPASSWORD];
+    if (userModel.rytoken) {
+        [[NSUserDefaults standardUserDefaults] setObject:userModel.rytoken forKey:RYTOKEN];
     }
     if (userModel.userId) {
         [[NSUserDefaults standardUserDefaults] setObject:userModel.userId forKey:USERID];
@@ -63,8 +65,8 @@
     if ([[NSUserDefaults standardUserDefaults] objectForKey:USERREALNAME]) {
         model.realname = [[NSUserDefaults standardUserDefaults] objectForKey:USERREALNAME];
     }
-    if ([[NSUserDefaults standardUserDefaults] objectForKey:USERENCRYPTEDPASSWORD]) {
-        model.encryptPw = [[NSUserDefaults standardUserDefaults] objectForKey:USERENCRYPTEDPASSWORD];
+    if ([[NSUserDefaults standardUserDefaults] objectForKey:RYTOKEN]) {
+        model.rytoken = [[NSUserDefaults standardUserDefaults] objectForKey:RYTOKEN];
     }
     if ([[NSUserDefaults standardUserDefaults] objectForKey:USERID]) {
         model.userId = [[NSUserDefaults standardUserDefaults] objectForKey:USERID];
@@ -78,7 +80,7 @@
     [[NSUserDefaults standardUserDefaults] removeObjectForKey:USERTOKEN];
     [[NSUserDefaults standardUserDefaults] removeObjectForKey:USERNAME];
     [[NSUserDefaults standardUserDefaults] removeObjectForKey:USERREALNAME];
-    [[NSUserDefaults standardUserDefaults] removeObjectForKey:USERENCRYPTEDPASSWORD];
+    [[NSUserDefaults standardUserDefaults] removeObjectForKey:RYTOKEN];
     [[NSUserDefaults standardUserDefaults] removeObjectForKey:USERID];
     [[NSUserDefaults standardUserDefaults] removeObjectForKey:USERAVATARSTRING];
     [[NSUserDefaults standardUserDefaults] synchronize];
@@ -91,6 +93,45 @@
         return YES;
     }
     return NO;
+}
+
+#pragma mark - RCIMUserInfo data source
+- (void)getUserInfoWithUserId:(NSString *)userId completion:(void (^)(RCUserInfo *))completion {
+    RCUserInfo *userInfo = [[RCUserInfo alloc] init];
+    if (userId.length == 0) {
+        userInfo.userId = userId;
+        userInfo.portraitUri = nil;
+        userInfo.name = nil;
+        completion(userInfo);
+        return;
+    }
+    NSString *currentUserId = [RCIM sharedRCIM].currentUserInfo.userId;
+    userInfo.userId = userId;
+    if ([userId isEqualToString:currentUserId]) {
+        userInfo.portraitUri = [[NSUserDefaults standardUserDefaults] stringForKey:USERAVATARSTRING];
+        userInfo.name = [[NSUserDefaults standardUserDefaults] stringForKey:USERREALNAME];
+        completion(userInfo);
+    } else {
+        NSArray *tempArray = [[[XJDataBase sharedDataBase] selectUser:userId] copy];
+        if ([[XJDataBase sharedDataBase] selectUser:userId].count > 0) {
+            UserMessageModel *model = tempArray[0];
+            userInfo.portraitUri = model.headpictureurl;
+            userInfo.name = model.realname;
+            completion(userInfo);
+        } else {
+            [UserMessageModel fetchUserInfoByUserId:userId handler:^(id object, NSString *msg) {
+                if (object) {
+                    UserMessageModel *userModel = object;
+                    userInfo.portraitUri = userModel.headpictureurl;
+                    userInfo.name = userModel.realname;
+                    [[XJDataBase sharedDataBase] insertUser:userModel];
+                    completion(userInfo);
+                }
+            }];
+        }
+        
+    }
+    
 }
 
 

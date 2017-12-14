@@ -7,27 +7,22 @@
 //
 
 #import "MainTabBarController.h"
-//#import "ContentViewController.h"
-//#import "ContentNavigationController.h"
-//#import "InterrogationViewController.h"
-//#import "PersonalCenterTableViewController.h"
 #import "HomepageNavigationController.h"
 #import "HomepageViewController.h"
 #import "NewsViewController.h"
 #import "PersonalNavigationController.h"
 #import "PersonalCenterViewController.h"
-#import "MessagesViewController.h"
+#import "XJConversationListViewController.h"
 
 #import "UserInfo.h"
 #import "UserModel.h"
-#import "DemoCallManager.h"
 
 static CGFloat const kTipLabelHeight = 2.0;
 #define kTipLabelWidth SCREEN_WIDTH / 4.0
 //#define kTipLabelWidth SCREEN_WIDTH / 3.0
 
 
-@interface MainTabBarController ()<EMChatManagerDelegate>
+@interface MainTabBarController ()
 @property (strong, nonatomic) UILabel *bottomTipLabel;
 
 @end
@@ -39,10 +34,6 @@ static CGFloat const kTipLabelHeight = 2.0;
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     [self addViewToTabBar];
-//    UIImage *askUnSelectedImage = [UIImage imageNamed:@"ask_unselected"];
-//    askUnSelectedImage = [askUnSelectedImage imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
-//    UIImage *askSelectedImage = [UIImage imageNamed:@"ask_selected"];
-//    askSelectedImage = [askSelectedImage imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
     UIImage *homepageUnselectedImage = [UIImage imageNamed:@"homepage_unselected"];
     homepageUnselectedImage = [homepageUnselectedImage imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
     UIImage *homepageSelectedImage = [UIImage imageNamed:@"homepage_selected"];
@@ -59,10 +50,6 @@ static CGFloat const kTipLabelHeight = 2.0;
     UIImage *messageSelectedImage = [UIImage imageNamed:@"message_selected"];
     messageSelectedImage = [messageSelectedImage imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
     
-//    UIImage *contentUnSelectedImage = [UIImage imageNamed:@"content_unselected"];
-//    contentUnSelectedImage = [contentUnSelectedImage imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
-//    UIImage *contentSelectedImage = [UIImage imageNamed:@"content_selected"];
-//    contentSelectedImage = [contentSelectedImage imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
     UIImage *personalUnSelectedImage = [UIImage imageNamed:@"personal_unselected"];
     personalUnSelectedImage = [personalUnSelectedImage imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
     UIImage *personalSelectedImage = [UIImage imageNamed:@"personal_selected"];
@@ -75,47 +62,21 @@ static CGFloat const kTipLabelHeight = 2.0;
     NewsViewController *newsController= [[UIStoryboard storyboardWithName:@"News" bundle:nil] instantiateViewControllerWithIdentifier:@"News"];
     [self setupChildControllerWith:newsController normalImage:newsUnselectedImage selectedImage:newsSelectedImage title:@"心景头条" index:1];
     
-    //问诊
-//    InterrogationViewController *interrogationViewController = [[UIStoryboard storyboardWithName:@"Interrogation" bundle:nil] instantiateViewControllerWithIdentifier:@"InterrogationView"];
-//    [self setupChildControllerWith:interrogationViewController normalImage:askUnSelectedImage selectedImage:askSelectedImage title:@"问诊" index:0];
-    
     //消息
-    MessagesViewController *messageController = [[UIStoryboard storyboardWithName:@"Message" bundle:nil] instantiateViewControllerWithIdentifier:@"Message"];
+    XJConversationListViewController *messageController = [[XJConversationListViewController alloc] init];
     [self setupChildControllerWith:messageController normalImage:messageUnSelectedImage selectedImage:messageSelectedImage title:@"消息" index:2];
-    
-    //内容
-//    ContentViewController *contentViewController = [[UIStoryboard storyboardWithName:@"Content" bundle:nil] instantiateViewControllerWithIdentifier:@"ContentView"];
-//    [self setupChildControllerWith:contentViewController normalImage:contentUnSelectedImage selectedImage:contentSelectedImage title:@"内容" index:2];
     
     //个人中心
     //PersonalCenterTableViewController *personalViewController = [[UIStoryboard storyboardWithName:@"Personal" bundle:nil] instantiateViewControllerWithIdentifier:@"PersonalCenter"];
     PersonalCenterViewController *personalViewController = [[UIStoryboard storyboardWithName:@"Personal" bundle:nil] instantiateViewControllerWithIdentifier:@"PersonalCenterView"];
     [self setupChildControllerWith:personalViewController normalImage:personalUnSelectedImage selectedImage:personalSelectedImage title:@"个人中心" index:3];
     
-    //环信
-    if (![[EMClient sharedClient] isLoggedIn]) {
-        UserModel *user = [[UserInfo sharedUserInfo] userInfo];
-        [[EMClient sharedClient] loginWithUsername:user.username password:user.encryptPw completion:^(NSString *aUsername, EMError *aError) {
-            if (!aError) {
-                [[EMClient sharedClient].chatManager addDelegate:self delegateQueue:nil];
-                [[DemoCallManager sharedManager] setMainController:self];
-                //[self setupUnreadMessagesCount];
-            } else {
-                XLShowThenDismissHUD(NO, XJNetworkError, self.view);
-            }
-        }];
-    } else {
-        [[EMClient sharedClient].chatManager addDelegate:self delegateQueue:nil];
-        [[DemoCallManager sharedManager] setMainController:self];
-    }
-
-    
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(setupUnreadMessagesCount) name:XJSetupUnreadMessagesCount object:nil];
 
 }
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
-    [self setupUnreadMessagesCount];
+    //[self setupUnreadMessagesCount];
 }
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
@@ -155,71 +116,25 @@ static CGFloat const kTipLabelHeight = 2.0;
         self.bottomTipLabel.frame = CGRectMake(positionX, 0, kTipLabelWidth, kTipLabelHeight);
     }];
 }
-- (void)showNotificationWithMessage:(EMMessage *)message {
-    //本地推送
-    UILocalNotification *notification = [[UILocalNotification alloc] init];
-    notification.fireDate = [NSDate date]; //触发通知的时间
-    notification.alertBody = NSEaseLocalizedString(@"receiveMessage", @"you have a new message");
-    //发送通知
-    [[UIApplication sharedApplication] scheduleLocalNotification:notification];
-}
+//- (void)showNotificationWithMessage:(EMMessage *)message {
+//    //本地推送
+//    UILocalNotification *notification = [[UILocalNotification alloc] init];
+//    notification.fireDate = [NSDate date]; //触发通知的时间
+////    notification.alertBody = NSEaseLocalizedString(@"receiveMessage", @"you have a new message");
+//    //发送通知
+//    [[UIApplication sharedApplication] scheduleLocalNotification:notification];
+//}
 //设置未读消息数量
-- (void)setupUnreadMessagesCount {
-    NSArray *conversations = [[EMClient sharedClient].chatManager getAllConversations];
-    NSInteger unreadCount = 0;
-    for (EMConversation *conversation in conversations) {
-        unreadCount += conversation.unreadMessagesCount;
-    }
-    UITabBarItem *item = self.tabBar.items[2];
-    item.badgeValue = unreadCount > 0 ? [NSString stringWithFormat:@"%@", @(unreadCount)] : nil;
-    UIApplication *application = [UIApplication sharedApplication];
-    [application setApplicationIconBadgeNumber:unreadCount];
-}
-//- (void)checkUserState:(NSNotification *)notification {
-//    if (!notification) {
-//        if ([[UserInfo sharedUserInfo] isLogined]) {
-//            //环信
-//            if (![[EMClient sharedClient] isLoggedIn]) {
-//                UserModel *user = [[UserInfo sharedUserInfo] userInfo];
-//                [[EMClient sharedClient] loginWithUsername:user.username password:user.encryptPw completion:^(NSString *aUsername, EMError *aError) {
-//                    if (!aError) {
-//                        [[EMClient sharedClient].chatManager addDelegate:self delegateQueue:nil];
-//                        [[DemoCallManager sharedManager] setMainController:self];
-//                    } else {
-//                        XLShowThenDismissHUD(NO, kNetworkError, self.view);
-//                    }
-//                }];
-//            } else {
-//                [[EMClient sharedClient].chatManager addDelegate:self delegateQueue:nil];
-//                [[DemoCallManager sharedManager] setMainController:self];
-//            }
-//        }
-//    } else {
-//        if ([notification.object boolValue]) {
-//            if ([[UserInfo sharedUserInfo] isLogined]) {
-//                //环信
-//                if (![[EMClient sharedClient] isLoggedIn]) {
-//                    UserModel *user = [[UserInfo sharedUserInfo] userInfo];
-//                    [[EMClient sharedClient] loginWithUsername:user.username password:user.encryptPw completion:^(NSString *aUsername, EMError *aError) {
-//                        if (!aError) {
-//                            [[EMClient sharedClient].chatManager addDelegate:self delegateQueue:nil];
-//                            [[DemoCallManager sharedManager] setMainController:self];
-//                        } else {
-//                            XLShowThenDismissHUD(NO, kNetworkError, self.view);
-//                        }
-//                    }];
-//                } else {
-//                    [[EMClient sharedClient].chatManager addDelegate:self delegateQueue:nil];
-//                    [[DemoCallManager sharedManager] setMainController:self];
-//                    
-//                }
-//            }
-//        } else {
-//            [[EMClient sharedClient].chatManager removeDelegate:self];
-//            //[DemoCallManager dealloc];
-//        }
-//        
+//- (void)setupUnreadMessagesCount {
+//    NSArray *conversations = [[EMClient sharedClient].chatManager getAllConversations];
+//    NSInteger unreadCount = 0;
+//    for (EMConversation *conversation in conversations) {
+//        unreadCount += conversation.unreadMessagesCount;
 //    }
+//    UITabBarItem *item = self.tabBar.items[2];
+//    item.badgeValue = unreadCount > 0 ? [NSString stringWithFormat:@"%@", @(unreadCount)] : nil;
+//    UIApplication *application = [UIApplication sharedApplication];
+//    [application setApplicationIconBadgeNumber:unreadCount];
 //}
 
 
@@ -231,24 +146,24 @@ static CGFloat const kTipLabelHeight = 2.0;
 }
 #pragma mark - EMChatManagerDelegate
 - (void)messagesDidReceive:(NSArray *)aMessages {
-    for (EMMessage *message in aMessages) {
-        UIApplicationState state = [[UIApplication sharedApplication] applicationState];
-        switch (state) {
-            case UIApplicationStateBackground:{
-                [self showNotificationWithMessage:message];
-            }
-                break;
-                
-            default:
-                break;
-        }
-    }
+//    for (EMMessage *message in aMessages) {
+//        UIApplicationState state = [[UIApplication sharedApplication] applicationState];
+//        switch (state) {
+//            case UIApplicationStateBackground:{
+//                [self showNotificationWithMessage:message];
+//            }
+//                break;
+//
+//            default:
+//                break;
+//        }
+//    }
     [[NSNotificationCenter defaultCenter] postNotificationName:XJConversationsDidChange object:nil];
-    [self setupUnreadMessagesCount];
+//    [self setupUnreadMessagesCount];
 }
 - (void)conversationListDidUpdate:(NSArray *)aConversationList {
     [[NSNotificationCenter defaultCenter] postNotificationName:XJConversationsDidChange object:nil];
-    [self setupUnreadMessagesCount];
+//    [self setupUnreadMessagesCount];
 }
 
 /*

@@ -13,9 +13,11 @@
 // You will also need to set the Prefix Header build setting of one or more of your targets to reference this file.
 #import "UtilDefine.h"
 #import "CommonsDefines.h"
-#import "EaseUI.h"
 #import <GJCFUitils.h>
 #import <Masonry.h>
+#import <RongIMKit/RongIMKit.h>
+#import <RongIMLib/RongIMLib.h>
+#import <UIImageView+WebCache.h>
 
 #import "MBProgressHUD+Add.h"
 
