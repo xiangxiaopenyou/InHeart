@@ -12,6 +12,6 @@
 @property (weak, nonatomic) IBOutlet UILabel *introductionContentLabel;
 @property (weak, nonatomic) IBOutlet UIButton *clickAttentionButton;
 
-@property (copy, nonatomic) void (^attentionBlock)();
+@property (copy, nonatomic) void (^attentionBlock)(void);
 
 @end

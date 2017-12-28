@@ -7,9 +7,12 @@
 //
 
 #import "XJChatViewController.h"
-#import <IQKeyboardManager.h>
+#import "XJOrderDetailViewController.h"
+
 #import "XJPlanOrderMessage.h"
 #import "XJPlanOrderMessageCell.h"
+
+#import <IQKeyboardManager.h>
 
 @interface XJChatViewController ()
 
@@ -26,14 +29,24 @@
     [super viewWillAppear:animated];
     [IQKeyboardManager sharedManager].enable = NO;
 }
-- (void)viewWillDisappear:(BOOL)animated {
-    [super viewWillDisappear:animated];
+- (void)viewDidDisappear:(BOOL)animated {
+    [super viewDidDisappear:animated];
     [IQKeyboardManager sharedManager].enable = YES;
 }
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+- (void)didTapMessageCell:(RCMessageModel *)model {
+    [super didTapMessageCell:model];
+    if ([model.content isKindOfClass:[XJPlanOrderMessage class]]) {
+        XJPlanOrderMessage *message = (XJPlanOrderMessage *)model.content;
+        XJOrderDetailViewController *detailController = [[UIStoryboard storyboardWithName:@"Orders" bundle:nil] instantiateViewControllerWithIdentifier:@"OrderDetail"];
+        detailController.orderId = message.orderId;
+        [self.navigationController pushViewController:detailController animated:YES];
+    }
 }
 
 /*

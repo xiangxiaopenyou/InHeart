@@ -125,17 +125,16 @@ static CGFloat const kTipLabelHeight = 2.0;
 //    [[UIApplication sharedApplication] scheduleLocalNotification:notification];
 //}
 //设置未读消息数量
-//- (void)setupUnreadMessagesCount {
-//    NSArray *conversations = [[EMClient sharedClient].chatManager getAllConversations];
-//    NSInteger unreadCount = 0;
-//    for (EMConversation *conversation in conversations) {
-//        unreadCount += conversation.unreadMessagesCount;
-//    }
-//    UITabBarItem *item = self.tabBar.items[2];
-//    item.badgeValue = unreadCount > 0 ? [NSString stringWithFormat:@"%@", @(unreadCount)] : nil;
-//    UIApplication *application = [UIApplication sharedApplication];
-//    [application setApplicationIconBadgeNumber:unreadCount];
-//}
+- (void)setupUnreadMessagesCount {
+    NSInteger unreadCount = [[RCIMClient sharedRCIMClient] getUnreadCount:@[ @(ConversationType_PRIVATE) ]];
+    NSString *unreadString = [NSString stringWithFormat:@"%@", @(unreadCount)];
+    GJCFAsyncMainQueue(^{
+        UITabBarItem *item = self.tabBar.items[2];
+        item.badgeValue = unreadCount > 0 ? unreadString : nil;
+        UIApplication *application = [UIApplication sharedApplication];
+        [application setApplicationIconBadgeNumber:unreadCount];
+    });
+}
 
 
 #pragma mark - UITabBarDelegate
@@ -144,28 +143,6 @@ static CGFloat const kTipLabelHeight = 2.0;
     CGFloat positionX = index * kTipLabelWidth;
     [self changeTipLabelPosition:positionX];
 }
-#pragma mark - EMChatManagerDelegate
-- (void)messagesDidReceive:(NSArray *)aMessages {
-//    for (EMMessage *message in aMessages) {
-//        UIApplicationState state = [[UIApplication sharedApplication] applicationState];
-//        switch (state) {
-//            case UIApplicationStateBackground:{
-//                [self showNotificationWithMessage:message];
-//            }
-//                break;
-//
-//            default:
-//                break;
-//        }
-//    }
-    [[NSNotificationCenter defaultCenter] postNotificationName:XJConversationsDidChange object:nil];
-//    [self setupUnreadMessagesCount];
-}
-- (void)conversationListDidUpdate:(NSArray *)aConversationList {
-    [[NSNotificationCenter defaultCenter] postNotificationName:XJConversationsDidChange object:nil];
-//    [self setupUnreadMessagesCount];
-}
-
 /*
 #pragma mark - Navigation
 

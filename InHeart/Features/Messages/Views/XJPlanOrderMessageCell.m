@@ -50,6 +50,12 @@
     self.statusLabel.textColor = MAIN_TEXT_COLOR;
     self.statusLabel.font = [UIFont systemFontOfSize:10];
     [self.messageContentView addSubview:self.statusLabel];
+    
+    self.bubbleBackgroundView.userInteractionEnabled = YES;
+    UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapOrderMessage:)];
+    tap.numberOfTapsRequired = 1;
+    tap.numberOfTouchesRequired = 1;
+    [self.bubbleBackgroundView addGestureRecognizer:tap];
 }
 - (void)setDataModel:(RCMessageModel *)model {
     [super setDataModel:model];
@@ -97,54 +103,41 @@
     self.statusLabel.text = statusString;
     CGRect messageContentViewRect = self.messageContentView.frame;
     messageContentViewRect.size.width = SCREEN_WIDTH - 95;
+    messageContentViewRect.size.height = 141;
     self.bubbleBackgroundView.frame = CGRectMake(0, 0, messageContentViewRect.size.width, messageContentViewRect.size.height - 20);
     if (self.messageDirection == MessageDirection_SEND) {
         messageContentViewRect.origin.x = 39;
         UIImage *image = [UIImage imageNamed:@"chat_to_bg_normal"];
         self.bubbleBackgroundView.image = [image resizableImageWithCapInsets:UIEdgeInsetsMake(image.size.height * 0.8, image.size.width * 0.2, image.size.height * 0.2, image.size.width * 0.8)];
         self.orderImageView.frame = CGRectMake(10, 10, 100, 100);
-        [self.billNoLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.leading.equalTo(self.orderImageView.mas_trailing).with.mas_offset(10);
-            make.top.equalTo(self.messageContentView.mas_top).with.mas_offset(12);
-        }];
-        [self.nameLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.leading.equalTo(self.orderImageView.mas_trailing).with.mas_offset(10);
-            make.trailing.equalTo(self.messageContentView.mas_trailing).with.mas_offset(- 20);
-            make.top.equalTo(self.billNoLabel.mas_bottom).with.mas_offset(10);
-        }];
-        [self.priceLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.leading.equalTo(self.orderImageView.mas_trailing).with.mas_offset(10);
-            make.top.equalTo(self.nameLabel.mas_bottom).with.mas_offset(10);
-        }];
-        [self.statusLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.leading.equalTo(self.orderImageView.mas_trailing).with.mas_offset(10);
-            make.top.equalTo(self.priceLabel.mas_bottom).with.mas_offset(10);
-        }];
-        self.messageContentView.frame = messageContentViewRect;
     } else {
         UIImage *image = [UIImage imageNamed:@"chat_from_bg_normal"];
         self.bubbleBackgroundView.image = [image resizableImageWithCapInsets:UIEdgeInsetsMake(image.size.height * 0.8, image.size.width * 0.8, image.size.height * 0.2, image.size.width * 0.2)];
         self.orderImageView.frame = CGRectMake(20, 10, 100, 100);
-        [self.billNoLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.leading.equalTo(self.orderImageView.mas_trailing).with.mas_offset(10);
-            make.top.equalTo(self.messageContentView.mas_top).with.mas_offset(12);
-        }];
-        [self.nameLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.leading.equalTo(self.orderImageView.mas_trailing).with.mas_offset(10);
-            make.trailing.equalTo(self.messageContentView.mas_trailing).with.mas_offset(- 20);
-            make.top.equalTo(self.billNoLabel.mas_bottom).with.mas_offset(10);
-        }];
-        [self.priceLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.leading.equalTo(self.orderImageView.mas_trailing).with.mas_offset(10);
-            make.top.equalTo(self.nameLabel.mas_bottom).with.mas_offset(10);
-        }];
-        [self.statusLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.leading.equalTo(self.orderImageView.mas_trailing).with.mas_offset(10);
-            make.top.equalTo(self.priceLabel.mas_bottom).with.mas_offset(10);
-        }];
-        self.messageContentView.frame = messageContentViewRect;
+    }
+    [self.billNoLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.leading.equalTo(self.orderImageView.mas_trailing).with.mas_offset(10);
+        make.top.equalTo(self.messageContentView.mas_top).with.mas_offset(12);
+    }];
+    [self.nameLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.leading.equalTo(self.orderImageView.mas_trailing).with.mas_offset(10);
+        make.trailing.equalTo(self.messageContentView.mas_trailing).with.mas_offset(- 20);
+        make.top.equalTo(self.billNoLabel.mas_bottom).with.mas_offset(10);
+    }];
+    [self.priceLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.leading.equalTo(self.orderImageView.mas_trailing).with.mas_offset(10);
+        make.top.equalTo(self.nameLabel.mas_bottom).with.mas_offset(10);
+    }];
+    [self.statusLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.leading.equalTo(self.orderImageView.mas_trailing).with.mas_offset(10);
+        make.top.equalTo(self.priceLabel.mas_bottom).with.mas_offset(10);
+    }];
+    self.messageContentView.frame = messageContentViewRect;
+}
+- (void)tapOrderMessage:(UIGestureRecognizer *)recognizer {
+    if ([self.delegate respondsToSelector:@selector(didTapMessageCell:)]) {
+        [self.delegate didTapMessageCell:self.model];
     }
 }
-
 
 @end

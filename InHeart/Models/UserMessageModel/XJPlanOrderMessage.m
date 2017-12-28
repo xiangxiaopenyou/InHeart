@@ -101,4 +101,8 @@
     }
 }
 
++ (NSString *)getObjectName {
+    return kXJPlanOrderMessageIdentifier;
+}
+
 @end

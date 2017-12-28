@@ -132,11 +132,7 @@
 }
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
-//    ConversationModel *tempModel = [[ConversationModel alloc] init];
     DoctorModel *doctorModel = self.doctorsArray[indexPath.row];
-//    tempModel.userId = doctorModel.id;
-//    tempModel.realname = doctorModel.realname;
-//    tempModel.avatarUrl = doctorModel.headPictureUrl;
     XJChatViewController *chatViewController = [[XJChatViewController alloc] initWithConversationType:ConversationType_PRIVATE targetId:doctorModel.id];
     chatViewController.conversationType = ConversationType_PRIVATE;
     chatViewController.targetId = doctorModel.id;
